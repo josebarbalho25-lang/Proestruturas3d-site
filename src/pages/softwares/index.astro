@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SoftwareCard from '../../components/SoftwareCard.astro';
+import HireCta from '../../components/HireCta.astro';
+import { SOFTWARES } from '../../config/softwares';
+---
+<BaseLayout title="Softwares" description="ProViga 3D, Alrimo e A-PORT: softwares de cálculo e análise estrutural.">
+  <section class="page-hero blueprint">
+    <div class="container">
+      <span class="eyebrow">Software House</span>
+      <h1>Softwares de cálculo estrutural</h1>
+      <p class="lead">Ferramentas criadas por um calculista para resolver os problemas reais do dia a dia de projeto.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container grid grid--3">
+      {SOFTWARES.map((s) => <SoftwareCard software={s} />)}
+    </div>
+  </section>
+  <HireCta title="Precisa de uma solução sob medida?" text="Além dos softwares, desenvolvo ferramentas personalizadas e presto consultoria em projeto estrutural." />
+</BaseLayout>

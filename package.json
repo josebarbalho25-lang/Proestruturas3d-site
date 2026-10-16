@@ -1,0 +1,21 @@
+{
+  "name": "proestruturas3d-site",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site oficial PRO Estruturas 3D: portfólio de cálculo estrutural e vitrine de softwares.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "dependencies": {
+    "@astrojs/rss": "4.0.19",
+    "@astrojs/sitemap": "3.7.4",
+    "astro": "7.4.0"
+  }
+}

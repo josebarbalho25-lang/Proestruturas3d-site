@@ -1,0 +1,77 @@
+/**
+ * ============================================================================
+ *  CONFIGURAÇÃO GERAL DO SITE
+ * ============================================================================
+ *  Este é o arquivo que você mais vai editar. Troque os textos e links abaixo
+ *  pelos seus dados reais. Tudo aqui é PÚBLICO (aparece no site), então
+ *  NUNCA coloque senhas, tokens ou chaves de API neste arquivo.
+ * ============================================================================
+ */
+
+export const SITE = {
+  name: 'PRO Estruturas 3D',
+  domain: 'proestruturas3d.com.br',
+  url: 'https://proestruturas3d.com.br',
+  tagline: 'Engenharia estrutural e softwares de cálculo',
+  description:
+    'Projetos estruturais em concreto armado, aço e fundações, e softwares de análise estrutural desenvolvidos por quem calcula todos os dias.',
+  locale: 'pt-BR',
+};
+
+/** Dados do engenheiro (aparecem na página "Sobre" e no rodapé). */
+export const ENGINEER = {
+  // TODO: confira seu nome como deseja que apareça no site
+  name: 'Eng. José Barbalho',
+  role: 'Engenheiro Civil · Calculista Estrutural',
+  // TODO: coloque seu número de registro profissional
+  crea: 'CREA 000000000-0',
+  city: 'Brasil',
+  email: 'contato@proestruturas3d.com.br',
+};
+
+/**
+ * Contato / WhatsApp
+ * whatsappNumber: somente números, com código do país (55) e DDD.
+ * Exemplo: 5581999998888
+ */
+export const CONTACT = {
+  // TODO: troque pelo seu número de WhatsApp
+  whatsappNumber: '5500000000000',
+  whatsappDefaultMessage:
+    'Olá! Vim pelo site proestruturas3d.com.br e gostaria de solicitar um orçamento de projeto estrutural.',
+  /**
+   * Endereço para onde o formulário de contato vai enviar os dados.
+   * Deixe vazio ('') para o formulário abrir o WhatsApp com a mensagem pronta.
+   * No futuro, aponte para o seu backend, ex.: 'https://api.proestruturas3d.com.br/v1/contato'
+   */
+  formEndpoint: '',
+};
+
+/** Redes sociais (aparecem no cabeçalho e no rodapé). */
+export const SOCIAL = [
+  {
+    id: 'instagram',
+    label: 'Instagram',
+    // TODO: troque pelo link real do seu perfil
+    url: 'https://www.instagram.com/proestruturas3d',
+  },
+  {
+    id: 'youtube',
+    label: 'YouTube',
+    // TODO: troque pelo link real do seu canal
+    url: 'https://www.youtube.com/@proestruturas3d',
+  },
+] as const;
+
+/** Itens do menu principal. */
+export const NAV = [
+  { label: 'Softwares', href: '/softwares/' },
+  { label: 'Sobre', href: '/sobre/' },
+  { label: 'Portfólio & Serviços', href: '/portfolio/' },
+  { label: 'Blog', href: '/blog/' },
+];
+
+/** Monta o link do WhatsApp com a mensagem pronta. */
+export function whatsappLink(message: string = CONTACT.whatsappDefaultMessage): string {
+  return `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(message)}`;
+}

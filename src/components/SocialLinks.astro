@@ -1,0 +1,27 @@
+---
+import { SOCIAL } from '../config/site';
+import Icon from './Icon.astro';
+interface Props { variant?: 'light' | 'dark' }
+const { variant = 'dark' } = Astro.props;
+---
+<ul class:list={['social', `social--${variant}`]}>
+  {SOCIAL.map((s) => (
+    <li>
+      <a href={s.url} target="_blank" rel="noopener noreferrer" aria-label={`${s.label} (abre em nova aba)`} title={s.label}>
+        <Icon name={s.id} size={20} />
+      </a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .social { display: flex; gap: .35rem; list-style: none; margin: 0; padding: 0; }
+  .social a {
+    display: grid; place-items: center; width: 38px; height: 38px; border-radius: 999px;
+    transition: background .15s, color .15s;
+  }
+  .social--dark a { color: var(--navy-900); }
+  .social--dark a:hover { background: var(--steel-100); color: var(--amber-dark); }
+  .social--light a { color: var(--steel-300); border: 1px solid rgb(255 255 255 / 14%); }
+  .social--light a:hover { color: var(--navy-950); background: var(--amber); border-color: var(--amber); }
+</style>

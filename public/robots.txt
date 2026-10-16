@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /minha-conta/
+
+Sitemap: https://proestruturas3d.com.br/sitemap-index.xml

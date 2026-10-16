@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+<BaseLayout title="Blog e Notícias" description="Artigos sobre engenharia, cálculo estrutural e atualizações dos softwares.">
+  <section class="page-hero blueprint">
+    <div class="container">
+      <span class="eyebrow">Blog & Notícias</span>
+      <h1>Engenharia, cálculo estrutural e softwares</h1>
+      <p class="lead">Artigos técnicos, bastidores de projetos e as novidades do ProViga 3D, Alrimo e A-PORT.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      {posts.length === 0 ? <p>Nenhum artigo publicado ainda.</p> : (
+        <div class="grid grid--3">{posts.map((p) => <PostCard post={p} />)}</div>
+      )}
+      <p class="rss"><a href="/rss.xml">Assine o feed RSS</a></p>
+    </div>
+  </section>
+</BaseLayout>
+<style>.rss { margin-top: 2.5rem; font-size: .92rem; }</style>

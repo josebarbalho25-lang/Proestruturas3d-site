@@ -1,0 +1,37 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HireCta from '../../components/HireCta.astro';
+import { formatDate } from '../../utils/format';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+interface Props { post: CollectionEntry<'blog'> }
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+<BaseLayout title={post.data.title} description={post.data.description} type="article">
+  <section class="page-hero blueprint">
+    <div class="container">
+      <a class="back" href="/blog/">← Blog</a>
+      <span class="eyebrow">{post.data.category}</span>
+      <h1>{post.data.title}</h1>
+      <p class="meta">{post.data.author} · <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time></p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <article class="prose"><Content /></article>
+      {post.data.tags.length > 0 && <div class="chips tags">{post.data.tags.map((t) => <span class="chip">#{t}</span>)}</div>}
+    </div>
+  </section>
+  <HireCta />
+</BaseLayout>
+<style>
+  .back { color: var(--steel-300); text-decoration: none; display: inline-block; margin-bottom: 1.25rem; font-size: .92rem; }
+  .back:hover { color: var(--amber); }
+  .meta { color: var(--steel-300); margin: 0; }
+  .tags { margin-top: 2.5rem; }
+</style>

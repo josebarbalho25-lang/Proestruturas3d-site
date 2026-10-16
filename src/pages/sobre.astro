@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HireCta from '../components/HireCta.astro';
+import { ENGINEER } from '../config/site';
+
+// TODO: edite sua trajetória abaixo. Cada item vira um ponto na linha do tempo.
+const timeline = [
+  { period: 'Formação', title: 'Engenharia Civil', text: 'Graduação em Engenharia Civil com ênfase em estruturas.' },
+  { period: 'Carreira', title: 'Calculista estrutural', text: 'Projetos residenciais, comerciais e industriais em concreto armado, alvenaria estrutural e aço.' },
+  { period: 'Especialização', title: 'Análise não-linear e MEF', text: 'Aprofundamento em análise física não-linear e no Método dos Elementos Finitos.' },
+  { period: 'Hoje', title: 'PRO Estruturas 3D', text: 'Projetos estruturais e desenvolvimento de softwares de cálculo: ProViga 3D, Alrimo e A-PORT.' },
+];
+const skills = ['Concreto Armado', 'Alvenaria Estrutural', 'Estruturas Metálicas', 'Perfis Formados a Frio', 'Fundações', 'Muros de Arrimo', 'Piso Industrial', 'Hidrossanitário', 'Análise Não-Linear', 'Elementos Finitos'];
+---
+<BaseLayout title="Sobre o Engenheiro" description={`Conheça a trajetória de ${ENGINEER.name}, ${ENGINEER.role}.`}>
+  <section class="page-hero blueprint">
+    <div class="container">
+      <span class="eyebrow">Sobre o Engenheiro</span>
+      <h1>{ENGINEER.name}</h1>
+      <p class="lead">{ENGINEER.role} · {ENGINEER.crea}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container about">
+      <div class="about__photo" aria-label="Espaço reservado para sua foto">
+        <!-- TODO: coloque sua foto em public/images/eu.jpg e troque este bloco por:
+             <img src="/images/eu.jpg" alt="Foto do engenheiro" width="480" height="560" /> -->
+        <span>Sua foto aqui</span>
+      </div>
+      <div class="prose">
+        <h2>Engenharia com rigor técnico e visão de produto</h2>
+        <p>
+          Sou engenheiro civil e calculista estrutural. Ao longo da minha trajetória desenvolvi projetos de fundações,
+          contenções, edificações em concreto armado, alvenaria estrutural e coberturas metálicas, sempre buscando a
+          solução mais segura e econômica para cada obra.
+        </p>
+        <p>
+          A rotina de projeto me levou a criar as minhas próprias ferramentas de cálculo. Assim nasceu a
+          <strong>PRO Estruturas 3D</strong>: uma software house dedicada a levar análises avançadas, como a não-linearidade
+          física e a análise espacial por elementos finitos, para o dia a dia dos escritórios de engenharia.
+        </p>
+        <p><em>TODO: personalize este texto com a sua história, anos de experiência e números de projetos.</em></p>
+        <div class="chips">{skills.map((s) => <span class="chip">{s}</span>)}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">Trajetória</span><h2>Experiência</h2></div>
+      <ol class="timeline">
+        {timeline.map((t) => (
+          <li><span class="timeline__period">{t.period}</span><h3>{t.title}</h3><p>{t.text}</p></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+  <HireCta />
+</BaseLayout>
+
+<style>
+  .about { display: grid; grid-template-columns: .8fr 1.2fr; gap: 3.5rem; align-items: start; }
+  .about__photo {
+    aspect-ratio: 6 / 7; border-radius: var(--radius); display: grid; place-items: center; color: var(--steel-500);
+    background: repeating-linear-gradient(45deg, var(--steel-100), var(--steel-100) 12px, var(--steel-50) 12px, var(--steel-50) 24px);
+    border: 1px dashed var(--steel-300); font-weight: 600;
+  }
+  .about .prose h2 { margin-top: 0; }
+  .timeline { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.5rem; }
+  .timeline li { background: var(--white); border: 1px solid var(--border); border-top: 4px solid var(--amber); border-radius: var(--radius); padding: 1.5rem; }
+  .timeline__period { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--amber-dark); }
+  .timeline h3 { margin: .4rem 0; }
+  .timeline p { margin: 0; color: var(--text-muted); font-size: .96rem; }
+  @media (max-width: 860px) { .about { grid-template-columns: 1fr; } .about__photo { max-width: 360px; } }
+</style>

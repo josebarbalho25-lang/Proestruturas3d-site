@@ -1,0 +1,108 @@
+---
+import { NAV, whatsappLink } from '../config/site';
+import Logo from './Logo.astro';
+import SocialLinks from './SocialLinks.astro';
+import Icon from './Icon.astro';
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => path === href || path.startsWith(href);
+---
+<header class="site-header">
+  <div class="container site-header__inner">
+    <Logo />
+
+    <div class="site-header__social"><SocialLinks /></div>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu">
+      <span class="nav-toggle__open"><Icon name="menu" size={24} /></span>
+      <span class="nav-toggle__close"><Icon name="close" size={24} /></span>
+    </button>
+
+    <div class="site-header__panel" id="main-nav">
+      <nav aria-label="Navegação principal">
+        <ul class="nav">
+          {NAV.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="site-header__actions">
+        <!--
+          ÁREA DO CLIENTE — "Login / Minha Conta"
+          ------------------------------------------------------------------
+          Hoje este botão leva para a página /minha-conta/ (interface pronta).
+          Quando o backend existir, a autenticação funcionará assim:
+            • O backend guarda as senhas SOMENTE como hash Bcrypt (nunca em texto puro).
+            • Ao fazer login, o backend gera um Token JWT e o envia em um cookie
+              HttpOnly + Secure + SameSite (o JavaScript do site NÃO consegue ler).
+            • O front-end nunca armazena o JWT em localStorage e nunca contém
+              o segredo de assinatura do JWT.
+          O script src/scripts/auth.ts troca o texto para "Minha Conta" quando
+          o backend confirmar (GET /v1/auth/me) que o cliente está logado.
+        -->
+        <a href="/minha-conta/" class="btn btn--outline btn--sm" data-auth-button>
+          <Icon name="user" size={18} />
+          <span data-auth-label>Login</span>
+        </a>
+        <a href={whatsappLink()} class="btn btn--primary btn--sm" target="_blank" rel="noopener noreferrer">
+          Solicite um Orçamento
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  import '../scripts/auth';
+
+  const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+  const header = document.querySelector('.site-header');
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    toggle.setAttribute('aria-label', open ? 'Abrir menu' : 'Fechar menu');
+    header?.classList.toggle('is-open', !open);
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgb(255 255 255 / 92%); backdrop-filter: saturate(160%) blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .site-header__inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 72px; }
+  .site-header__panel { display: flex; align-items: center; gap: 1.5rem; flex: 1; justify-content: flex-end; }
+  .nav { display: flex; gap: .25rem; list-style: none; margin: 0; padding: 0; }
+  .nav a {
+    display: block; padding: .5rem .8rem; border-radius: 8px; text-decoration: none;
+    color: var(--navy-900); font-weight: 600; font-size: .96rem;
+  }
+  .nav a:hover { background: var(--steel-100); color: var(--navy-900); }
+  .nav a[aria-current='page'] { color: var(--amber-dark); }
+  .site-header__actions { display: flex; align-items: center; gap: .6rem; }
+  .site-header__social { order: 3; }
+  .nav-toggle { order: 4; }
+  .nav-toggle { display: none; background: none; border: 0; color: var(--navy-900); padding: .4rem; cursor: pointer; }
+  .nav-toggle__close { display: none; }
+
+  @media (max-width: 1080px) {
+    .nav-toggle { display: block; }
+    .site-header__social { margin-left: auto; }
+    .site-header__panel {
+      display: none; position: absolute; left: 0; right: 0; top: 72px;
+      flex-direction: column; align-items: stretch; gap: 1rem;
+      padding: 1rem 1.25rem 1.5rem; background: var(--white); border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+    }
+    .site-header.is-open .site-header__panel { display: flex; }
+    .site-header.is-open .nav-toggle__open { display: none; }
+    .site-header.is-open .nav-toggle__close { display: block; }
+    .nav { flex-direction: column; }
+    .nav a { padding: .8rem .5rem; font-size: 1.05rem; }
+    .site-header__actions { flex-wrap: wrap; }
+  }
+</style>

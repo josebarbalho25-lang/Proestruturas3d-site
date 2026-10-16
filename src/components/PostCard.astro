@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate } from '../utils/format';
+interface Props { post: CollectionEntry<'blog'> }
+const { post } = Astro.props;
+---
+<article class="card post">
+  <div class="card__body">
+    <div class="post__meta"><span class="badge">{post.data.category}</span><time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time></div>
+    <h3><a href={`/blog/${post.id}/`}>{post.data.title}</a></h3>
+    <p>{post.data.description}</p>
+    <a href={`/blog/${post.id}/`} class="post__more">Ler artigo →</a>
+  </div>
+</article>
+<style>
+  .post__meta { display: flex; align-items: center; gap: .75rem; font-size: .85rem; color: var(--steel-500); }
+  .post h3 { margin: 0; font-size: 1.2rem; }
+  .post h3 a { color: var(--navy-900); text-decoration: none; }
+  .post h3 a:hover { color: var(--amber-dark); }
+  .post p { color: var(--text-muted); margin: 0; font-size: .96rem; }
+  .post__more { font-weight: 650; text-decoration: none; }
+</style>

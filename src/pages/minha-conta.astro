@@ -1,0 +1,88 @@
+---
+/**
+ * ============================================================================
+ *  ÁREA DO CLIENTE (interface pronta, aguardando o backend)
+ * ============================================================================
+ *  Fluxo de segurança planejado:
+ *    1. O cliente digita e-mail e senha aqui.
+ *    2. O formulário envia (HTTPS) para POST {API}/v1/auth/login.
+ *    3. O BACKEND compara a senha com o hash Bcrypt salvo no banco.
+ *    4. Se correto, o BACKEND gera um Token JWT e devolve em cookie
+ *       HttpOnly + Secure + SameSite=Strict (o front-end nunca vê o token).
+ *    5. Downloads e licenças passam a ser liberados pelo backend, que valida o JWT.
+ *
+ *  Enquanto PUBLIC_API_BASE_URL não estiver configurada, o formulário mostra
+ *  uma mensagem de "em breve" e não envia nada.
+ * ============================================================================
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { isApiEnabled } from '../config/api';
+const apiReady = isApiEnabled();
+---
+<BaseLayout title="Área do Cliente" description="Acesse sua conta para gerenciar licenças e downloads.">
+  <meta name="robots" content="noindex" slot="head" />
+  <section class="section section--soft account">
+    <div class="container account__inner">
+      <div class="card account__card">
+        <div class="card__body">
+          <span class="account__icon"><Icon name="lock" size={26} /></span>
+          <h1>Área do Cliente</h1>
+          <p class="muted">Acesse suas licenças, downloads e atualizações dos softwares.</p>
+
+          {!apiReady && (
+            <p class="notice">A Área do Cliente estará disponível em breve, junto com o lançamento dos softwares.</p>
+          )}
+
+          <form id="login-form" data-api-ready={apiReady ? 'true' : 'false'}>
+            <label>E-mail<input name="email" type="email" required autocomplete="username" disabled={!apiReady} /></label>
+            <label>Senha<input name="password" type="password" required autocomplete="current-password" minlength="8" disabled={!apiReady} /></label>
+            <button class="btn btn--dark" type="submit" disabled={!apiReady}>Entrar</button>
+            <p id="login-status" class="status" role="status" aria-live="polite"></p>
+          </form>
+
+          <p class="small">Ainda não é cliente? <a href="/softwares/">Conheça os softwares</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { login } from '../scripts/auth';
+
+  const form = document.querySelector<HTMLFormElement>('#login-form');
+  const status = document.querySelector<HTMLElement>('#login-status');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (form.dataset.apiReady !== 'true') return;
+    const data = new FormData(form);
+    if (status) status.textContent = 'Entrando...';
+    try {
+      // A senha vai para o backend, que verifica com Bcrypt e devolve o JWT em cookie HttpOnly.
+      await login(String(data.get('email')), String(data.get('password')));
+      const voltar = new URLSearchParams(location.search).get('voltar');
+      // Só aceita voltar para páginas do próprio site (evita "open redirect").
+      location.assign(voltar && voltar.startsWith('/') && !voltar.startsWith('//') ? voltar : '/minha-conta/');
+    } catch {
+      if (status) status.textContent = 'E-mail ou senha inválidos.';
+    }
+  });
+</script>
+
+<style>
+  .account { min-height: 70vh; display: grid; align-items: center; }
+  .account__inner { display: grid; place-items: center; }
+  .account__card { width: min(440px, 100%); }
+  .account__icon { width: 52px; height: 52px; border-radius: 12px; display: grid; place-items: center; background: var(--navy-900); color: var(--amber); }
+  .account h1 { font-size: 1.8rem; margin: .5rem 0 0; }
+  .muted { color: var(--text-muted); margin: 0; }
+  .notice { background: rgb(245 165 36 / 12%); border: 1px solid rgb(245 165 36 / 35%); color: #854d0e; padding: .8rem 1rem; border-radius: var(--radius-sm); font-size: .93rem; margin: 0; }
+  form { display: grid; gap: 1rem; margin-top: .5rem; }
+  label { display: grid; gap: .4rem; font-weight: 600; font-size: .92rem; color: var(--navy-900); }
+  input { font: inherit; padding: .75rem .9rem; border: 1px solid var(--steel-300); border-radius: var(--radius-sm); }
+  input:disabled { background: var(--steel-100); }
+  .status { margin: 0; font-size: .92rem; color: var(--steel-600); }
+  .small { font-size: .9rem; color: var(--text-muted); margin: .5rem 0 0; }
+</style>

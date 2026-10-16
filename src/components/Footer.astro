@@ -1,0 +1,64 @@
+---
+import { SITE, ENGINEER, NAV, CONTACT, whatsappLink } from '../config/site';
+import { SOFTWARES } from '../config/softwares';
+import Logo from './Logo.astro';
+import SocialLinks from './SocialLinks.astro';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <Logo variant="light" />
+      <p>{SITE.description}</p>
+      <SocialLinks variant="light" />
+    </div>
+
+    <div>
+      <h2 class="site-footer__title">Navegação</h2>
+      <ul>
+        {NAV.map((i) => <li><a href={i.href}>{i.label}</a></li>)}
+        <li><a href="/contato/">Contato</a></li>
+        <li><a href="/minha-conta/">Área do Cliente</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="site-footer__title">Softwares</h2>
+      <ul>
+        {SOFTWARES.map((s) => <li><a href={`/softwares/${s.id}/`}>{s.name}</a></li>)}
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="site-footer__title">Contato</h2>
+      <ul>
+        <li><a href={whatsappLink()} target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+        <li><a href={`mailto:${ENGINEER.email}`}>{ENGINEER.email}</a></li>
+        <li class="muted">{ENGINEER.name}</li>
+        <li class="muted">{ENGINEER.crea}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container site-footer__bottom">
+    <span>© {year} {SITE.name}. Todos os direitos reservados.</span>
+    <span>{SITE.domain}</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer { background: var(--navy-950); color: var(--steel-300); padding: 4rem 0 0; font-size: .95rem; }
+  .site-footer__grid { display: grid; grid-template-columns: 1.6fr repeat(3, 1fr); gap: 2.5rem; }
+  .site-footer__brand p { margin: 1.1rem 0 1.25rem; max-width: 40ch; color: var(--steel-300); }
+  .site-footer__title { font-size: .8rem; text-transform: uppercase; letter-spacing: .14em; color: var(--white); margin-bottom: 1rem; }
+  .site-footer ul:not(.social) { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+  .site-footer a { color: var(--steel-300); text-decoration: none; }
+  .site-footer a:hover { color: var(--amber); }
+  .muted { color: var(--steel-500); }
+  .site-footer__bottom {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem;
+    margin-top: 3rem; padding: 1.4rem 0; border-top: 1px solid rgb(255 255 255 / 8%); color: var(--steel-500); font-size: .85rem;
+  }
+  @media (max-width: 860px) { .site-footer__grid { grid-template-columns: 1fr 1fr; } .site-footer__brand { grid-column: 1 / -1; } }
+  @media (max-width: 520px) { .site-footer__grid { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SoftwareMark from '../../components/SoftwareMark.astro';
+import ProductButtons from '../../components/ProductButtons.astro';
+import HireCta from '../../components/HireCta.astro';
+import Icon from '../../components/Icon.astro';
+import { SOFTWARES, type Software } from '../../config/softwares';
+
+export function getStaticPaths() {
+  return SOFTWARES.map((software) => ({ params: { slug: software.id }, props: { software } }));
+}
+interface Props { software: Software }
+const { software: s } = Astro.props;
+const others = SOFTWARES.filter((o) => o.id !== s.id);
+---
+<BaseLayout title={s.name} description={`${s.name}: ${s.tagline}.`}>
+  <section class="page-hero blueprint">
+    <div class="container sw-hero">
+      <SoftwareMark id={s.id} accent={s.accent} monogram={s.monogram} large />
+      <div>
+        <span class="eyebrow">{s.status}</span>
+        <h1>{s.name}</h1>
+        <p class="lead">{s.tagline}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container sw-detail">
+      <div>
+        <h2>Sobre o {s.name}</h2>
+        <p class="lead">{s.description}</p>
+        <h3>Principais recursos</h3>
+        <ul class="features">
+          {s.features.map((f) => <li><Icon name="check" size={18} /> {f}</li>)}
+        </ul>
+      </div>
+      <aside class="card buy-box">
+        <div class="card__body">
+          <h3>Obtenha o {s.name}</h3>
+          <p>
+            {s.status === 'Disponível'
+              ? 'Compre sua licença ou baixe a versão de demonstração.'
+              : 'Software em desenvolvimento. Registre seu interesse e seja avisado no lançamento.'}
+          </p>
+          <ProductButtons software={s} />
+          <p class="buy-box__note"><Icon name="lock" size={16} /> Downloads e licenças são liberados com segurança pela Área do Cliente.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <h2>Outros softwares</h2>
+      <ul class="others">
+        {others.map((o) => <li><a href={`/softwares/${o.id}/`}><strong>{o.name}</strong> <span>{o.tagline}</span></a></li>)}
+      </ul>
+    </div>
+  </section>
+  <HireCta />
+</BaseLayout>
+
+<style>
+  .sw-hero { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+  .sw-hero h1 { margin-bottom: .3rem; }
+  .sw-detail { display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem; align-items: start; }
+  .features { list-style: none; padding: 0; display: grid; gap: .8rem; }
+  .features li { display: flex; gap: .6rem; align-items: flex-start; }
+  .features :global(svg) { color: var(--amber-dark); margin-top: .3rem; flex: none; }
+  .buy-box { position: sticky; top: 96px; }
+  .buy-box__note { display: flex; gap: .45rem; align-items: center; font-size: .85rem; color: var(--steel-500); margin: .5rem 0 0; }
+  .others { list-style: none; padding: 0; display: grid; gap: .75rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+  .others a { display: block; padding: 1.1rem 1.25rem; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; }
+  .others strong { color: var(--navy-900); display: block; }
+  .others span { color: var(--text-muted); font-size: .93rem; }
+  @media (max-width: 860px) { .sw-detail { grid-template-columns: 1fr; } .buy-box { position: static; } }
+</style>

@@ -1,0 +1,50 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HireCta from '../../components/HireCta.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('portfolio');
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+interface Props { project: CollectionEntry<'portfolio'> }
+const { project } = Astro.props;
+const { Content } = await render(project);
+const p = project.data;
+---
+<BaseLayout title={p.title} description={p.summary}>
+  <section class="page-hero blueprint">
+    <div class="container">
+      <a class="back" href="/portfolio/">← Portfólio</a>
+      <span class="eyebrow">{p.category}</span>
+      <h1>{p.title}</h1>
+      <p class="lead">{p.summary}</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container project-detail">
+      <article class="prose"><Content /></article>
+      <aside class="card"><div class="card__body">
+        <h3>Ficha técnica</h3>
+        <dl class="facts">
+          {p.highlights.map((h) => <div><dt>{h.label}</dt><dd>{h.value}</dd></div>)}
+          {p.location && <div><dt>Local</dt><dd>{p.location}</dd></div>}
+          {p.year && <div><dt>Ano</dt><dd>{p.year}</dd></div>}
+        </dl>
+        <h4>Disciplinas</h4>
+        <div class="chips">{p.disciplines.map((d) => <span class="chip">{d}</span>)}</div>
+      </div></aside>
+    </div>
+  </section>
+  <HireCta />
+</BaseLayout>
+<style>
+  .back { color: var(--steel-300); text-decoration: none; display: inline-block; margin-bottom: 1.25rem; font-size: .92rem; }
+  .back:hover { color: var(--amber); }
+  .project-detail { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: start; }
+  .facts { margin: 0 0 1rem; display: grid; gap: .8rem; }
+  .facts dt { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--steel-500); }
+  .facts dd { margin: 0; font-weight: 650; color: var(--navy-900); }
+  h4 { margin: .5rem 0 .25rem; font-size: .95rem; }
+  @media (max-width: 860px) { .project-detail { grid-template-columns: 1fr; } }
+</style>

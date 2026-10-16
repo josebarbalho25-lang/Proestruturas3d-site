@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import HireCta from '../../components/HireCta.astro';
+import Icon from '../../components/Icon.astro';
+import { whatsappLink } from '../../config/site';
+
+const projects = (await getCollection('portfolio')).sort((a, b) => a.data.order - b.data.order);
+
+// TODO: ajuste a lista de serviços que você oferece.
+const services = [
+  { icon: 'frame', title: 'Projeto estrutural em concreto armado', text: 'Residências, sobrados, edifícios e galpões, com detalhamento completo e memorial de cálculo.' },
+  { icon: 'wall', title: 'Fundações e contenções', text: 'Sapatas, blocos, estacas, vigas alavanca e muros de arrimo, a partir das sondagens do terreno.' },
+  { icon: 'beam', title: 'Estruturas metálicas', text: 'Coberturas, treliças e mezaninos em perfis laminados e formados a frio.' },
+  { icon: 'check', title: 'Alvenaria estrutural e piso industrial', text: 'Dimensionamento de alvenaria estrutural e de pisos industriais para cargas pesadas.' },
+  { icon: 'mail', title: 'Projeto hidrossanitário', text: 'Água fria, água quente, esgoto e águas pluviais, compatibilizados com a estrutura.' },
+  { icon: 'user', title: 'Consultoria e laudos', text: 'Análise de projetos de terceiros, verificação de estruturas existentes e pareceres técnicos.' },
+];
+---
+<BaseLayout title="Portfólio & Serviços" description="Projetos estruturais entregues e serviços de engenharia oferecidos.">
+  <section class="page-hero blueprint">
+    <div class="container">
+      <span class="eyebrow">Portfólio & Serviços</span>
+      <h1>Projetos que sustentam resultados</h1>
+      <p class="lead">Soluções estruturais seguras, econômicas e compatibilizadas, do residencial ao comercial de grande porte.</p>
+      <div class="btn-row" style="margin-top:1.75rem">
+        <a class="btn btn--primary" href={whatsappLink()} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" /> Me Contrate</a>
+        <a class="btn btn--ghost-light" href="/contato/">Solicitar orçamento por formulário</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">Portfólio</span><h2>Projetos em destaque</h2></div>
+      <div class="grid grid--3">{projects.map((p) => <ProjectCard project={p} />)}</div>
+    </div>
+  </section>
+
+  <section class="section section--soft" id="servicos">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">Serviços</span><h2>Como posso ajudar no seu projeto</h2></div>
+      <div class="grid grid--3">
+        {services.map((s) => (
+          <div class="card service"><div class="card__body">
+            <span class="service__icon"><Icon name={s.icon} size={26} /></span>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </div></div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <HireCta />
+</BaseLayout>
+
+<style>
+  .service__icon { width: 52px; height: 52px; border-radius: 12px; display: grid; place-items: center; background: var(--navy-900); color: var(--amber); }
+  .service h3 { margin: .25rem 0 0; font-size: 1.12rem; }
+  .service p { color: var(--text-muted); margin: 0; font-size: .96rem; }
+</style>

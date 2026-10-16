@@ -1,0 +1,37 @@
+---
+import type { Software } from '../config/softwares';
+import SoftwareMark from './SoftwareMark.astro';
+import ProductButtons from './ProductButtons.astro';
+import Icon from './Icon.astro';
+interface Props { software: Software }
+const { software: s } = Astro.props;
+---
+<article class="card sw" style={`--accent:${s.accent}`}>
+  <div class="card__body">
+    <div class="sw__top">
+      <SoftwareMark id={s.id} accent={s.accent} monogram={s.monogram} />
+      <span class="badge">{s.status}</span>
+    </div>
+    <h3><a href={`/softwares/${s.id}/`}>{s.name}</a></h3>
+    <p class="sw__tagline">{s.tagline}</p>
+    <ul class="sw__features">
+      {s.features.slice(0, 3).map((f) => <li><Icon name="check" size={16} /> {f}</li>)}
+    </ul>
+    <div class="sw__footer">
+      <a class="sw__more" href={`/softwares/${s.id}/`}>Ver detalhes <Icon name="arrow" size={16} /></a>
+      <ProductButtons software={s} size="sm" />
+    </div>
+  </div>
+</article>
+<style>
+  .sw { border-top: 4px solid var(--accent); }
+  .sw__top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .4rem; }
+  .sw h3 { margin: .3rem 0 0; font-size: 1.45rem; }
+  .sw h3 a { color: var(--navy-900); text-decoration: none; }
+  .sw__tagline { color: var(--text-muted); margin: 0; font-weight: 500; }
+  .sw__features { list-style: none; padding: 0; margin: .25rem 0 0; display: grid; gap: .45rem; font-size: .93rem; color: var(--steel-600); }
+  .sw__features li { display: flex; gap: .5rem; align-items: flex-start; }
+  .sw__features :global(svg) { color: var(--accent); margin-top: .25rem; flex: none; }
+  .sw__footer { display: grid; gap: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: .75rem; }
+  .sw__more { display: inline-flex; align-items: center; gap: .35rem; font-weight: 650; text-decoration: none; font-size: .95rem; }
+</style>

@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import { ENGINEER, whatsappLink } from '../config/site';
+---
+<BaseLayout title="Contato e Orçamento" description="Solicite um orçamento de projeto estrutural ou tire dúvidas sobre os softwares.">
+  <section class="page-hero blueprint">
+    <div class="container">
+      <span class="eyebrow">Contato</span>
+      <h1>Solicite um orçamento</h1>
+      <p class="lead">Conte um pouco sobre o seu projeto. Respondo pelo WhatsApp ou por e-mail.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact">
+      <form id="contact-form" class="card" novalidate={false}>
+        <div class="card__body">
+          <div class="row">
+            <label>Nome<input name="nome" required autocomplete="name" maxlength="120" /></label>
+            <label>E-mail<input name="email" type="email" required autocomplete="email" maxlength="160" /></label>
+          </div>
+          <div class="row">
+            <label>Telefone / WhatsApp<input name="telefone" type="tel" autocomplete="tel" maxlength="30" /></label>
+            <label>Assunto
+              <select name="assunto" required>
+                <option>Projeto estrutural</option>
+                <option>Fundações e contenções</option>
+                <option>Estrutura metálica</option>
+                <option>Projeto hidrossanitário</option>
+                <option>Consultoria / laudo</option>
+                <option>Softwares</option>
+                <option>Outro</option>
+              </select>
+            </label>
+          </div>
+          <label>Mensagem<textarea name="mensagem" rows="6" required maxlength="3000" placeholder="Tipo de obra, área aproximada, cidade, prazo..."></textarea></label>
+          <!-- Campo invisível anti-robô (honeypot). Não remova. -->
+          <label class="sr-only" aria-hidden="true">Não preencha<input name="website" tabindex="-1" autocomplete="off" /></label>
+          <div>
+            <button class="btn btn--primary" type="submit"><Icon name="whatsapp" /> Enviar solicitação</button>
+            <p id="contact-status" class="status" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </form>
+
+      <aside class="contact__side">
+        <h2>Fale direto comigo</h2>
+        <p>Atendimento rápido pelo WhatsApp para orçamentos e dúvidas sobre os softwares.</p>
+        <a class="btn btn--whatsapp" href={whatsappLink()} target="_blank" rel="noopener noreferrer"><Icon name="whatsapp" /> Abrir WhatsApp</a>
+        <p class="mail"><Icon name="mail" size={18} /> <a href={`mailto:${ENGINEER.email}`}>{ENGINEER.email}</a></p>
+        <h3>Redes sociais</h3>
+        <SocialLinks />
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import '../scripts/contact-form';
+</script>
+
+<style>
+  .contact { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: start; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  label { display: grid; gap: .4rem; font-weight: 600; font-size: .92rem; color: var(--navy-900); }
+  input, select, textarea {
+    font: inherit; font-weight: 400; padding: .75rem .9rem; border: 1px solid var(--steel-300); border-radius: var(--radius-sm);
+    background: var(--white); color: var(--text); width: 100%;
+  }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--amber); border-color: var(--amber); }
+  .status { margin: .75rem 0 0; font-size: .92rem; color: var(--steel-600); }
+  .contact__side h2 { font-size: 1.5rem; }
+  .contact__side h3 { font-size: 1rem; margin-top: 2rem; }
+  .mail { display: flex; align-items: center; gap: .5rem; margin-top: 1.25rem; }
+  @media (max-width: 860px) { .contact { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .row { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,24 @@
+---
+/**
+ * Botões "Comprar" e "Baixar".
+ * Repare: NÃO existe href com link de arquivo aqui. O botão só carrega o ID do
+ * produto; o destino é resolvido em src/scripts/product-actions.ts a partir de
+ * src/config/softwares.ts ou da API.
+ */
+import type { Software } from '../config/softwares';
+import Icon from './Icon.astro';
+interface Props { software: Software; size?: 'sm' | 'md' }
+const { software, size = 'md' } = Astro.props;
+const sm = size === 'sm' ? 'btn--sm' : '';
+---
+<div class="btn-row">
+  <button type="button" class={`btn btn--primary ${sm}`} data-product-id={software.id} data-product-action="buy">
+    <Icon name="cart" /> {software.buy.mode === 'soon' ? 'Tenho interesse' : software.buy.label}
+  </button>
+  <button type="button" class={`btn btn--outline ${sm}`} data-product-id={software.id} data-product-action="download">
+    <Icon name="download" /> {software.download.mode === 'soon' ? 'Avise-me no lançamento' : software.download.label}
+  </button>
+</div>
+<script>
+  import '../scripts/product-actions';
+</script>
