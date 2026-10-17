@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SoftwareMark from '../../components/SoftwareMark.astro';
 import ProductButtons from '../../components/ProductButtons.astro';
+import PricingPlans from '../../components/PricingPlans.astro';
 import HireCta from '../../components/HireCta.astro';
 import Icon from '../../components/Icon.astro';
 import { SOFTWARES, type Software } from '../../config/softwares';
@@ -38,13 +39,20 @@ const others = SOFTWARES.filter((o) => o.id !== s.id);
       <aside class="card buy-box">
         <div class="card__body">
           <h3>Obtenha o {s.name}</h3>
-          <p>
-            {s.status === 'Disponível'
-              ? 'Compre sua licença ou baixe a versão de demonstração.'
-              : 'Software em desenvolvimento. Registre seu interesse e seja avisado no lançamento.'}
-          </p>
-          <ProductButtons software={s} />
-          <p class="buy-box__note"><Icon name="lock" size={16} /> Downloads e licenças são liberados com segurança pela Área do Cliente.</p>
+          <dl class="specs">
+            {s.specs.map((sp) => <div><dt>{sp.label}</dt><dd>{sp.value}</dd></div>)}
+          </dl>
+          {s.plans ? <PricingPlans software={s} /> : null}
+          {s.plans ? (
+            s.download.mode !== 'soon' && (
+              <button type="button" class="btn btn--outline" data-product-id={s.id} data-product-action="download">
+                <Icon name="whatsapp" /> {s.download.label}
+              </button>
+            )
+          ) : (
+            <ProductButtons software={s} />
+          )}
+          {s.deliveryNote && <p class="buy-box__note"><Icon name="lock" size={16} /> {s.deliveryNote}</p>}
         </div>
       </aside>
     </div>
@@ -69,7 +77,12 @@ const others = SOFTWARES.filter((o) => o.id !== s.id);
   .features li { display: flex; gap: .6rem; align-items: flex-start; }
   .features :global(svg) { color: var(--amber-dark); margin-top: .3rem; flex: none; }
   .buy-box { position: sticky; top: 96px; }
-  .buy-box__note { display: flex; gap: .45rem; align-items: center; font-size: .85rem; color: var(--steel-500); margin: .5rem 0 0; }
+  .buy-box__note { display: flex; gap: .45rem; align-items: flex-start; font-size: .85rem; color: var(--steel-500); margin: .5rem 0 0; }
+  .buy-box__note :global(svg) { flex: none; margin-top: .2rem; }
+  .specs { margin: 0; display: grid; gap: .5rem; padding-bottom: .75rem; border-bottom: 1px solid var(--border); }
+  .specs div { display: flex; justify-content: space-between; gap: 1rem; font-size: .92rem; }
+  .specs dt { color: var(--steel-500); }
+  .specs dd { margin: 0; font-weight: 650; color: var(--navy-900); text-align: right; }
   .others { list-style: none; padding: 0; display: grid; gap: .75rem; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
   .others a { display: block; padding: 1.1rem 1.25rem; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; }
   .others strong { color: var(--navy-900); display: block; }

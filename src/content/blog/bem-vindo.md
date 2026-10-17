@@ -11,7 +11,7 @@ Este é o primeiro artigo do blog. Aqui vou compartilhar:
 - **Artigos técnicos** sobre cálculo estrutural, concreto armado, estruturas
   metálicas e fundações;
 - **Bastidores de projetos** reais do portfólio;
-- **Atualizações** do ProViga 3D, do Alrimo e do A-PORT.
+- **Atualizações** do Pró-Viga 3D, do Al-rimo e do A-PORT.
 
 ## Como novos artigos são publicados
 

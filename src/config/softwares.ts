@@ -12,18 +12,32 @@
  *                         um link temporário assinado). Recomendado para versões pagas.
  *    2. mode: 'url'    -> usa a URL configurada abaixo (ex.: página de checkout
  *                         do gateway, página de releases, versão de demonstração).
- *    3. mode: 'soon'   -> mostra "Em breve" e leva para o contato.
+ *    3. mode: 'whatsapp' -> abre o WhatsApp com a mensagem configurada (ex.: pedir teste grátis).
+ *    4. mode: 'soon'   -> mostra "Em breve" e leva para o contato.
  * ============================================================================
  */
 
-export type ActionMode = 'api' | 'url' | 'soon';
+export type ActionMode = 'api' | 'url' | 'whatsapp' | 'soon';
 
 export interface ProductAction {
   mode: ActionMode;
-  /** Usado somente quando mode = 'url'. */
+  /** Usado somente quando mode = 'url' (precisa começar com https://). */
   url?: string;
+  /** Usado somente quando mode = 'whatsapp'. */
+  message?: string;
   /** Texto do botão. */
   label: string;
+}
+
+/** Plano de assinatura/licença. O link é o checkout da loja (Kiwify), nunca um arquivo. */
+export interface Plan {
+  id: string;
+  name: string;
+  price: string;
+  period: string;
+  note?: string;
+  highlight?: boolean;
+  url: string;
 }
 
 export interface Software {
@@ -32,68 +46,130 @@ export interface Software {
   tagline: string;
   description: string;
   features: string[];
+  /** Informações rápidas (plataforma, norma, licença...). */
+  specs: { label: string; value: string }[];
   status: 'Disponível' | 'Em desenvolvimento' | 'Beta';
   /** Cor de destaque do card. */
   accent: string;
   /** Sigla exibida no "logo" provisório. */
   monogram: string;
+  /** Planos à venda. Se existir, a página do software mostra a tabela de preços. */
+  plans?: Plan[];
+  /** Texto curto exibido abaixo dos botões na página do software. */
+  deliveryNote?: string;
   buy: ProductAction;
   download: ProductAction;
 }
 
 export const SOFTWARES: Software[] = [
   {
-    id: 'proviga-3d',
-    name: 'ProViga 3D',
-    tagline: 'Análise física não-linear e detalhamento de vigas',
+    id: 'pro-viga-3d',
+    name: 'Pró-Viga 3D',
+    tagline: 'Cálculo, análise não-linear e detalhamento de vigas de concreto armado',
     description:
-      'Dimensionamento e detalhamento de vigas de concreto armado considerando a não-linearidade física do material, com verificação de flechas, fissuração e geração automática de armaduras.',
+      'Dimensiona e detalha vigas de concreto armado conforme a NBR 6118:2023, da análise ao desenho: flexão, cisalhamento, flechas com análise física não-linear, ancoragens e emendas, com memorial de cálculo e prancha prontos para entregar.',
     features: [
-      'Análise física não-linear (diagramas tensão-deformação NBR 6118)',
-      'Verificação de ELU e ELS: flechas, fissuração e abertura de fissuras',
-      'Detalhamento automático de armaduras longitudinais e estribos',
-      'Visualização 3D da viga e das armaduras',
+      'Análise física não-linear (NLF) com flecha imediata e de longo prazo, fluência e retração',
+      'Ancoragem, emendas, ganchos e grampos dimensionados e desenhados automaticamente',
+      'Memorial de cálculo completo e prancha exportada em DXF',
+      'Modelo 3D com armaduras, campos de tensão e deformada pelo MEF',
+      'Tela de reações e verificações de ELU e ELS lado a lado',
+      'Funciona offline: só precisa de internet para validar a licença',
     ],
-    status: 'Em desenvolvimento',
+    specs: [
+      { label: 'Norma', value: 'NBR 6118:2023' },
+      { label: 'Plataforma', value: 'Windows' },
+      { label: 'Licença', value: '1 computador por assinatura' },
+    ],
+    status: 'Disponível',
     accent: '#f5a524',
     monogram: 'PV',
-    buy: { mode: 'soon', label: 'Comprar licença' },
-    download: { mode: 'soon', label: 'Baixar demonstração' },
+    plans: [
+      {
+        id: 'mensal',
+        name: 'Mensal',
+        price: 'R$ 20',
+        period: '/mês',
+        note: 'Cancele quando quiser',
+        url: 'https://pay.kiwify.com.br/dVuVKat',
+      },
+      {
+        id: 'anual',
+        name: 'Anual',
+        price: 'R$ 180',
+        period: '/ano',
+        note: 'Equivale a R$ 15/mês',
+        highlight: true,
+        url: 'https://pay.kiwify.com.br/8XUeYa3',
+      },
+    ],
+    deliveryNote:
+      'Pagamento seguro pela Kiwify. Após a compra, o instalador fica disponível na sua Área de Membros e a licença é ativada com o e-mail da compra.',
+    buy: { mode: 'url', url: 'https://pay.kiwify.com.br/dVuVKat', label: 'Assinar' },
+    download: {
+      mode: 'whatsapp',
+      message: 'Olá! Sou engenheiro e gostaria de testar o Pró-Viga 3D por 30 dias.',
+      label: 'Pedir teste grátis de 30 dias',
+    },
   },
   {
-    id: 'alrimo',
-    name: 'Alrimo',
-    tagline: 'Cálculo de muros de arrimo e sapatas',
+    id: 'al-rimo',
+    name: 'Al-rimo',
+    tagline: 'Muros de arrimo em alvenaria estrutural com sapata corrida',
     description:
-      'Ferramenta dedicada ao projeto geotécnico-estrutural de muros de arrimo e sapatas: empuxos, estabilidade global e local, tensões no solo e dimensionamento das armaduras.',
+      'Projeto de muros de arrimo em blocos de concreto, em balanço ou com contrafortes, com a fundação em sapata corrida. A conta segue a NBR 16868-1:2020 e o manual da ABCP, com cada linha da memória citando o item da norma e a fórmula usada.',
     features: [
-      'Empuxos ativo e passivo (Rankine e Coulomb), com sobrecarga',
-      'Verificações de tombamento, deslizamento e tensões no solo',
-      'Dimensionamento de sapatas isoladas, corridas e associadas',
-      'Memorial de cálculo pronto para entregar ao cliente',
+      'Muro em balanço (até 3,0 m de solo) e com contrafortes (até 4,0 m)',
+      'Empuxo de terra, verificações de estabilidade e tensões no solo',
+      'Sapata corrida dimensionada junto com o muro',
+      'Modulação real dos blocos, com cinta, contrafortes e juntas de controle',
+      'Drenagem (barbacã, dreno, manta) no 3D e no quantitativo',
+      'Memória de cálculo auditável, vistas, cortes e exportação IFC',
+    ],
+    specs: [
+      { label: 'Norma', value: 'NBR 16868-1:2020' },
+      { label: 'Sistema', value: 'Bloco de concreto' },
+      { label: 'Licença', value: 'Perpétua (prevista)' },
     ],
     status: 'Em desenvolvimento',
     accent: '#22c55e',
-    monogram: 'AL',
-    buy: { mode: 'soon', label: 'Comprar licença' },
-    download: { mode: 'soon', label: 'Baixar demonstração' },
+    monogram: 'AR',
+    deliveryNote: 'Em desenvolvimento. Deixe seu contato para ser avisado no lançamento.',
+    buy: {
+      mode: 'whatsapp',
+      message: 'Olá! Quero ser avisado quando o Al-rimo for lançado.',
+      label: 'Quero ser avisado',
+    },
+    download: { mode: 'soon', label: 'Saiba mais' },
   },
   {
     id: 'a-port',
     name: 'A-PORT',
-    tagline: 'Análise espacial 3D de pórticos e cascas',
+    tagline: 'Análise espacial 3D de edifícios: pórticos e cascas',
     description:
-      'Análise matricial espacial de pórticos, grelhas e elementos de casca pelo Método dos Elementos Finitos, com combinações de ações e visualização de esforços e deformadas em 3D.',
+      'Lançamento e análise de estruturas de edifícios em pórtico espacial com elementos de casca para lajes e paredes. Vento pela NBR 6123:2023, combinações automáticas e efeitos de segunda ordem, com os resultados conferidos contra TQS e SAP2000 a cada módulo.',
     features: [
-      'Pórticos espaciais com 6 graus de liberdade por nó',
-      'Elementos de casca para lajes, paredes e reservatórios',
-      'Combinações de ações automáticas conforme NBR 8681',
-      'Diagramas de esforços e deformada em 3D interativo',
+      'Pórtico espacial com elementos de casca para lajes e paredes',
+      'Vento NBR 6123:2023 com mapa de isopletas e busca pelos 5.571 municípios do IBGE',
+      'Combinações de ações automáticas, desaprumo e segunda ordem',
+      'Plantas, elevações e 3D com navegação no estilo do Revit',
+      'Importação de DXF para lançar a estrutura sobre a arquitetura',
+      'Resultados conferidos contra TQS e SAP2000',
+    ],
+    specs: [
+      { label: 'Normas', value: 'NBR 6118 · NBR 6123:2023' },
+      { label: 'Análise', value: 'MEF: barras e cascas' },
+      { label: 'Situação', value: 'Em desenvolvimento' },
     ],
     status: 'Em desenvolvimento',
     accent: '#38bdf8',
     monogram: 'AP',
-    buy: { mode: 'soon', label: 'Comprar licença' },
-    download: { mode: 'soon', label: 'Baixar demonstração' },
+    deliveryNote: 'Em desenvolvimento. Acompanhe as novidades no blog e no YouTube.',
+    buy: {
+      mode: 'whatsapp',
+      message: 'Olá! Quero ser avisado quando o A-PORT for lançado.',
+      label: 'Quero ser avisado',
+    },
+    download: { mode: 'soon', label: 'Saiba mais' },
   },
 ];

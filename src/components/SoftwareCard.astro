@@ -10,10 +10,11 @@ const { software: s } = Astro.props;
   <div class="card__body">
     <div class="sw__top">
       <SoftwareMark id={s.id} accent={s.accent} monogram={s.monogram} />
-      <span class="badge">{s.status}</span>
+      <span class:list={['badge', { 'badge--ok': s.status === 'Disponível' }]}>{s.status}</span>
     </div>
     <h3><a href={`/softwares/${s.id}/`}>{s.name}</a></h3>
     <p class="sw__tagline">{s.tagline}</p>
+    {s.plans && <p class="sw__price">A partir de <strong>{s.plans[0].price}</strong>{s.plans[0].period}</p>}
     <ul class="sw__features">
       {s.features.slice(0, 3).map((f) => <li><Icon name="check" size={16} /> {f}</li>)}
     </ul>
@@ -25,10 +26,13 @@ const { software: s } = Astro.props;
 </article>
 <style>
   .sw { border-top: 4px solid var(--accent); }
+  .badge--ok { background: rgb(34 197 94 / 14%); color: #15803d; }
   .sw__top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .4rem; }
   .sw h3 { margin: .3rem 0 0; font-size: 1.45rem; }
   .sw h3 a { color: var(--navy-900); text-decoration: none; }
   .sw__tagline { color: var(--text-muted); margin: 0; font-weight: 500; }
+  .sw__price { margin: 0; font-size: .92rem; color: var(--steel-600); }
+  .sw__price strong { font-size: 1.15rem; color: var(--navy-900); }
   .sw__features { list-style: none; padding: 0; margin: .25rem 0 0; display: grid; gap: .45rem; font-size: .93rem; color: var(--steel-600); }
   .sw__features li { display: flex; gap: .5rem; align-items: flex-start; }
   .sw__features :global(svg) { color: var(--accent); margin-top: .25rem; flex: none; }

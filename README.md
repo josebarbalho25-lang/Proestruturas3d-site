@@ -1,7 +1,7 @@
 # PRO Estruturas 3D — site oficial
 
 Site de **proestruturas3d.com.br**: portfólio de cálculo estrutural + vitrine
-da software house (ProViga 3D, Alrimo e A-PORT) + blog em Markdown.
+da software house (Pró-Viga 3D, Al-rimo e A-PORT) + blog em Markdown.
 
 Feito com [Astro](https://astro.build) (gera um site 100% estático, rápido e
 seguro) e publicado de graça no **GitHub Pages**.

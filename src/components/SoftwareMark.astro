@@ -2,7 +2,7 @@
 import Icon from './Icon.astro';
 interface Props { id: string; accent: string; monogram: string; large?: boolean }
 const { id, accent, monogram, large = false } = Astro.props;
-const icon = id === 'alrimo' ? 'wall' : id === 'a-port' ? 'frame' : 'beam';
+const icon = id === 'al-rimo' ? 'wall' : id === 'a-port' ? 'frame' : 'beam';
 ---
 <div class:list={['mark', { 'mark--lg': large }]} style={`--accent:${accent}`}>
   <Icon name={icon} size={large ? 44 : 30} />

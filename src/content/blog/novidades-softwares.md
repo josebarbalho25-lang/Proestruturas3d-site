@@ -1,27 +1,35 @@
 ---
-title: "Roadmap dos softwares: ProViga 3D, Alrimo e A-PORT"
-description: O que está sendo desenvolvido em cada um dos softwares e o que vem por aí.
-date: 2026-10-05
+title: "Os softwares da PRO Estruturas 3D: Pró-Viga 3D, Al-rimo e A-PORT"
+description: O que cada software faz, em que pé está e para quem foi feito.
+date: 2026-10-16
 category: Softwares
-tags: [proviga 3d, alrimo, a-port]
+tags: [pró-viga 3d, al-rimo, a-port]
 ---
 
 Os três softwares da PRO Estruturas 3D nasceram de necessidades reais do dia a
-dia de projeto.
+dia de projeto, e cada conta é conferida contra exemplos de referência antes de
+chegar ao usuário.
 
-## ProViga 3D
+## Pró-Viga 3D: disponível
 
-Foco em **análise física não-linear** e detalhamento de vigas de concreto
-armado.
+Cálculo e detalhamento de **vigas de concreto armado** pela NBR 6118:2023, com
+**análise física não-linear** para flechas, ancoragens e emendas desenhadas
+automaticamente, memorial de cálculo e prancha em DXF. Roda no Windows e
+funciona offline.
 
-## Alrimo
+[Conheça o Pró-Viga 3D e peça seu teste de 30 dias](/softwares/pro-viga-3d/).
 
-Foco no cálculo de **muros de arrimo e sapatas**, com memorial de cálculo
-completo.
+## Al-rimo: em desenvolvimento
 
-## A-PORT
+**Muros de arrimo em alvenaria estrutural** de blocos de concreto, em balanço
+ou com contrafortes, com sapata corrida, pela NBR 16868-1:2020. Memória de
+cálculo auditável, modulação real dos blocos, quantitativo e modelo 3D.
 
-Foco na **análise espacial 3D** de pórticos e cascas pelo Método dos Elementos
-Finitos.
+## A-PORT: em desenvolvimento
 
-Acompanhe o blog e o canal no YouTube para as próximas novidades.
+**Análise espacial de edifícios** em pórtico com elementos de casca, vento pela
+NBR 6123:2023 e segunda ordem, com os resultados conferidos contra TQS e
+SAP2000 a cada etapa.
+
+Acompanhe o blog e o [canal no YouTube](https://www.youtube.com/@proestruturas3d)
+para as próximas novidades.

@@ -9,7 +9,7 @@ import { CONTACT, whatsappLink } from '../config/site';
 const form = document.querySelector<HTMLFormElement>('#contact-form');
 const status = document.querySelector<HTMLElement>('#contact-status');
 
-// Pré-seleciona o assunto quando o visitante vem de um botão de software (?produto=alrimo)
+// Pré-seleciona o assunto quando o visitante vem de um botão de software (?produto=al-rimo)
 const produto = new URLSearchParams(window.location.search).get('produto');
 if (form && produto) {
   const subject = form.querySelector<HTMLSelectElement>('[name="assunto"]');
