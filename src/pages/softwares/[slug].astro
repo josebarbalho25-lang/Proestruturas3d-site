@@ -121,8 +121,9 @@ const others = SOFTWARES.filter((o) => o.id !== s.id);
   @media (max-width: 860px) { .sw-detail { grid-template-columns: 1fr; } .buy-box { position: static; } }
 </style>
 <script>
-  // O Mercado Pago devolve o cliente para cá com ?assinatura=ok depois de assinar.
-  if (new URLSearchParams(location.search).get('assinatura') === 'ok') {
+  // O Mercado Pago devolve o cliente para cá com ?preapproval_id=… depois de assinar.
+  const volta = new URLSearchParams(location.search);
+  if (volta.has('preapproval_id') || volta.get('assinatura') === 'ok') {
     const caixa = document.querySelector<HTMLElement>('[data-obrigado]');
     if (caixa) { caixa.hidden = false; caixa.scrollIntoView({ block: 'center' }); }
   }
