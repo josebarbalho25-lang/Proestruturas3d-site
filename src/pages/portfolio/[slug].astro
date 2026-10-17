@@ -39,9 +39,9 @@ const p = project.data;
   {p.gallery.length > 0 && (
     <section class="section galeria-sec concreto--claro">
       <div class="container">
-        <span class="eyebrow">Na obra</span>
-        <h2>Fotos da execução</h2>
-        <div class="galeria">
+        <span class="eyebrow">{p.galleryKind === 'pranchas' ? 'Do projeto' : 'Na obra'}</span>
+        <h2>{p.galleryKind === 'pranchas' ? 'Modelos e pranchas' : 'Fotos da execução'}</h2>
+        <div class:list={['galeria', { 'galeria--pranchas': p.galleryKind === 'pranchas' }]}>
           {p.gallery.map((f) => (
             <figure>
               <a href={f.src} target="_blank" rel="noopener"><img src={f.src} alt={f.alt} loading="lazy" decoding="async" /></a>
@@ -70,6 +70,8 @@ const p = project.data;
   .galeria { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
   .galeria figure { margin: 0; background: #fff; box-shadow: 0 1px 3px rgb(19 10 64 / 12%); }
   .galeria img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .galeria--pranchas { grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); }
+  .galeria--pranchas img { object-fit: contain; background: #fff; padding: .5rem; }
   .galeria figcaption { padding: .65rem .8rem; font-size: .88rem; color: var(--grafite); }
   @media (max-width: 860px) { .project-detail { grid-template-columns: 1fr; } }
 </style>

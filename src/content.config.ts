@@ -37,6 +37,8 @@ const portfolio = defineCollection({
     /** foto de capa (card e topo da página), caminho em public/ */
     cover: z.string().optional(),
     /** fotos da obra exibidas na página do projeto */
+    /** fotos = obra (recorta em 4:3); pranchas = desenhos (mostra inteiro) */
+    galleryKind: z.enum(['fotos', 'pranchas']).default('fotos'),
     gallery: z.array(z.object({ src: z.string(), alt: z.string() })).default([]),
   }),
 });
