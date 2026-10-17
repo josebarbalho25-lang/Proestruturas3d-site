@@ -1,14 +1,13 @@
 ---
 import { SITE, ENGINEER, NAV, CONTACT, whatsappLink } from '../config/site';
 import { SOFTWARES } from '../config/softwares';
-import Logo from './Logo.astro';
 import SocialLinks from './SocialLinks.astro';
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
   <div class="container site-footer__grid">
     <div class="site-footer__brand">
-      <Logo variant="light" />
+      <img class="site-footer__jb" src="/images/marca/jb-completa.svg" alt="Jose Barbalho, Engenheiro Civil" width="196" height="88" loading="lazy" />
       <p>{SITE.description}</p>
       <SocialLinks variant="light" />
     </div>
@@ -49,6 +48,7 @@ const year = new Date().getFullYear();
 <style>
   .site-footer { background: var(--navy-950); color: var(--steel-300); padding: 4rem 0 0; font-size: .95rem; }
   .site-footer__grid { display: grid; grid-template-columns: 1.6fr repeat(3, 1fr); gap: 2.5rem; }
+  .site-footer__jb { display: block; width: 230px; height: auto; filter: brightness(0) invert(1); opacity: .9; }
   .site-footer__brand p { margin: 1.1rem 0 1.25rem; max-width: 40ch; color: var(--steel-300); }
   .site-footer__title { font-size: .8rem; text-transform: uppercase; letter-spacing: .14em; color: var(--white); margin-bottom: 1rem; }
   .site-footer ul:not(.social) { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
