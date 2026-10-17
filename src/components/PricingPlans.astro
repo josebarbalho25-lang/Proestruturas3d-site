@@ -21,11 +21,27 @@ const plans = software.plans ?? [];
           data-product-action="buy"
           data-plan-id={p.id}
         >
-          <Icon name={p.url ? 'cart' : 'whatsapp'} /> Assinar {p.name.toLowerCase()}
+          <Icon name={p.url || p.online ? 'cart' : 'whatsapp'} /> Assinar {p.name.toLowerCase()}
         </button>
       </div>
     ))}
   </div>
+)}
+{plans.some((p) => p.online) && (
+  <dialog class="assinar" id="assinar-dialogo">
+    <form method="dialog" class="assinar__form" novalidate>
+      <h3>Assinar o {software.name} <span data-plano-nome></span></h3>
+      <label for="assinar-email">Seu e-mail</label>
+      <input id="assinar-email" name="email" type="email" required autocomplete="email" inputmode="email" maxlength="254" />
+      <p class="assinar__dica">É com este e-mail que você ativa o programa. Pode ser diferente do e-mail da sua conta no Mercado Pago.</p>
+      <p class="assinar__erro" role="alert" hidden></p>
+      <div class="assinar__botoes">
+        <button type="button" class="btn btn--sm btn--outline" value="cancelar" data-assinar-cancelar>Cancelar</button>
+        <button type="submit" class="btn btn--sm btn--primary" value="ir"><Icon name="cart" /> Ir para o pagamento</button>
+      </div>
+      <p class="assinar__seguro"><Icon name="lock" size={14} /> O pagamento é feito no site do Mercado Pago. Não guardamos dados de cartão.</p>
+    </form>
+  </dialog>
 )}
 <script>
   import '../scripts/product-actions';
@@ -46,4 +62,14 @@ const plans = software.plans ?? [];
   .plan__price small { font-size: .9rem; font-weight: 600; color: var(--steel-500); }
   .plan__note { font-size: .82rem; color: var(--text-muted); }
   .plan .btn { margin-top: .4rem; }
+  .assinar { border: none; border-radius: var(--radius-sm); padding: 0; width: min(420px, calc(100vw - 32px)); box-shadow: 0 12px 40px rgba(0,0,0,.25); }
+  .assinar::backdrop { background: rgba(19, 10, 64, .45); }
+  .assinar__form { display: grid; gap: .55rem; padding: 1.25rem; }
+  .assinar__form h3 { margin: 0 0 .25rem; color: var(--navy-900); }
+  .assinar__form label { font-weight: 700; font-size: .9rem; }
+  .assinar__form input { font: inherit; padding: .65rem .75rem; border: 1px solid var(--border); border-radius: 8px; width: 100%; box-sizing: border-box; }
+  .assinar__dica, .assinar__seguro { font-size: .82rem; color: var(--text-muted); margin: 0; }
+  .assinar__seguro { display: flex; gap: .4rem; align-items: flex-start; }
+  .assinar__erro { color: #a32020; font-size: .88rem; margin: 0; }
+  .assinar__botoes { display: flex; gap: .5rem; justify-content: flex-end; flex-wrap: wrap; margin-top: .35rem; }
 </style>

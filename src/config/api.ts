@@ -36,4 +36,14 @@ export const API = {
   },
 };
 
+/**
+ * A LOJA: o servidor de licenças (Cloudflare). O endereço é público — quem guarda
+ * a chave do Mercado Pago e o preço é ele, não o site. O site só manda o plano e
+ * o e-mail que o cliente digitou, e recebe de volta o endereço de pagamento.
+ */
+export const LOJA = {
+  baseUrl: 'https://proviga-licenca.jbarbalho-eng.workers.dev',
+  checkout: (productId: string) => `/v1/products/${productId}/checkout`,
+};
+
 export const isApiEnabled = (): boolean => API.baseUrl.length > 0;

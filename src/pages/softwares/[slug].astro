@@ -6,6 +6,7 @@ import PricingPlans from '../../components/PricingPlans.astro';
 import HireCta from '../../components/HireCta.astro';
 import Icon from '../../components/Icon.astro';
 import { SOFTWARES, type Software } from '../../config/softwares';
+import { whatsappLink } from '../../config/site';
 
 export function getStaticPaths() {
   return SOFTWARES.map((software) => ({ params: { slug: software.id }, props: { software } }));
@@ -38,6 +39,13 @@ const others = SOFTWARES.filter((o) => o.id !== s.id);
       </div>
       <aside class="card buy-box">
         <div class="card__body">
+          {s.plans?.some((p) => p.online) && (
+            <div class="obrigado" data-obrigado hidden role="status">
+              <strong>Assinatura recebida, obrigado!</strong>
+              <p>Assim que o Mercado Pago confirmar o pagamento, o {s.name} ativa com o e-mail que você informou.
+                Para baixar o instalador, <a href={whatsappLink(`Olá! Acabei de assinar o ${s.name} e quero baixar o instalador.`)} target="_blank" rel="noopener">fale comigo no WhatsApp</a>.</p>
+            </div>
+          )}
           <h3>Obtenha o {s.name}</h3>
           <dl class="specs">
             {s.specs.map((sp) => <div><dt>{sp.label}</dt><dd>{sp.value}</dd></div>)}
@@ -86,6 +94,8 @@ const others = SOFTWARES.filter((o) => o.id !== s.id);
 </BaseLayout>
 
 <style>
+  .obrigado { border: 2px solid var(--amber); background: #fdf4d3; border-radius: var(--radius-sm); padding: .85rem 1rem; margin-bottom: 1rem; }
+  .obrigado p { margin: .35rem 0 0; font-size: .92rem; }
   .sw-hero { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
   .sw-hero h1 { margin-bottom: .3rem; }
   .sw-detail { display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem; align-items: start; }
@@ -110,3 +120,10 @@ const others = SOFTWARES.filter((o) => o.id !== s.id);
   .others span { color: var(--text-muted); font-size: .93rem; }
   @media (max-width: 860px) { .sw-detail { grid-template-columns: 1fr; } .buy-box { position: static; } }
 </style>
+<script>
+  // O Mercado Pago devolve o cliente para cá com ?assinatura=ok depois de assinar.
+  if (new URLSearchParams(location.search).get('assinatura') === 'ok') {
+    const caixa = document.querySelector<HTMLElement>('[data-obrigado]');
+    if (caixa) { caixa.hidden = false; caixa.scrollIntoView({ block: 'center' }); }
+  }
+</script>

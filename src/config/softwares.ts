@@ -42,6 +42,8 @@ export interface Plan {
   note?: string;
   highlight?: boolean;
   url?: string;
+  /** true = pagamento online pelo Mercado Pago (o site pede o e-mail e manda para o checkout). */
+  online?: boolean;
 }
 
 export interface Software {
@@ -110,6 +112,7 @@ export const SOFTWARES: Software[] = [
         price: 'R$ 20',
         period: '/mês',
         note: 'Cancele quando quiser',
+        online: true,
       },
       {
         id: 'anual',
@@ -118,10 +121,11 @@ export const SOFTWARES: Software[] = [
         period: '/ano',
         note: 'Equivale a R$ 15/mês',
         highlight: true,
+        online: true,
       },
     ],
     deliveryNote:
-      'A assinatura é feita direto comigo pelo WhatsApp. Em breve, pagamento online e download pela Área do Cliente.',
+      'Pagamento pelo Mercado Pago (cartão ou Pix). O programa é ativado com o e-mail que você informar na assinatura.',
     buy: {
       mode: 'whatsapp',
       message: 'Olá! Quero assinar o Pró-Viga 3D.',

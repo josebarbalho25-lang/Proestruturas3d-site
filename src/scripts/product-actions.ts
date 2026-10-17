@@ -17,7 +17,7 @@
  */
 import { SOFTWARES, type ProductAction } from '../config/softwares';
 import { whatsappLink } from '../config/site';
-import { API } from '../config/api';
+import { API, LOJA } from '../config/api';
 import { apiFetch, ApiError, safeHttpsUrl } from './http';
 
 type ActionKind = 'buy' | 'download';
@@ -35,6 +35,53 @@ async function resolveDestination(productId: string, kind: ActionKind, action: P
   return `/contato/?produto=${encodeURIComponent(productId)}`;
 }
 
+// ── Pagamento online (Mercado Pago) ──────────────────────────────────────────
+// O botão do plano abre a caixinha do e-mail; o servidor de licenças abre a
+// assinatura no Mercado Pago (com o preço DELE) e devolve o endereço de pagamento.
+const ENDERECOS_DO_MP = /^https:\/\/(www\.)?mercadopago\.com(\.br)?\//;
+
+function abrirAssinatura(productId: string, planId: string, planName: string) {
+  const dialogo = document.getElementById('assinar-dialogo') as HTMLDialogElement | null;
+  if (!dialogo) return;
+  const form = dialogo.querySelector('form')!;
+  const campo = form.querySelector<HTMLInputElement>('input[name="email"]')!;
+  const erro = form.querySelector<HTMLElement>('.assinar__erro')!;
+  const ir = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+  dialogo.querySelector<HTMLElement>('[data-plano-nome]')!.textContent = `· ${planName.toLowerCase()}`;
+  erro.hidden = true;
+  dialogo.showModal();
+  campo.focus();
+
+  const mostraErro = (msg: string) => { erro.textContent = msg; erro.hidden = false; };
+  form.querySelector<HTMLButtonElement>('[data-assinar-cancelar]')!.onclick = () => dialogo.close();
+  form.onsubmit = async (ev) => {
+    ev.preventDefault();
+    const email = campo.value.trim();
+    if (!campo.checkValidity() || !email) { mostraErro('Confira o e-mail.'); return; }
+    ir.disabled = true;
+    ir.setAttribute('aria-busy', 'true');
+    erro.hidden = true;
+    try {
+      // Sem cookie nenhum (credentials: 'omit'): esta chamada não precisa saber quem é o cliente.
+      const res = await fetch(`${LOJA.baseUrl}${LOJA.checkout(productId)}`, {
+        method: 'POST',
+        credentials: 'omit',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ email, plano: planId }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { url?: string; erro?: string };
+      if (!res.ok || !data.url) { mostraErro(data.erro || 'Não foi possível abrir o pagamento agora. Tente de novo em instantes.'); return; }
+      if (!ENDERECOS_DO_MP.test(data.url)) { mostraErro('Endereço de pagamento inesperado. Fale conosco pelo WhatsApp.'); return; }
+      window.location.assign(data.url);
+    } catch {
+      mostraErro('Sem conexão com o servidor de pagamento. Tente de novo em instantes.');
+    } finally {
+      ir.disabled = false;
+      ir.removeAttribute('aria-busy');
+    }
+  };
+}
+
 async function handleClick(button: HTMLButtonElement) {
   const productId = button.dataset.productId ?? '';
   const kind = button.dataset.productAction as ActionKind;
@@ -42,6 +89,7 @@ async function handleClick(button: HTMLButtonElement) {
   if (!product || (kind !== 'buy' && kind !== 'download')) return;
 
   const plan = button.dataset.planId ? product.plans?.find((p) => p.id === button.dataset.planId) : undefined;
+  if (plan?.online) { abrirAssinatura(productId, plan.id, plan.name); return; }
   const action: ProductAction = plan
     ? plan.url
       ? { mode: 'url', url: plan.url, label: plan.name }
