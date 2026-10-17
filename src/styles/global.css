@@ -188,6 +188,12 @@ mark, .marca-texto { background: var(--creme); color: var(--indigo); padding: 0 
   background: var(--bg-soft); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; color: var(--text-muted);
 }
 .prose blockquote p:last-child { margin: 0; }
+.prose .post-video { margin: 1.5rem 0; }
+.prose .post-video video { display: block; width: 100%; max-width: 360px; aspect-ratio: 9 / 16; background: var(--indigo); }
+.prose .post-video figcaption, .prose .post-figs figcaption { font-size: .88rem; color: var(--grafite); margin-top: .5rem; }
+.prose .post-figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 1rem; margin: 1.5rem 0; }
+.prose .post-figs figure { margin: 0; }
+.prose .post-figs img { display: block; width: 100%; height: auto; box-shadow: 0 1px 3px rgb(19 10 64 / 12%); }
 .prose code { font-family: var(--mono); font-size: .9em; background: var(--steel-100); padding: .1em .35em; border-radius: 4px; }
 .prose pre { padding: 1rem; border-radius: var(--radius-sm); overflow-x: auto; }
 .prose pre code { background: none; padding: 0; }
