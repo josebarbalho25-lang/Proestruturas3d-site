@@ -21,7 +21,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         <h1 class="sr-only">{ENGINEER.name}, engenheiro estrutural: projetos estruturais e softwares de cálculo</h1>
         <img class="hero__logo" src="/images/marca/jb-completa.svg" alt="Jose Barbalho, Engenheiro Civil" width="196" height="88" />
         <p class="lead">
-          Projetos estruturais <mark>econômicos e seguros</mark> em concreto armado, alvenaria estrutural, aço e
+          Projetos estruturais <strong class="enfase">econômicos e seguros</strong> em concreto armado, alvenaria estrutural, aço e
           fundações, e softwares de cálculo feitos por quem calcula todo dia.
         </p>
         <div class="btn-row">
@@ -110,6 +110,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .hero__copy { display: grid; gap: 1.6rem; justify-items: start; }
   .hero__logo { width: min(440px, 100%); height: auto; }
   .hero .lead { margin: 0; color: var(--steel-600); }
+  .enfase { color: var(--indigo); font-weight: 600; }
   .hero__obra { margin: 0; box-shadow: var(--shadow-lg); }
   .hero__obra img { width: 100%; height: auto; aspect-ratio: 1600 / 726; object-fit: cover; }
   .stats {
