@@ -187,6 +187,18 @@ export const SOFTWARES: Software[] = [
     accent: '#38bdf8',
     monogram: 'AP',
     logo: '/images/softwares/a-port.svg',
+    screens: [
+      { src: '/images/softwares/a-port/01-portico-deformada.jpg', alt: 'Pórtico espacial com a deformada e a escala de deslocamentos em cores' },
+      { src: '/images/softwares/a-port/02-escada-deslocamentos.jpg', alt: 'Escada com degraus em balanço: deslocamentos da combinação ELU-1, com o navegador de plantas, elevações e cortes' },
+      { src: '/images/softwares/a-port/03-escada-momentos.jpg', alt: 'Diagrama de momento fletor da viga da escada, com os degraus como barras' },
+      { src: '/images/softwares/a-port/04-escada-casca-mx.jpg', alt: 'A mesma escada em elementos de casca: momento Mx ao lado do modelo renderizado' },
+      { src: '/images/softwares/a-port/05-diagramas-momento.jpg', alt: 'Diagramas de momento de um pórtico de dois pavimentos, com os valores nas barras' },
+      { src: '/images/softwares/a-port/06-portico-momentos-eixos.jpg', alt: 'Momentos em vigas e pilares sobre a malha de eixos do projeto' },
+      { src: '/images/softwares/a-port/07-parede-casca.jpg', alt: 'Parede em casca apoiada em pilares: esforço na malha de elementos finitos' },
+      { src: '/images/softwares/a-port/08-lajes-deslocamentos.jpg', alt: 'Lajes em casca vistas de topo: deslocamentos com os eixos e os apoios' },
+      { src: '/images/softwares/a-port/09-pilar-casca-nxy.jpg', alt: 'Pilar de forma livre modelado em casca: esforço Nxy no plano' },
+      { src: '/images/softwares/a-port/10-diagramas-da-barra.jpg', alt: 'Diagramas de cortante e momento de uma barra, com leitura ponto a ponto' },
+    ],
     deliveryNote: 'Em desenvolvimento. Acompanhe as novidades no blog e no YouTube.',
     buy: {
       mode: 'whatsapp',
