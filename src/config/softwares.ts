@@ -93,6 +93,16 @@ export const SOFTWARES: Software[] = [
     accent: '#f5a524',
     monogram: 'PV',
     logo: '/images/softwares/pro-viga-3d.svg',
+    screens: [
+      { src: '/images/softwares/pro-viga-3d/03-deformada-nlf-3d.jpg', alt: 'Deformada 3D da viga pela análise física não-linear, com a escala de cores da flecha' },
+      { src: '/images/softwares/pro-viga-3d/05-armadura-3d.jpg', alt: 'Armadura em 3D (estribos, positivas, negativas e grampos) ao lado da tabela de ferros' },
+      { src: '/images/softwares/pro-viga-3d/02-esforcos.jpg', alt: 'Diagramas de momento fletor, cortante e flecha diferida, com os limites da NBR 6118' },
+      { src: '/images/softwares/pro-viga-3d/04-tensoes-concreto-3d.jpg', alt: 'Tensões no concreto em 3D: compressão e tração ao longo da viga' },
+      { src: '/images/softwares/pro-viga-3d/06-detalhamento-2d.jpg', alt: 'Detalhamento 2D da armação longitudinal e dos estribos, com posições, bitolas e cortes' },
+      { src: '/images/softwares/pro-viga-3d/07-memoria-flecha-nlf.jpg', alt: 'Memória de cálculo da flecha: momento × curvatura e a seção fissurada no Estádio II' },
+      { src: '/images/softwares/pro-viga-3d/08-memoria-flexao.jpg', alt: 'Memória de cálculo da flexão no apoio, passo a passo com as fórmulas e os itens da NBR 6118' },
+      { src: '/images/softwares/pro-viga-3d/09-reacoes-apoio.jpg', alt: 'Reações de apoio pelo modelo de viga com pilares (NBR 6118 14.6.6.1)' },
+    ],
     plans: [
       {
         id: 'mensal',
