@@ -16,6 +16,10 @@ highlights:
     value: Concreto, alvenaria e aço
   - label: Pranchas de estrutura
     value: 41 entre lojas e deck parking
+  - label: Período
+    value: Fim de 2025 até hoje
+  - label: Situação
+    value: Em andamento, com novo projeto em aprovação
 order: 1
 cover: /images/projetos/expansao-shopping/capa.jpg
 video:
