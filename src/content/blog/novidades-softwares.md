@@ -28,8 +28,7 @@ cálculo auditável, modulação real dos blocos, quantitativo e modelo 3D.
 ## A-PORT: em desenvolvimento
 
 **Análise espacial de edifícios** em pórtico com elementos de casca, vento pela
-NBR 6123:2023 e segunda ordem, com os resultados conferidos contra TQS e
-SAP2000 a cada etapa.
+NBR 6123:2023 e segunda ordem, com os resultados validados a cada etapa.
 
 Acompanhe o blog e o [canal no YouTube](https://www.youtube.com/@proestruturas3d)
 para as próximas novidades.

@@ -157,14 +157,14 @@ export const SOFTWARES: Software[] = [
     name: 'A-PORT',
     tagline: 'Análise espacial 3D de edifícios: pórticos e cascas',
     description:
-      'Lançamento e análise de estruturas de edifícios em pórtico espacial com elementos de casca para lajes e paredes. Vento pela NBR 6123:2023, combinações automáticas e efeitos de segunda ordem, com os resultados conferidos contra TQS e SAP2000 a cada módulo.',
+      'Lançamento e análise de estruturas de edifícios em pórtico espacial com elementos de casca para lajes e paredes. Vento pela NBR 6123:2023, combinações automáticas e efeitos de segunda ordem, com os resultados validados a cada módulo.',
     features: [
       'Pórtico espacial com elementos de casca para lajes e paredes',
       'Vento NBR 6123:2023 com mapa de isopletas e busca pelos 5.571 municípios do IBGE',
       'Combinações de ações automáticas, desaprumo e segunda ordem',
-      'Plantas, elevações e 3D com navegação no estilo do Revit',
+      'Plantas, elevações e 3D com navegação livre',
       'Importação de DXF para lançar a estrutura sobre a arquitetura',
-      'Resultados conferidos contra TQS e SAP2000',
+      'Resultados validados módulo a módulo',
     ],
     specs: [
       { label: 'Normas', value: 'NBR 6118 · NBR 6123:2023' },

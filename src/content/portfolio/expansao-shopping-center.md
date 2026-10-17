@@ -80,14 +80,12 @@ galleries:
         alt: 'Isométrico da escada em concreto armado com armadura e mureta em bloco de concreto'
   - eyebrow: Expansão das lojas
     title: Estruturas metálicas secundárias e reforços
-    intro: Pórticos, mezanino, travamentos e reforços em perfis de aço ligados à estrutura existente, com as ligações detalhadas em 3D e as vigas verificadas no SAP2000.
+    intro: Pórticos, mezanino, travamentos e reforços em perfis de aço ligados à estrutura existente, com as ligações detalhadas em 3D e as vigas verificadas.
     items:
       - src: /images/projetos/expansao-shopping/lojas/metalica-01-portico-metalico-conexoes-por-cores.jpg
         alt: 'Isométrico do pórtico metálico com treliças, apoiado em pilares de concreto existentes'
       - src: /images/projetos/expansao-shopping/lojas/metalica-02-estrutura-metalica-vista.jpg
         alt: 'Vista 3D do pórtico metálico com vigas CA 200x100 e CA 400x150 e níveis'
-      - src: /images/projetos/expansao-shopping/lojas/metalica-03-analise-elementos-finitos-viga-metalica.jpg
-        alt: 'Análise no SAP2000: carga, deformada (8,4 mm) e taxa de uso das vigas metálicas'
       - src: /images/projetos/expansao-shopping/lojas/metalica-04-ligacao-metalica-cm02.jpg
         alt: 'Ligação metálica parafusada CM02 entre pilar e viga em perfil formado a frio'
       - src: /images/projetos/expansao-shopping/lojas/metalica-05-conexao-metalica-viga-pilar-isometrico.jpg
