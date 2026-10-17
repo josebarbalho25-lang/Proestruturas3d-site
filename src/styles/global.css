@@ -1,38 +1,55 @@
 /* ==========================================================================
    PRO Estruturas 3D — estilos globais
-   Paleta: azul-marinho (autoridade técnica) + âmbar (destaque/ação)
+   Identidade tirada dos designs do Jose no Canva (17/10/2026):
+   tema claro, índigo da logo só em títulos e destaques, creme das thumbs do
+   Proviga3d nos botões, concreto cinza com a planta para dar contraste.
    ========================================================================== */
 
 :root {
-  --brand: #0f063a;   /* cor da logo Jose Barbalho */
-  --navy-950: #061226;
-  --navy-900: #0b1f3a;
-  --navy-800: #12305a;
-  --navy-700: #1b4079;
-  --steel-600: #475569;
-  --steel-500: #64748b;
-  --steel-300: #cbd5e1;
-  --steel-200: #e2e8f0;
-  --steel-100: #f1f5f9;
-  --steel-50: #f8fafc;
+  --brand: #0f063a;     /* cor da logo Jose Barbalho */
+  --indigo: #130a40;    /* títulos, destaques, ícones */
+  --indigo-2: #2a2360;
+  --creme: #f9dc6a;     /* amarelo creme das thumbs do YouTube: botões e marca-texto */
+  --creme-forte: #f3cf4a;
+  --creme-claro: #fdf4d3;
+  --vinho: #9c1419;     /* títulos do portfólio (posts vermelhos do Instagram) */
+  --grafite: #6b6b72;
+  --papel: #fbfbfd;
+
+  /* nomes antigos, apontando para a paleta nova (componentes usam estes) */
+  --navy-950: var(--indigo);
+  --navy-900: var(--indigo);
+  --navy-800: var(--indigo-2);
+  --navy-700: var(--indigo-2);
+  --steel-600: #55555c;
+  --steel-500: var(--grafite);
+  --steel-300: #c9c9cf;
+  --steel-200: #e0e0e3;
+  --steel-100: #f0f0f2;
+  --steel-50: #f7f7f8;
   --white: #ffffff;
-  --amber: #f5a524;
-  --amber-dark: #d98a0b;
+  --amber: var(--creme);
+  --amber-dark: var(--vinho);
   --green-wa: #1fa855;
 
-  --text: #0f172a;
-  --text-muted: #475569;
-  --bg: #ffffff;
-  --bg-soft: #f6f8fb;
-  --border: #e2e8f0;
+  --text: #17142e;
+  --text-muted: var(--grafite);
+  --bg: var(--papel);
+  --bg-soft: #f0f0f2;
+  --border: #e0e0e3;
 
-  --radius: 14px;
-  --radius-sm: 8px;
-  --shadow: 0 1px 2px rgb(15 23 42 / 6%), 0 8px 24px rgb(15 23 42 / 6%);
-  --shadow-lg: 0 20px 50px rgb(6 18 38 / 18%);
+  --radius: 4px;
+  --radius-sm: 3px;
+  --shadow: 0 1px 2px rgb(23 20 46 / 5%), 0 10px 26px -14px rgb(23 20 46 / 22%);
+  --shadow-lg: 0 22px 50px -24px rgb(23 20 46 / 45%);
   --container: 1180px;
-  --font: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font: 'Roboto', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-titulo: 'Oswald', 'Arial Narrow', 'Roboto Condensed', sans-serif;
+  --font-selo: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
   --mono: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
+
+  /* fundo de concreto com planta, tirado do Canva (cópia "Fundo concreto cinza (site)") */
+  --img-concreto: url('/images/fundos/concreto.jpg');
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -47,61 +64,65 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 img, svg { max-width: 100%; display: block; }
-a { color: var(--navy-700); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-a:hover { color: var(--amber-dark); }
-h1, h2, h3, h4 { line-height: 1.2; letter-spacing: -0.02em; margin: 0 0 .6em; color: var(--navy-900); }
-h1 { font-size: clamp(2.1rem, 4.5vw, 3.4rem); font-weight: 800; }
-h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 750; }
-h3 { font-size: 1.25rem; font-weight: 700; }
+a { color: var(--indigo-2); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--vinho); }
+h1, h2, h3, h4 {
+  font-family: var(--font-titulo); text-transform: uppercase; font-weight: 700;
+  line-height: 1.1; letter-spacing: .01em; margin: 0 0 .6em; color: var(--indigo); text-wrap: balance;
+}
+h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); }
+h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); }
+h3 { font-size: 1.3rem; letter-spacing: .02em; }
 p { margin: 0 0 1em; }
-:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; border-radius: 4px; }
+mark, .marca-texto { background: var(--creme); color: var(--indigo); padding: 0 .2em; }
+:focus-visible { outline: 3px solid var(--creme-forte); outline-offset: 2px; }
 
 .container { width: min(var(--container), 100% - 2.5rem); margin-inline: auto; }
 .section { padding: clamp(3.5rem, 8vw, 6rem) 0; }
 .section--soft { background: var(--bg-soft); }
-.section--dark { background: var(--navy-900); color: var(--steel-200); }
+.section--dark { background: var(--indigo); color: var(--steel-200); }
 .section--dark h2, .section--dark h3 { color: var(--white); }
 
+/* selo: serifa em caixa alta bem espaçada, como "ENGENHEIRO ESTRUTURAL" dos cartões */
 .eyebrow {
-  display: inline-flex; align-items: center; gap: .5rem;
-  font-size: .8rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--amber-dark); margin-bottom: .9rem;
+  display: inline-block; font-family: var(--font-selo); font-weight: 400;
+  font-size: .74rem; letter-spacing: .38em; text-transform: uppercase;
+  color: var(--grafite); margin-bottom: .9rem;
 }
-.eyebrow::before { content: ''; width: 22px; height: 2px; background: currentColor; }
-.section--dark .eyebrow, .hero .eyebrow { color: var(--amber); }
-.lead { font-size: 1.2rem; color: var(--text-muted); max-width: 62ch; }
+.section--dark .eyebrow, .concreto--escuro .eyebrow, .blueprint .eyebrow { color: #d6d5df; }
+.lead { font-size: 1.15rem; color: var(--text-muted); max-width: 62ch; }
 .section-head { max-width: 760px; margin-bottom: 2.75rem; }
 .section-head--center { margin-inline: auto; text-align: center; }
-.section-head--center .eyebrow { justify-content: center; }
 .section-head--center .lead { margin-inline: auto; }
 
-/* ---------- Botões ---------- */
+/* ---------- Botões: retos, caixa alta espaçada ---------- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
-  padding: .8rem 1.35rem; border-radius: 999px; border: 2px solid transparent;
-  font: inherit; font-weight: 650; font-size: .98rem; line-height: 1.2;
+  padding: .85rem 1.4rem; border-radius: 0; border: 2px solid transparent;
+  font: inherit; font-weight: 700; font-size: .82rem; line-height: 1.2;
+  letter-spacing: .12em; text-transform: uppercase;
   text-decoration: none; cursor: pointer; transition: transform .15s, background .15s, color .15s, border-color .15s;
   white-space: nowrap;
 }
 .btn:hover { transform: translateY(-1px); }
 .btn svg { width: 18px; height: 18px; flex: none; }
-.btn--primary { background: var(--amber); color: var(--navy-950); }
-.btn--primary:hover { background: #ffb73d; color: var(--navy-950); }
-.btn--dark { background: var(--navy-900); color: var(--white); }
-.btn--dark:hover { background: var(--navy-700); color: var(--white); }
-.btn--outline { border-color: var(--navy-900); color: var(--navy-900); background: transparent; }
-.btn--outline:hover { background: var(--navy-900); color: var(--white); }
-.btn--ghost-light { border-color: rgb(255 255 255 / 35%); color: var(--white); background: transparent; }
+.btn--primary { background: var(--creme); border-color: var(--creme); color: var(--indigo); }
+.btn--primary:hover { background: var(--creme-forte); border-color: var(--creme-forte); color: var(--indigo); }
+.btn--dark { background: var(--indigo); color: var(--white); }
+.btn--dark:hover { background: var(--indigo-2); color: var(--white); }
+.btn--outline { border-color: var(--indigo); color: var(--indigo); background: transparent; }
+.btn--outline:hover { background: var(--indigo); color: var(--white); }
+.btn--ghost-light { border-color: rgb(255 255 255 / 55%); color: var(--white); background: transparent; }
 .btn--ghost-light:hover { border-color: var(--white); color: var(--white); background: rgb(255 255 255 / 8%); }
 .btn--whatsapp { background: var(--green-wa); color: var(--white); }
 .btn--whatsapp:hover { background: #17924a; color: var(--white); }
-.btn--sm { padding: .55rem 1rem; font-size: .9rem; }
+.btn--sm { padding: .6rem 1rem; font-size: .74rem; }
 .btn[disabled], .btn[aria-disabled='true'] { opacity: .55; cursor: not-allowed; transform: none; }
 .btn-row { display: flex; flex-wrap: wrap; gap: .75rem; }
 
 /* ---------- Cards ---------- */
 .grid { display: grid; gap: 1.5rem; }
-.grid--3 { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.grid--3 { grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); }
 .grid--2 { grid-template-columns: repeat(auto-fill, minmax(min(420px, 100%), 1fr)); }
 .card {
   background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
@@ -110,30 +131,52 @@ p { margin: 0 0 1em; }
 .card__body { padding: 1.5rem; display: flex; flex-direction: column; gap: .75rem; flex: 1; }
 .card__body > :last-child { margin-top: auto; }
 .chip {
-  display: inline-block; padding: .22rem .65rem; border-radius: 999px; font-size: .78rem; font-weight: 600;
-  background: var(--steel-100); color: var(--navy-800); border: 1px solid var(--steel-200);
+  display: inline-block; padding: .22rem .6rem; border-radius: 2px; font-size: .76rem; font-weight: 500;
+  background: var(--steel-100); color: var(--indigo); border: 1px solid var(--steel-200);
 }
 .chips { display: flex; flex-wrap: wrap; gap: .4rem; }
 .badge {
-  display: inline-block; padding: .2rem .6rem; border-radius: 6px; font-size: .72rem; font-weight: 700;
-  letter-spacing: .06em; text-transform: uppercase; background: rgb(245 165 36 / 16%); color: #a16207;
+  display: inline-block; padding: .2rem .6rem; border-radius: 2px; font-size: .72rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; background: var(--creme); color: var(--indigo);
 }
 
-/* ---------- Fundo "planta técnica" ---------- */
-.blueprint {
-  background-color: var(--navy-900);
-  background-image:
-    linear-gradient(rgb(255 255 255 / 5%) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(255 255 255 / 5%) 1px, transparent 1px),
-    linear-gradient(rgb(255 255 255 / 2.5%) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(255 255 255 / 2.5%) 1px, transparent 1px);
-  background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px;
+/* ---------- Concreto com planta (fundo de contraste do Canva) ----------
+   claro: faixas com texto · natural: separar seções · escuro: chamadas e rodapé */
+.concreto {
+  background:
+    radial-gradient(ellipse at 25% 15%, rgb(255 255 255 / 35%), transparent 55%),
+    var(--img-concreto) center / cover;
+  box-shadow: inset 0 0 120px rgb(0 0 0 / 12%);
+}
+.concreto--claro {
+  background:
+    radial-gradient(ellipse at 25% 15%, rgb(255 255 255 / 50%), transparent 60%),
+    linear-gradient(rgb(251 251 253 / 62%), rgb(251 251 253 / 62%)),
+    var(--img-concreto) center / cover;
+}
+.concreto--escuro, .blueprint {
+  background:
+    radial-gradient(ellipse at 20% 10%, rgb(255 255 255 / 16%), transparent 55%),
+    linear-gradient(rgb(23 20 46 / 76%), rgb(23 20 46 / 84%)),
+    var(--img-concreto) center / cover;
+  box-shadow: inset 0 0 160px rgb(0 0 0 / 35%);
+  color: #e4e3ec;
 }
 
-/* ---------- Cabeçalho de página interna ---------- */
-.page-hero { color: var(--steel-200); padding: clamp(3.5rem, 8vw, 5.5rem) 0 clamp(2.5rem, 6vw, 4rem); }
-.page-hero h1 { color: var(--white); max-width: 22ch; }
-.page-hero .lead { color: var(--steel-300); }
+/* ---------- Cabeçalho de página interna: concreto claro ---------- */
+.page-hero {
+  color: var(--text); padding: clamp(3.5rem, 8vw, 5.5rem) 0 clamp(2.5rem, 6vw, 4rem);
+  background:
+    radial-gradient(ellipse at 25% 15%, rgb(255 255 255 / 50%), transparent 60%),
+    linear-gradient(rgb(251 251 253 / 62%), rgb(251 251 253 / 62%)),
+    var(--img-concreto) center / cover;
+  box-shadow: none; border-bottom: 1px solid var(--border);
+}
+.page-hero h1 { color: var(--indigo); max-width: 22ch; }
+.page-hero .lead { color: var(--steel-600); }
+.page-hero .eyebrow { color: var(--grafite); }
+.page-hero .btn--ghost-light { border-color: var(--indigo); color: var(--indigo); }
+.page-hero .btn--ghost-light:hover { background: var(--indigo); color: var(--white); }
 
 /* ---------- Texto longo (Markdown) ---------- */
 .prose { max-width: 72ch; font-size: 1.08rem; }
@@ -142,7 +185,7 @@ p { margin: 0 0 1em; }
 .prose ul, .prose ol { padding-left: 1.3em; }
 .prose li { margin: .35em 0; }
 .prose blockquote {
-  margin: 1.5em 0; padding: 1em 1.25em; border-left: 4px solid var(--amber);
+  margin: 1.5em 0; padding: 1em 1.25em; border-left: 4px solid var(--creme);
   background: var(--bg-soft); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; color: var(--text-muted);
 }
 .prose blockquote p:last-child { margin: 0; }

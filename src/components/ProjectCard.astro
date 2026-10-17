@@ -6,12 +6,9 @@ const { project } = Astro.props;
 const p = project.data;
 ---
 <article class="card project">
-  <div class="project__cover blueprint">
+  <div class="project__cover concreto">
+    <img class="project__marca" src="/images/marca/jb-simbolo.svg" alt="" width="49" height="38" loading="lazy" />
     <span class="project__cat">{p.category}</span>
-    <svg viewBox="0 0 200 90" aria-hidden="true" class="project__drawing">
-      <path d="M10 80h180M30 80V35h140v45M30 35l70-25 70 25M65 35v45M100 35v45M135 35v45" fill="none" stroke="currentColor" stroke-width="1.6" />
-      <path d="M30 35l35 45M65 35l35 45M100 35l35 45M135 35l35 45" fill="none" stroke="currentColor" stroke-width=".8" opacity=".5" />
-    </svg>
   </div>
   <div class="card__body">
     <h3><a href={`/portfolio/${project.id}/`}>{p.title}</a></h3>
@@ -21,15 +18,16 @@ const p = project.data;
   </div>
 </article>
 <style>
-  .project__cover { position: relative; height: 170px; color: var(--amber); display: grid; place-items: center; }
-  .project__drawing { width: 70%; opacity: .9; }
+  /* capa no estilo dos posts do Instagram: concreto, símbolo branco no canto */
+  .project__cover { position: relative; height: 170px; }
+  .project__marca { position: absolute; top: 1rem; left: 1rem; width: 52px; height: auto; filter: brightness(0) invert(1) drop-shadow(0 1px 2px rgb(0 0 0 / 25%)); }
   .project__cat {
-    position: absolute; top: 1rem; left: 1rem; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-    color: var(--white); background: rgb(255 255 255 / 10%); border: 1px solid rgb(255 255 255 / 18%); padding: .25rem .6rem; border-radius: 6px;
+    position: absolute; bottom: 1rem; left: 1rem; font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--indigo); background: var(--creme); padding: .3rem .6rem;
   }
   .project h3 { margin: 0; }
-  .project h3 a { color: var(--navy-900); text-decoration: none; }
-  .project h3 a:hover { color: var(--amber-dark); }
+  .project h3 a { color: var(--vinho); text-decoration: none; }
+  .project h3 a:hover { color: var(--indigo); }
   .project__summary { color: var(--text-muted); font-size: .96rem; margin: 0; }
-  .project__more { display: inline-flex; align-items: center; gap: .35rem; font-weight: 650; text-decoration: none; padding-top: .5rem; }
+  .project__more { display: inline-flex; align-items: center; gap: .35rem; font-weight: 700; text-decoration: none; padding-top: .5rem; color: var(--indigo); }
 </style>

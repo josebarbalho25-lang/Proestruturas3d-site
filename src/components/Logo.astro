@@ -9,9 +9,10 @@ const { variant = 'dark' } = Astro.props;
 </a>
 
 <style>
-  .logo { display: inline-flex; align-items: center; gap: .65rem; text-decoration: none; font-size: 1.12rem; letter-spacing: -0.01em; }
+  .logo { display: inline-flex; align-items: center; gap: .65rem; text-decoration: none; font-family: var(--font-titulo); text-transform: uppercase; font-size: 1.2rem; letter-spacing: .03em; }
   .logo img { height: 40px; width: auto; }
-  .logo strong { font-weight: 800; }
+  .logo strong { font-weight: 700; }
+  .logo__text { font-weight: 500; }
   .logo--dark { color: var(--brand); }
   .logo--light { color: var(--white); }
   .logo--light img { filter: brightness(0) invert(1); }

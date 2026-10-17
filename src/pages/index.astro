@@ -15,47 +15,32 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .slice(0, 3);
 ---
 <BaseLayout>
-  <section class="hero blueprint">
+  <section class="hero">
     <div class="container hero__inner">
       <div class="hero__copy">
-        <span class="eyebrow">Engenharia Estrutural · Software House</span>
-        <h1>Estruturas calculadas com precisão. Softwares feitos por quem calcula.</h1>
+        <h1 class="sr-only">{ENGINEER.name}, engenheiro estrutural: projetos estruturais e softwares de cálculo</h1>
+        <img class="hero__logo" src="/images/marca/jb-completa.svg" alt="Jose Barbalho, Engenheiro Civil" width="196" height="88" />
         <p class="lead">
-          Projetos estruturais em concreto armado, aço, alvenaria estrutural e fundações, e ferramentas próprias de
-          análise estrutural para engenheiros que exigem confiabilidade.
+          Projetos estruturais <mark>econômicos e seguros</mark> em concreto armado, alvenaria estrutural, aço e
+          fundações, e softwares de cálculo feitos por quem calcula todo dia.
         </p>
         <div class="btn-row">
           <a class="btn btn--primary" href={whatsappLink()} target="_blank" rel="noopener noreferrer">
             <Icon name="whatsapp" /> Solicite um Orçamento
           </a>
-          <a class="btn btn--ghost-light" href="/softwares/">Conheça os softwares <Icon name="arrow" /></a>
+          <a class="btn btn--outline" href="/softwares/">Conheça os softwares <Icon name="arrow" /></a>
         </div>
-        <p class="hero__sign">{ENGINEER.name} · {ENGINEER.crea}</p>
       </div>
 
-      <div class="hero__visual" aria-hidden="true">
-        <svg viewBox="0 0 420 360">
-          <g fill="none" stroke="currentColor" stroke-width="1.6">
-            <path d="M60 300V120l150-70 150 70v180" />
-            <path d="M60 120h300M60 180h300M60 240h300M60 300h300" />
-            <path d="M135 85v215M210 50v250M285 85v215" />
-            <path d="M60 120l75 60m0-60 75 60m0-60 75 60m0-60 75 60" opacity=".45" />
-          </g>
-          <g class="hero__nodes">
-            <circle cx="60" cy="300" r="5" /><circle cx="135" cy="300" r="5" /><circle cx="210" cy="300" r="5" />
-            <circle cx="285" cy="300" r="5" /><circle cx="360" cy="300" r="5" /><circle cx="210" cy="50" r="5" />
-          </g>
-          <path d="M40 318h340" stroke="currentColor" stroke-width="3" />
-          <path d="M50 318l-12 14M80 318l-12 14M110 318l-12 14M140 318l-12 14M170 318l-12 14M200 318l-12 14M230 318l-12 14M260 318l-12 14M290 318l-12 14M320 318l-12 14M350 318l-12 14M380 318l-12 14" stroke="currentColor" stroke-width="1.2" opacity=".6" />
-          <path class="hero__load" d="M210 0v38m-7-10 7 10 7-10" fill="none" stroke-width="2.5" />
-        </svg>
-      </div>
+      <figure class="hero__obra">
+        <img src="/images/projetos/area-gourmet-render.jpg" alt="Render de projeto com área gourmet coberta" width="596" height="335" />
+      </figure>
     </div>
     <div class="container">
       <dl class="stats">
-        <div><dt>Áreas de atuação</dt><dd>Concreto · Aço · Fundações</dd></div>
+        <div><dt>Áreas de atuação</dt><dd>Concreto · Alvenaria · Aço · Fundações</dd></div>
         <div><dt>Softwares próprios</dt><dd>3 ferramentas</dd></div>
-        <div><dt>Normas</dt><dd>NBR 6118 · 8800 · 14762 · 6122</dd></div>
+        <div><dt>Normas</dt><dd>NBR 6118 · 16868 · 8800 · 6122</dd></div>
       </dl>
     </div>
   </section>
@@ -73,7 +58,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     </div>
   </section>
 
-  <section class="section section--soft">
+  <section class="section concreto--claro">
     <div class="container">
       <div class="section-head">
         <span class="eyebrow">Portfólio</span>
@@ -106,25 +91,26 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 </BaseLayout>
 
 <style>
-  .hero { color: var(--steel-300); padding: clamp(4rem, 9vw, 7rem) 0 3rem; overflow: hidden; }
-  .hero__inner { display: grid; grid-template-columns: 1.15fr .85fr; gap: 3rem; align-items: center; }
-  .hero h1 { color: var(--white); }
-  .hero .lead { color: var(--steel-300); margin-bottom: 2rem; }
-  .hero__sign { margin: 1.75rem 0 0; font-size: .88rem; color: var(--steel-500); letter-spacing: .02em; }
-  .hero__visual { color: rgb(255 255 255 / 55%); }
-  .hero__nodes { fill: var(--amber); }
-  .hero__load { stroke: var(--amber); }
+  .hero { padding: clamp(3rem, 8vw, 6rem) 0 3rem; border-bottom: 1px solid var(--border); }
+  .hero__inner { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .hero__copy { display: grid; gap: 1.6rem; justify-items: start; }
+  .hero__logo { width: min(440px, 100%); height: auto; }
+  .hero .lead { margin: 0; color: var(--steel-600); }
+  .hero__obra { margin: 0; box-shadow: var(--shadow-lg); }
+  .hero__obra img { width: 100%; height: auto; aspect-ratio: 596 / 335; object-fit: cover; }
   .stats {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin: 3.5rem 0 0;
-    background: rgb(255 255 255 / 10%); border: 1px solid rgb(255 255 255 / 10%); border-radius: var(--radius); overflow: hidden;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 3.5rem 0 0;
+    border-top: 1px solid var(--border);
   }
-  .stats div { background: var(--navy-900); padding: 1.25rem 1.5rem; }
-  .stats dt { font-size: .75rem; text-transform: uppercase; letter-spacing: .12em; color: var(--steel-500); }
-  .stats dd { margin: .25rem 0 0; color: var(--white); font-weight: 650; }
+  .stats div { padding: 1.25rem 1.5rem 0 0; }
+  .stats div + div { padding-left: 1.5rem; border-left: 1px solid var(--border); }
+  .stats dt { font-family: var(--font-selo); font-size: .68rem; text-transform: uppercase; letter-spacing: .3em; color: var(--grafite); }
+  .stats dd { margin: .35rem 0 0; color: var(--indigo); font-family: var(--font-titulo); text-transform: uppercase; font-size: 1.15rem; letter-spacing: .02em; }
   .more { margin: 2.5rem 0 0; text-align: center; }
   @media (max-width: 900px) {
     .hero__inner { grid-template-columns: 1fr; }
-    .hero__visual { max-width: 340px; }
     .stats { grid-template-columns: 1fr; }
+    .stats div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--border); }
+    .stats div { padding: 1rem 0; }
   }
 </style>

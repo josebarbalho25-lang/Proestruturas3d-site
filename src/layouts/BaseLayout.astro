@@ -25,7 +25,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" title={`Blog ${SITE.name}`} href="/rss.xml" />
-    <meta name="theme-color" content="#0b1f3a" />
+    <meta name="theme-color" content="#fbfbfd" />
+    <!-- Letras da identidade: Oswald (títulos), Libre Baskerville (selos), Roboto (texto) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Oswald:wght@500;700&family=Roboto:wght@400;500;700&display=swap" />
     <!-- Segurança: não envia o endereço completo da página para sites externos -->
     <meta name="referrer" content="strict-origin-when-cross-origin" />
 
