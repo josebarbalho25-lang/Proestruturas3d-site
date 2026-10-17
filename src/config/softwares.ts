@@ -55,8 +55,10 @@ export interface Software {
   status: 'Disponível' | 'Em desenvolvimento' | 'Beta';
   /** Cor de destaque do card. */
   accent: string;
-  /** Sigla exibida no "logo" provisório. */
+  /** Sigla de reserva, usada se o software ainda não tiver logo. */
   monogram: string;
+  /** Logo original do software (arquivo em public/images/softwares/). */
+  logo?: string;
   /** Planos à venda. Se existir, a página do software mostra a tabela de preços. */
   plans?: Plan[];
   /** Texto curto exibido abaixo dos botões na página do software. */
@@ -88,6 +90,7 @@ export const SOFTWARES: Software[] = [
     status: 'Disponível',
     accent: '#f5a524',
     monogram: 'PV',
+    logo: '/images/softwares/pro-viga-3d.svg',
     plans: [
       {
         id: 'mensal',
@@ -140,6 +143,7 @@ export const SOFTWARES: Software[] = [
     status: 'Em desenvolvimento',
     accent: '#22c55e',
     monogram: 'AR',
+    logo: '/images/softwares/al-rimo.svg',
     deliveryNote: 'Em desenvolvimento. Deixe seu contato para ser avisado no lançamento.',
     buy: {
       mode: 'whatsapp',
@@ -170,6 +174,7 @@ export const SOFTWARES: Software[] = [
     status: 'Em desenvolvimento',
     accent: '#38bdf8',
     monogram: 'AP',
+    logo: '/images/softwares/a-port.svg',
     deliveryNote: 'Em desenvolvimento. Acompanhe as novidades no blog e no YouTube.',
     buy: {
       mode: 'whatsapp',

@@ -17,7 +17,7 @@ const others = SOFTWARES.filter((o) => o.id !== s.id);
 <BaseLayout title={s.name} description={`${s.name}: ${s.tagline}.`}>
   <section class="page-hero blueprint">
     <div class="container sw-hero">
-      <SoftwareMark id={s.id} accent={s.accent} monogram={s.monogram} large />
+      <SoftwareMark id={s.id} accent={s.accent} monogram={s.monogram} logo={s.logo} name={s.name} large />
       <div>
         <span class="eyebrow">{s.status}</span>
         <h1>{s.name}</h1>

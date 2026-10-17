@@ -9,7 +9,7 @@ const { software: s } = Astro.props;
 <article class="card sw" style={`--accent:${s.accent}`}>
   <div class="card__body">
     <div class="sw__top">
-      <SoftwareMark id={s.id} accent={s.accent} monogram={s.monogram} />
+      <SoftwareMark id={s.id} accent={s.accent} monogram={s.monogram} logo={s.logo} name={s.name} />
       <span class:list={['badge', { 'badge--ok': s.status === 'Disponível' }]}>{s.status}</span>
     </div>
     <h3><a href={`/softwares/${s.id}/`}>{s.name}</a></h3>
