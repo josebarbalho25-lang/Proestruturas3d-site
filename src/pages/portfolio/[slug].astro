@@ -12,7 +12,7 @@ const { project } = Astro.props;
 const { Content } = await render(project);
 const p = project.data;
 ---
-<BaseLayout title={p.title} description={p.summary}>
+<BaseLayout title={p.title} description={p.summary} image={p.cover}>
   <section class={p.cover ? 'page-hero page-hero--foto' : 'page-hero blueprint'} style={p.cover ? `--capa: url('${p.gallery[0]?.src ?? p.cover}')` : undefined}>
     <div class="container">
       <a class="back" href="/portfolio/">← Portfólio</a>

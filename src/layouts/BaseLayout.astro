@@ -9,9 +9,11 @@ interface Props {
   title?: string;
   description?: string;
   type?: 'website' | 'article';
+  image?: string;
 }
-const { title, description = SITE.description, type = 'website' } = Astro.props;
-const fullTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} | ${SITE.tagline}`;
+const { title, description = SITE.description, type = 'website', image } = Astro.props;
+const fullTitle = title ? `${title} | ${SITE.name}` : `Projeto Estrutural e Laudos em Uberaba-MG | ${SITE.name}`;
+const ogImage = new URL(image ?? '/images/projetos/obra-contencao.jpg', Astro.site);
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
@@ -39,6 +41,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:locale" content="pt_BR" />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
     <slot name="head" />
   </head>
   <body>

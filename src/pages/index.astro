@@ -7,14 +7,33 @@ import PostCard from '../components/PostCard.astro';
 import HireCta from '../components/HireCta.astro';
 import Icon from '../components/Icon.astro';
 import { SOFTWARES } from '../config/softwares';
-import { ENGINEER, whatsappLink } from '../config/site';
+import { ENGINEER, SITE, CONTACT, whatsappLink } from '../config/site';
 
 const projects = (await getCollection('portfolio')).sort((a, b) => a.data.order - b.data.order);
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
+
+// Dados estruturados para o Google (cartão de negócio local). Só cidade, sem endereço.
+const negocio = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: SITE.name,
+  url: SITE.url,
+  description: SITE.description,
+  image: `${SITE.url}/images/projetos/obra-contencao.jpg`,
+  logo: `${SITE.url}/images/marca/jb-completa.svg`,
+  telephone: `+${CONTACT.whatsappNumber}`,
+  email: ENGINEER.email,
+  address: { '@type': 'PostalAddress', addressLocality: 'Uberaba', addressRegion: 'MG', addressCountry: 'BR' },
+  areaServed: [{ '@type': 'City', name: 'Uberaba' }, { '@type': 'Country', name: 'Brasil' }],
+  founder: { '@type': 'Person', name: ENGINEER.name, jobTitle: 'Engenheiro Civil, Calculista Estrutural' },
+  knowsAbout: ['Projeto estrutural', 'Concreto armado', 'Alvenaria estrutural', 'Estrutura metálica', 'Fundações', 'Contenções', 'Laudo estrutural'],
+  sameAs: ['https://www.instagram.com/jbarbalho_civil', 'https://www.youtube.com/@proestruturas3d'],
+};
 ---
 <BaseLayout>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(negocio)} />
   <section class="hero">
     <div class="container hero__inner">
       <div class="hero__copy">

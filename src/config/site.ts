@@ -14,7 +14,7 @@ export const SITE = {
   url: 'https://proestruturas3d.com.br',
   tagline: 'Engenharia estrutural e softwares de cálculo',
   description:
-    'Projetos estruturais em concreto armado, aço e fundações, e softwares de análise estrutural desenvolvidos por quem calcula todos os dias.',
+    'Engenheiro estrutural em Uberaba-MG: projeto estrutural em concreto armado, alvenaria estrutural, aço e fundações, laudos técnicos e softwares de cálculo. Atendimento em todo o Brasil.',
   locale: 'pt-BR',
 };
 
@@ -25,7 +25,7 @@ export const ENGINEER = {
   role: 'Engenheiro Civil · Calculista Estrutural',
   // TODO: coloque seu número de registro profissional
   crea: 'CREA-MG 382166', // vazio = não aparece no site
-  city: 'Brasil',
+  city: 'Uberaba-MG',
   email: 'contato@proestruturas3d.com.br',
 };
 
