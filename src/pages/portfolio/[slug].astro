@@ -36,13 +36,21 @@ const p = project.data;
       </div></aside>
     </div>
   </section>
-  {p.gallery.length > 0 && (
-    <section class="section galeria-sec concreto--claro">
+  {[
+    ...(p.gallery.length ? [{
+      eyebrow: p.galleryKind === 'pranchas' ? 'Do projeto' : 'Na obra',
+      title: p.galleryKind === 'pranchas' ? 'Modelos e pranchas' : 'Fotos da execução',
+      intro: undefined, kind: p.galleryKind, items: p.gallery,
+    }] : []),
+    ...p.galleries,
+  ].map((g, i) => (
+    <section class:list={['section', 'galeria-sec', i % 2 === 0 ? 'concreto--claro' : 'galeria-sec--papel']}>
       <div class="container">
-        <span class="eyebrow">{p.galleryKind === 'pranchas' ? 'Do projeto' : 'Na obra'}</span>
-        <h2>{p.galleryKind === 'pranchas' ? 'Modelos e pranchas' : 'Fotos da execução'}</h2>
-        <div class:list={['galeria', { 'galeria--pranchas': p.galleryKind === 'pranchas' }]}>
-          {p.gallery.map((f) => (
+        <span class="eyebrow">{g.eyebrow}</span>
+        <h2>{g.title}</h2>
+        {g.intro && <p class="galeria-intro">{g.intro}</p>}
+        <div class:list={['galeria', { 'galeria--pranchas': g.kind === 'pranchas' }]}>
+          {g.items.map((f) => (
             <figure>
               <a href={f.src} target="_blank" rel="noopener"><img src={f.src} alt={f.alt} loading="lazy" decoding="async" /></a>
               <figcaption>{f.alt}</figcaption>
@@ -51,7 +59,7 @@ const p = project.data;
         </div>
       </div>
     </section>
-  )}
+  ))}
   <HireCta />
 </BaseLayout>
 <style>
@@ -67,6 +75,7 @@ const p = project.data;
   .page-hero--foto .container { position: relative; }
   .page-hero--foto h1, .page-hero--foto .lead, .page-hero--foto .back, .page-hero--foto .eyebrow { color: #fff; }
   .page-hero--foto .eyebrow { color: var(--creme); }
+  .galeria-intro { max-width: 70ch; color: var(--grafite); margin: .5rem 0 0; }
   .galeria { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
   .galeria figure { margin: 0; background: #fff; box-shadow: 0 1px 3px rgb(19 10 64 / 12%); }
   .galeria img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
