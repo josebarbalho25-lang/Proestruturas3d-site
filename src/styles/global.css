@@ -12,7 +12,6 @@
   --creme: #f9dc6a;     /* amarelo creme das thumbs do YouTube: botões e marca-texto */
   --creme-forte: #f3cf4a;
   --creme-claro: #fdf4d3;
-  --vinho: #9c1419;     /* títulos do portfólio (posts vermelhos do Instagram) */
   --grafite: #6b6b72;
   --papel: #fbfbfd;
 
@@ -29,7 +28,7 @@
   --steel-50: #f7f7f8;
   --white: #ffffff;
   --amber: var(--creme);
-  --amber-dark: var(--vinho);
+  --amber-dark: var(--indigo-2);
   --green-wa: #1fa855;
 
   --text: #17142e;
@@ -65,7 +64,7 @@ body {
 }
 img, svg { max-width: 100%; display: block; }
 a { color: var(--indigo-2); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-a:hover { color: var(--vinho); }
+a:hover { color: var(--indigo-2); text-decoration-color: var(--creme-forte); }
 h1, h2, h3, h4 {
   font-family: var(--font-titulo); text-transform: uppercase; font-weight: 700;
   line-height: 1.1; letter-spacing: .01em; margin: 0 0 .6em; color: var(--indigo); text-wrap: balance;
