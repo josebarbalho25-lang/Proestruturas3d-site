@@ -16,7 +16,7 @@ const skills = ['Concreto Armado', 'Alvenaria Estrutural', 'Estruturas Metálica
     <div class="container">
       <span class="eyebrow">Sobre o Engenheiro</span>
       <h1>{ENGINEER.name}</h1>
-      <p class="lead">{ENGINEER.role} · {ENGINEER.crea}</p>
+      <p class="lead">{ENGINEER.role}{ENGINEER.crea && ` · ${ENGINEER.crea}`}</p>
     </div>
   </section>
 

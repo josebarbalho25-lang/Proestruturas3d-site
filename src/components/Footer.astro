@@ -34,7 +34,7 @@ const year = new Date().getFullYear();
         <li><a href={whatsappLink()} target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
         <li><a href={`mailto:${ENGINEER.email}`}>{ENGINEER.email}</a></li>
         <li class="muted">{ENGINEER.name}</li>
-        <li class="muted">{ENGINEER.crea}</li>
+        {ENGINEER.crea && <li class="muted">{ENGINEER.crea}</li>}
       </ul>
     </div>
   </div>

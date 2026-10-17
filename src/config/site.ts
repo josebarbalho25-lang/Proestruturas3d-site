@@ -24,7 +24,7 @@ export const ENGINEER = {
   name: 'Eng. José Barbalho',
   role: 'Engenheiro Civil · Calculista Estrutural',
   // TODO: coloque seu número de registro profissional
-  crea: 'CREA 000000000-0',
+  crea: '', // ex.: 'CREA-MG 000000/D' (vazio = não aparece no site)
   city: 'Brasil',
   email: 'contato@proestruturas3d.com.br',
 };
