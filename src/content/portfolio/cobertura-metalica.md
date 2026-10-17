@@ -11,7 +11,7 @@ highlights:
     value: 407 m²
   - label: Norma
     value: NBR 14762
-order: 3
+order: 4
 ---
 
 ## Escopo
