@@ -17,6 +17,13 @@ highlights:
     value: Projetos + execução da obra
 order: 3
 cover: /images/projetos/casa-f/capa.jpg
+video:
+  src: /images/projetos/casa-f/modelo-3d.mp4
+  poster: /images/projetos/casa-f/modelo-3d-poster.jpg
+  eyebrow: Do projeto
+  title: O modelo em 3D
+  caption: Passeio pelo modelo da estrutura, das caixas d'água e das instalações hidrossanitárias.
+  mode: player
 galleryKind: pranchas
 gallery:
   - src: /images/projetos/casa-f/01-estrutura-concreto.jpg

@@ -17,6 +17,14 @@ highlights:
     value: Perfis metálicos leves
 order: 2
 cover: /images/projetos/casa-r/capa.jpg
+video:
+  src: /images/projetos/casa-r/cortina-estacas.mp4
+  poster: /images/projetos/casa-r/cortina-estacas-poster.jpg
+  eyebrow: Estudo de fundação
+  title: Contenção em cortina de estacas
+  caption: A sequência de execução estudada para conter um desnível de até 3 m junto à divisa. No levantamento o desnível real era de 90 cm, e a cortina não foi necessária.
+  mode: player
+  vertical: true
 galleryKind: pranchas
 gallery:
   - src: /images/projetos/casa-r/01-telhados-paineis-solares.jpg

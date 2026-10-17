@@ -39,13 +39,20 @@ const p = project.data;
   {p.video && (
     <section class="section video-sec">
       <div class="container">
-        <span class="eyebrow">Na obra</span>
-        <h2>A estrutura de pé</h2>
-        <figure class="video">
-          <video poster={p.video.poster} autoplay muted loop playsinline preload="metadata" aria-label={p.video.caption}>
-            <source src={p.video.src} type="video/mp4" />
-            <source src={p.video.src.replace(/\.mp4$/, '.webm')} type="video/webm" />
-          </video>
+        <span class="eyebrow">{p.video.eyebrow}</span>
+        <h2>{p.video.title}</h2>
+        <figure class:list={['video', { 'video--vertical': p.video.vertical }]}>
+          {p.video.mode === 'loop' ? (
+            <video poster={p.video.poster} autoplay muted loop playsinline preload="metadata" aria-label={p.video.caption}>
+              <source src={p.video.src} type="video/mp4" />
+              <source src={p.video.src.replace(/\.mp4$/, '.webm')} type="video/webm" />
+            </video>
+          ) : (
+            <video poster={p.video.poster} controls muted playsinline preload="none" aria-label={p.video.caption}>
+              <source src={p.video.src} type="video/mp4" />
+              <source src={p.video.src.replace(/\.mp4$/, '.webm')} type="video/webm" />
+            </video>
+          )}
           <figcaption>{p.video.caption}</figcaption>
         </figure>
       </div>
@@ -92,6 +99,8 @@ const p = project.data;
   .page-hero--foto .eyebrow { color: var(--creme); }
   .video { margin: 1.5rem 0 0; }
   .video video { display: block; width: 100%; max-width: 960px; aspect-ratio: 848 / 478; background: var(--indigo); }
+  .video--vertical video { max-width: 360px; aspect-ratio: 9 / 16; }
+  .video--vertical figcaption { max-width: 360px; }
   .video figcaption { font-size: .88rem; color: var(--grafite); margin-top: .6rem; }
   .galeria-intro { max-width: 70ch; color: var(--grafite); margin: .5rem 0 0; }
   .galeria { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
