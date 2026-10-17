@@ -1,10 +1,12 @@
 ---
 title: Expansão de Shopping Center
-summary: Projeto estrutural da expansão de um shopping center, com a nova estrutura apoiada na edificação existente. Concreto armado, alvenaria estrutural e estrutura metálica, modelados em 3D.
+summary: Projeto estrutural da expansão de um shopping center, com a nova estrutura apoiada na edificação existente. Concreto armado, alvenaria estrutural, estruturas metálicas secundárias, steel deck e estruturas mistas, modelados em 3D.
 category: Comercial
 disciplines:
   - Concreto Armado
-  - Estrutura Metálica
+  - Estruturas Metálicas Secundárias
+  - Steel Deck
+  - Estruturas Mistas
   - Alvenaria Estrutural
   - Fundações
   - Reforço Estrutural
@@ -25,14 +27,14 @@ cover: /images/projetos/expansao-shopping/capa.jpg
 video:
   src: /images/projetos/expansao-shopping/obra.mp4
   poster: /images/projetos/expansao-shopping/obra-poster.jpg
-  caption: Marquise em treliças metálicas, corredor com claraboias e lojas com a cobertura metálica aparente.
+  caption: A obra em andamento, com a marquise, o corredor com claraboias e as lojas. A estrutura metálica principal da cobertura é de outra empresa.
 gallery:
   - src: /images/projetos/expansao-shopping/01-cobertura-trelicas.jpg
-    alt: Cobertura em treliças metálicas sobre a área de expansão
+    alt: Área de expansão com a cobertura metálica principal montada
   - src: /images/projetos/expansao-shopping/02-cobertura-claraboias.jpg
     alt: Cobertura de grande vão com claraboias
   - src: /images/projetos/expansao-shopping/03-galpao-alvenaria.jpg
-    alt: Treliças, pilares metálicos e alvenaria estrutural
+    alt: Alvenaria estrutural sob a cobertura metálica
   - src: /images/projetos/expansao-shopping/04-alvenaria-estrutural.jpg
     alt: Paredes em alvenaria estrutural de blocos de concreto
   - src: /images/projetos/expansao-shopping/05-laje-eps.jpg
@@ -77,8 +79,8 @@ galleries:
       - src: /images/projetos/expansao-shopping/lojas/concreto-10-escada-concreto-armado-isometrico.jpg
         alt: 'Isométrico da escada em concreto armado com armadura e mureta em bloco de concreto'
   - eyebrow: Expansão das lojas
-    title: Estrutura metálica
-    intro: Pórtico com treliças, mezanino e travamentos em perfis de aço, com as ligações detalhadas em 3D e as vigas verificadas no SAP2000.
+    title: Estruturas metálicas secundárias e reforços
+    intro: Pórticos, mezanino, travamentos e reforços em perfis de aço ligados à estrutura existente, com as ligações detalhadas em 3D e as vigas verificadas no SAP2000.
     items:
       - src: /images/projetos/expansao-shopping/lojas/metalica-01-portico-metalico-conexoes-por-cores.jpg
         alt: 'Isométrico do pórtico metálico com treliças, apoiado em pilares de concreto existentes'
@@ -157,8 +159,10 @@ a edificação existente. Cada elemento foi modelado em 3D e detalhado para a ob
   insertos metálicos ancorados quimicamente nas vigas existentes.
 - **Concreto armado**: vigas de transição recebendo pilares metálicos,
   lajes de fechamento, rampa, galerias e escada.
-- **Estrutura metálica**: pórtico com treliças, mezanino, vigas de
-  travamento e ligações parafusadas e soldadas em aço ASTM A36.
+- **Estruturas metálicas secundárias**: pórticos, mezanino, vigas de
+  travamento e ligações parafusadas e soldadas em aço ASTM A36. A estrutura
+  metálica principal da cobertura é de outra empresa.
+- **Estruturas mistas** de aço e concreto e **laje em steel deck**.
 - **Alvenaria estrutural** em bloco de concreto grauteado.
 - **Reforços** de laje com chapas metálicas para novas aberturas.
 - **Piso de concreto** sobre solo com tela soldada e juntas serradas.
