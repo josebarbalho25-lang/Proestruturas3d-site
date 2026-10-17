@@ -23,11 +23,9 @@ const skills = ['Concreto Armado', 'Alvenaria Estrutural', 'Estruturas Metálica
 
   <section class="section">
     <div class="container about">
-      <div class="about__photo" aria-label="Espaço reservado para sua foto">
-        <!-- TODO: coloque sua foto em public/images/eu.jpg e troque este bloco por:
-             <img src="/images/eu.jpg" alt="Foto do engenheiro" width="480" height="560" /> -->
-        <span>Sua foto aqui</span>
-      </div>
+      <figure class="about__photo">
+        <img src="/images/marca/jose-barbalho.jpg" alt="Eng. José Barbalho segurando uma prancha de projeto estrutural" width="1000" height="1241" />
+      </figure>
       <div class="prose">
         <h2>Engenharia com rigor técnico e visão de produto</h2>
         <p>
@@ -36,7 +34,7 @@ const skills = ['Concreto Armado', 'Alvenaria Estrutural', 'Estruturas Metálica
           solução mais segura e econômica para cada obra.
         </p>
         <p>
-          A rotina de projeto me levou a criar as minhas próprias ferramentas de cálculo. Assim nasceu a
+          A rotina de projeto me levou a criar as minhas próprias ferramentas de cálculo. Assim nasceu a{' '}
           <strong>PRO Estruturas 3D</strong>: uma software house dedicada a levar análises avançadas, como a não-linearidade
           física e a análise espacial por elementos finitos, para o dia a dia dos escritórios de engenharia.
         </p>
@@ -61,11 +59,8 @@ const skills = ['Concreto Armado', 'Alvenaria Estrutural', 'Estruturas Metálica
 
 <style>
   .about { display: grid; grid-template-columns: .8fr 1.2fr; gap: 3.5rem; align-items: start; }
-  .about__photo {
-    aspect-ratio: 6 / 7; border-radius: var(--radius); display: grid; place-items: center; color: var(--steel-500);
-    background: repeating-linear-gradient(45deg, var(--steel-100), var(--steel-100) 12px, var(--steel-50) 12px, var(--steel-50) 24px);
-    border: 1px dashed var(--steel-300); font-weight: 600;
-  }
+  .about__photo { margin: 0; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); }
+  .about__photo img { display: block; width: 100%; height: auto; aspect-ratio: 1000 / 1241; object-fit: cover; }
   .about .prose h2 { margin-top: 0; }
   .timeline { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.5rem; }
   .timeline li { background: var(--white); border: 1px solid var(--border); border-top: 4px solid var(--amber); border-radius: var(--radius); padding: 1.5rem; }

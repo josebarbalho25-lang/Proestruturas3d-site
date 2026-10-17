@@ -58,6 +58,20 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     </div>
   </section>
 
+  <section class="section quem">
+    <div class="container quem__inner">
+      <figure class="quem__foto">
+        <img src="/images/marca/jose-barbalho-capacete.jpg" alt="Eng. José Barbalho de capacete" width="584" height="712" loading="lazy" />
+      </figure>
+      <div class="quem__texto">
+        <span class="eyebrow">Quem calcula</span>
+        <h2>Prazer, José Barbalho</h2>
+        <p class="lead">Engenheiro estrutural. Faço a estrutura da sua obra ficar estável e segura, com o mínimo de concreto e aço que a norma permite.</p>
+        <a class="btn btn--outline" href="/sobre/">Conheça minha trajetória <Icon name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+
   <section class="section concreto--claro">
     <div class="container">
       <div class="section-head">
@@ -106,9 +120,16 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .stats div + div { padding-left: 1.5rem; border-left: 1px solid var(--border); }
   .stats dt { font-family: var(--font-selo); font-size: .68rem; text-transform: uppercase; letter-spacing: .3em; color: var(--grafite); }
   .stats dd { margin: .35rem 0 0; color: var(--indigo); font-family: var(--font-titulo); text-transform: uppercase; font-size: 1.15rem; letter-spacing: .02em; }
+  .quem { border-top: 1px solid var(--border); }
+  .quem__inner { display: grid; grid-template-columns: minmax(220px, 340px) 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .quem__foto { margin: 0; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-lg); }
+  .quem__foto img { display: block; width: 100%; height: auto; }
+  .quem__texto { display: grid; gap: 1rem; justify-items: start; }
+  .quem__texto h2, .quem__texto .lead { margin: 0; }
   .more { margin: 2.5rem 0 0; text-align: center; }
   @media (max-width: 900px) {
-    .hero__inner { grid-template-columns: 1fr; }
+    .hero__inner, .quem__inner { grid-template-columns: 1fr; }
+    .quem__foto { max-width: 300px; }
     .stats { grid-template-columns: 1fr; }
     .stats div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--border); }
     .stats div { padding: 1rem 0; }
