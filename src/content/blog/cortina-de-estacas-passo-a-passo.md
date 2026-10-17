@@ -64,7 +64,7 @@ de escorregar entre as estacas durante a obra.
 
 ## O que fica de lição
 
-Uma suspeita de 3 m de desnível muda completamente a fundação de uma casa. Por
+Uma suspeita de 3 m de desnível muda completamente a contenção de uma casa. Por
 isso vale medir antes de projetar: aqui, o levantamento mostrou 90 cm, e uma
 solução bem mais simples resolveu. O estudo, porém, fica pronto para quando a
 contenção for de fato necessária.
