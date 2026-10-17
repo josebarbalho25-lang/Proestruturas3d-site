@@ -8,13 +8,13 @@ import { whatsappLink } from '../../config/site';
 
 const projects = (await getCollection('portfolio')).sort((a, b) => a.data.order - b.data.order);
 
-// TODO: ajuste a lista de serviços que você oferece.
 const services = [
   { icon: 'frame', title: 'Projeto estrutural em concreto armado', text: 'Residências, sobrados, edifícios e galpões, com detalhamento completo e memorial de cálculo.' },
   { icon: 'wall', title: 'Fundações e contenções', text: 'Sapatas, blocos, estacas, vigas alavanca e muros de arrimo, a partir das sondagens do terreno.' },
   { icon: 'beam', title: 'Estruturas metálicas', text: 'Coberturas, treliças e mezaninos em perfis laminados e formados a frio.' },
   { icon: 'check', title: 'Alvenaria estrutural e piso industrial', text: 'Dimensionamento de alvenaria estrutural e de pisos industriais para cargas pesadas.' },
   { icon: 'mail', title: 'Projeto hidrossanitário', text: 'Água fria, água quente, esgoto e águas pluviais, compatibilizados com a estrutura.' },
+  { icon: 'frame', title: 'Execução de obra', text: 'Acompanhamento e execução da obra com o mesmo responsável técnico do projeto, do gabarito à cobertura.' },
   { icon: 'user', title: 'Consultoria e laudos', text: 'Análise de projetos de terceiros, verificação de estruturas existentes e pareceres técnicos.' },
 ];
 ---
