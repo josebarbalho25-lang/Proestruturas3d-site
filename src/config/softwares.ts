@@ -29,7 +29,11 @@ export interface ProductAction {
   label: string;
 }
 
-/** Plano de assinatura/licença. O link é o checkout da loja (Kiwify), nunca um arquivo. */
+/**
+ * Plano de assinatura/licença.
+ * url: checkout da loja (ex.: PayPal), nunca um arquivo. Sem url, o botão abre o
+ * WhatsApp com o nome do plano (enquanto o pagamento online não estiver pronto).
+ */
 export interface Plan {
   id: string;
   name: string;
@@ -37,7 +41,7 @@ export interface Plan {
   period: string;
   note?: string;
   highlight?: boolean;
-  url: string;
+  url?: string;
 }
 
 export interface Software {
@@ -91,7 +95,6 @@ export const SOFTWARES: Software[] = [
         price: 'R$ 20',
         period: '/mês',
         note: 'Cancele quando quiser',
-        url: 'https://pay.kiwify.com.br/dVuVKat',
       },
       {
         id: 'anual',
@@ -100,12 +103,15 @@ export const SOFTWARES: Software[] = [
         period: '/ano',
         note: 'Equivale a R$ 15/mês',
         highlight: true,
-        url: 'https://pay.kiwify.com.br/8XUeYa3',
       },
     ],
     deliveryNote:
-      'Pagamento seguro pela Kiwify. Após a compra, o instalador fica disponível na sua Área de Membros e a licença é ativada com o e-mail da compra.',
-    buy: { mode: 'url', url: 'https://pay.kiwify.com.br/dVuVKat', label: 'Assinar' },
+      'A assinatura é feita direto comigo pelo WhatsApp. Em breve, pagamento online e download pela Área do Cliente.',
+    buy: {
+      mode: 'whatsapp',
+      message: 'Olá! Quero assinar o Pró-Viga 3D.',
+      label: 'Assinar',
+    },
     download: {
       mode: 'whatsapp',
       message: 'Olá! Sou engenheiro e gostaria de testar o Pró-Viga 3D por 30 dias.',

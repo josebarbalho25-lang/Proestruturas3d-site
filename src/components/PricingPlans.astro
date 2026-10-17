@@ -21,7 +21,7 @@ const plans = software.plans ?? [];
           data-product-action="buy"
           data-plan-id={p.id}
         >
-          <Icon name="cart" /> Assinar {p.name.toLowerCase()}
+          <Icon name={p.url ? 'cart' : 'whatsapp'} /> Assinar {p.name.toLowerCase()}
         </button>
       </div>
     ))}

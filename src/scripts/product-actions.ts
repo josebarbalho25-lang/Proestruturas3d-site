@@ -43,7 +43,9 @@ async function handleClick(button: HTMLButtonElement) {
 
   const plan = button.dataset.planId ? product.plans?.find((p) => p.id === button.dataset.planId) : undefined;
   const action: ProductAction = plan
-    ? { mode: 'url', url: plan.url, label: plan.name }
+    ? plan.url
+      ? { mode: 'url', url: plan.url, label: plan.name }
+      : { mode: 'whatsapp', message: `Olá! Quero assinar o ${product.name} no plano ${plan.name}.`, label: plan.name }
     : kind === 'buy'
       ? product.buy
       : product.download;
