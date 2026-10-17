@@ -35,8 +35,7 @@ export const ENGINEER = {
  * Exemplo: 5581999998888
  */
 export const CONTACT = {
-  // TODO: troque pelo seu número de WhatsApp
-  whatsappNumber: '5500000000000',
+  whatsappNumber: '5534999545092',
   whatsappDefaultMessage:
     'Olá! Vim pelo site proestruturas3d.com.br e gostaria de solicitar um orçamento de projeto estrutural.',
   /**
@@ -52,13 +51,11 @@ export const SOCIAL = [
   {
     id: 'instagram',
     label: 'Instagram',
-    // TODO: troque pelo link real do seu perfil
-    url: 'https://www.instagram.com/proestruturas3d',
+    url: 'https://www.instagram.com/jbarbalho_civil',
   },
   {
     id: 'youtube',
     label: 'YouTube',
-    // TODO: troque pelo link real do seu canal
     url: 'https://www.youtube.com/@proestruturas3d',
   },
 ] as const;
