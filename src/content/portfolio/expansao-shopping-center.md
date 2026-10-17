@@ -27,10 +27,10 @@ cover: /images/projetos/expansao-shopping/capa.jpg
 video:
   src: /images/projetos/expansao-shopping/obra.mp4
   poster: /images/projetos/expansao-shopping/obra-poster.jpg
-  caption: A obra em andamento, com a marquise, o corredor com claraboias e as lojas. A estrutura metálica principal da cobertura é de outra empresa.
+  caption: A obra em andamento, com a marquise, o corredor com claraboias e as lojas.
 gallery:
   - src: /images/projetos/expansao-shopping/01-cobertura-trelicas.jpg
-    alt: Área de expansão com a cobertura metálica principal montada
+    alt: Área de expansão com a cobertura metálica montada
   - src: /images/projetos/expansao-shopping/02-cobertura-claraboias.jpg
     alt: Cobertura de grande vão com claraboias
   - src: /images/projetos/expansao-shopping/03-galpao-alvenaria.jpg
@@ -160,8 +160,7 @@ a edificação existente. Cada elemento foi modelado em 3D e detalhado para a ob
 - **Concreto armado**: vigas de transição recebendo pilares metálicos,
   lajes de fechamento, rampa, galerias e escada.
 - **Estruturas metálicas secundárias**: pórticos, mezanino, vigas de
-  travamento e ligações parafusadas e soldadas em aço ASTM A36. A estrutura
-  metálica principal da cobertura é de outra empresa.
+  travamento e ligações parafusadas e soldadas em aço ASTM A36.
 - **Estruturas mistas** de aço e concreto e **laje em steel deck**.
 - **Alvenaria estrutural** em bloco de concreto grauteado.
 - **Reforços** de laje com chapas metálicas para novas aberturas.
