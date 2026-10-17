@@ -13,7 +13,7 @@ const { Content } = await render(project);
 const p = project.data;
 ---
 <BaseLayout title={p.title} description={p.summary}>
-  <section class="page-hero blueprint">
+  <section class={p.cover ? 'page-hero page-hero--foto' : 'page-hero blueprint'} style={p.cover ? `--capa: url('${p.gallery[0]?.src ?? p.cover}')` : undefined}>
     <div class="container">
       <a class="back" href="/portfolio/">← Portfólio</a>
       <span class="eyebrow">{p.category}</span>
@@ -36,15 +36,40 @@ const p = project.data;
       </div></aside>
     </div>
   </section>
+  {p.gallery.length > 0 && (
+    <section class="section galeria-sec concreto--claro">
+      <div class="container">
+        <span class="eyebrow">Na obra</span>
+        <h2>Fotos da execução</h2>
+        <div class="galeria">
+          {p.gallery.map((f) => (
+            <figure>
+              <a href={f.src} target="_blank" rel="noopener"><img src={f.src} alt={f.alt} loading="lazy" decoding="async" /></a>
+              <figcaption>{f.alt}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
   <HireCta />
 </BaseLayout>
 <style>
-  .back { color: var(--steel-600); text-decoration: none; display: inline-block; margin-bottom: 1.25rem; font-size: .92rem; }
+  .back { color: var(--steel-600); text-decoration: none; display: block; width: fit-content; margin-bottom: 1.25rem; font-size: .92rem; }
   .back:hover { color: var(--indigo); }
   .project-detail { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: start; }
   .facts { margin: 0 0 1rem; display: grid; gap: .8rem; }
   .facts dt { font-size: .75rem; text-transform: uppercase; letter-spacing: .1em; color: var(--steel-500); }
   .facts dd { margin: 0; font-weight: 650; color: var(--navy-900); }
   h4 { margin: .5rem 0 .25rem; font-size: .95rem; }
+  .page-hero--foto { position: relative; background: var(--indigo) var(--capa) center / cover no-repeat; }
+  .page-hero--foto::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(19 10 64 / 88%), rgb(19 10 64 / 55%)); }
+  .page-hero--foto .container { position: relative; }
+  .page-hero--foto h1, .page-hero--foto .lead, .page-hero--foto .back, .page-hero--foto .eyebrow { color: #fff; }
+  .page-hero--foto .eyebrow { color: var(--creme); }
+  .galeria { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+  .galeria figure { margin: 0; background: #fff; box-shadow: 0 1px 3px rgb(19 10 64 / 12%); }
+  .galeria img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .galeria figcaption { padding: .65rem .8rem; font-size: .88rem; color: var(--grafite); }
   @media (max-width: 860px) { .project-detail { grid-template-columns: 1fr; } }
 </style>

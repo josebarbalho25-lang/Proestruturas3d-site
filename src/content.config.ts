@@ -34,6 +34,10 @@ const portfolio = defineCollection({
     location: z.string().optional(),
     year: z.number().optional(),
     order: z.number().default(99),
+    /** foto de capa (card e topo da página), caminho em public/ */
+    cover: z.string().optional(),
+    /** fotos da obra exibidas na página do projeto */
+    gallery: z.array(z.object({ src: z.string(), alt: z.string() })).default([]),
   }),
 });
 

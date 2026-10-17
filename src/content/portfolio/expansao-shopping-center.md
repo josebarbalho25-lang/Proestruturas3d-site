@@ -14,6 +14,32 @@ highlights:
   - label: Sistemas
     value: Concreto, alvenaria e aço
 order: 1
+cover: /images/projetos/expansao-shopping/capa.jpg
+gallery:
+  - src: /images/projetos/expansao-shopping/01-cobertura-trelicas.jpg
+    alt: Cobertura em treliças metálicas sobre a área de expansão
+  - src: /images/projetos/expansao-shopping/02-cobertura-claraboias.jpg
+    alt: Cobertura de grande vão com claraboias
+  - src: /images/projetos/expansao-shopping/03-galpao-alvenaria.jpg
+    alt: Treliças, pilares metálicos e alvenaria estrutural
+  - src: /images/projetos/expansao-shopping/04-alvenaria-estrutural.jpg
+    alt: Paredes em alvenaria estrutural de blocos de concreto
+  - src: /images/projetos/expansao-shopping/05-laje-eps.jpg
+    alt: Laje nervurada com enchimento em EPS antes da concretagem
+  - src: /images/projetos/expansao-shopping/06-laje-nervurada-rampa.jpg
+    alt: Laje nervurada existente e execução da rampa de acesso
+  - src: /images/projetos/expansao-shopping/07-concretagem.jpg
+    alt: Concretagem do piso junto às bases dos pilares
+  - src: /images/projetos/expansao-shopping/08-alvenaria-contencao.jpg
+    alt: Alvenaria estrutural na contenção do desnível
+  - src: /images/projetos/expansao-shopping/09-viga-impermeabilizada.jpg
+    alt: Viga de fundação impermeabilizada
+  - src: /images/projetos/expansao-shopping/10-pilares-metalicos.jpg
+    alt: Pilares metálicos sobre bases de concreto
+  - src: /images/projetos/expansao-shopping/11-escada-metalica.jpg
+    alt: Escada metálica e laje de mezanino
+  - src: /images/projetos/expansao-shopping/12-steel-deck.jpg
+    alt: Estrutura metálica com fôrma de steel deck
 ---
 
 ## Escopo
@@ -32,6 +58,3 @@ necessidade de compatibilizar a nova estrutura com a edificação existente.
 
 Executar a obra sem interromper o funcionamento do shopping exigiu um
 faseamento cuidadoso e soluções estruturais que reduzissem o tempo de obra.
-
-> TODO: substitua este texto pelos detalhes reais do projeto e adicione fotos
-> em `public/images/portfolio/`.
