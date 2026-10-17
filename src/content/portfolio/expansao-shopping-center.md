@@ -15,7 +15,7 @@ highlights:
   - label: Sistemas
     value: Concreto, alvenaria e aço
   - label: Pranchas de estrutura
-    value: 23 na expansão das lojas
+    value: 41 entre lojas e deck parking
 order: 1
 cover: /images/projetos/expansao-shopping/capa.jpg
 gallery:
@@ -99,13 +99,51 @@ galleries:
       - src: /images/projetos/expansao-shopping/lojas/alvenaria-03-reforco-laje-furos-isometricos.jpg
         alt: 'Isométricos do reforço com chapas metálicas em furos de laje junto à alvenaria'
 
+  - eyebrow: Deck parking
+    title: Arquibancada, jardins e espelho d'água
+    intro: Volumes escalonados em alvenaria estrutural de blocos de concreto, funcionando como muros de arrimo, com jardins, floreiras e espelho d'água.
+    items:
+      - src: /images/projetos/expansao-shopping/deck/arquibancada-01-escadaria-isometrico.jpg
+        alt: 'Isométrico da escadaria e arquibancada, com viga T invertida na base da escada plissada'
+      - src: /images/projetos/expansao-shopping/deck/arquibancada-02-arquibancada-isometrico.jpg
+        alt: 'Isométricos da arquibancada em alvenaria estrutural, com degraus, jardins e espelho d''água'
+      - src: /images/projetos/expansao-shopping/deck/arquibancada-03-espelho-dagua-isometrico.jpg
+        alt: 'Isométrico do espelho d''água em blocos de concreto escalonados sobre o talude, com cotas'
+      - src: /images/projetos/expansao-shopping/deck/arquibancada-04-muro-de-arrimo-isometrico.jpg
+        alt: 'Isométrico dos muros de arrimo em bloco de concreto contendo volumes de jardim'
+      - src: /images/projetos/expansao-shopping/deck/arquibancada-05-floreira-isometrico-detalhes.jpg
+        alt: 'Floreira em alvenaria estrutural: isométrico com canaletas grauteadas e corte do fundo'
+  - eyebrow: Deck parking
+    title: Escadas
+    intro: Escadas em concreto armado ligando o estacionamento ao shopping, com a sequência de execução e a armadura modeladas em 3D.
+    items:
+      - src: /images/projetos/expansao-shopping/deck/escadas-01-escada-perspectiva-final.jpg
+        alt: 'Perspectiva da escada concluída, com muros em blocos de concreto e o talude ao fundo'
+      - src: /images/projetos/expansao-shopping/deck/escadas-02-escada-isometrico.jpg
+        alt: 'Isométrico da escada em concreto armado com três lances, patamares e pórtico de apoio'
+      - src: /images/projetos/expansao-shopping/deck/escadas-03-escada-etapas-execucao.jpg
+        alt: 'Sequência executiva da escada em 4 etapas, do corte do talude aos muros de arrimo'
+      - src: /images/projetos/expansao-shopping/deck/escadas-04-escada-armadura-isometrico.jpg
+        alt: 'Isométrico da armadura da escada plissada, barras de 6,3 mm em azul e 8 mm em vermelho'
+  - eyebrow: Deck parking
+    title: Steel deck e fundações
+    intro: Laje em steel deck sobre vigas metálicas, apoios chumbados em pilares de concreto e fundações em blocos e baldrames sobre estacas.
+    items:
+      - src: /images/projetos/expansao-shopping/deck/metalica-01-steel-deck-vista-isometrica.jpg
+        alt: 'Vistas 3D da estrutura metálica com laje steel deck apoiada em vigas e pilares'
+      - src: /images/projetos/expansao-shopping/deck/metalica-02-viga-metalica-isometrico.jpg
+        alt: 'Isométrico da viga metálica sobre pilar, com placa de base e chumbadores em J de 16 mm'
+      - src: /images/projetos/expansao-shopping/deck/metalica-03-blocos-estacas-isometrico.jpg
+        alt: 'Isométrico da armadura de blocos sobre estacas ligados por vigas baldrame'
+      - src: /images/projetos/expansao-shopping/deck/metalica-04-baldrame-estacas-isometrico.jpg
+        alt: 'Isométrico da viga baldrame sobre estacas com alvenaria estrutural e estrutura existente'
 ---
 
 ## Escopo
 
-Projeto estrutural da área de expansão das lojas de um shopping center, com
-boa parte da estrutura nova nascendo sobre a edificação existente. Cada
-elemento foi modelado em 3D e detalhado para a obra executar sem dúvida.
+Projeto estrutural da expansão de um shopping center, em duas frentes: a
+expansão das lojas e o deck parking. Boa parte da estrutura nova nasce sobre
+a edificação existente. Cada elemento foi modelado em 3D e detalhado para a obra executar sem dúvida.
 
 - **Fundações e blocos**: sapatas para os pilares metálicos e blocos com
   insertos metálicos ancorados quimicamente nas vigas existentes.
@@ -116,6 +154,9 @@ elemento foi modelado em 3D e detalhado para a obra executar sem dúvida.
 - **Alvenaria estrutural** em bloco de concreto grauteado.
 - **Reforços** de laje com chapas metálicas para novas aberturas.
 - **Piso de concreto** sobre solo com tela soldada e juntas serradas.
+- **Deck parking**: laje em steel deck, arquibancada e jardins em alvenaria
+  estrutural funcionando como contenção, escadas em concreto armado e
+  fundações em estacas.
 
 ## Desafios
 
