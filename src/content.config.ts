@@ -40,6 +40,8 @@ const portfolio = defineCollection({
     /** fotos = obra (recorta em 4:3); pranchas = desenhos (mostra inteiro) */
     galleryKind: z.enum(['fotos', 'pranchas']).default('fotos'),
     gallery: z.array(z.object({ src: z.string(), alt: z.string() })).default([]),
+    /** vídeo curto da obra, sem áudio (roda sozinho em loop) */
+    video: z.object({ src: z.string(), poster: z.string(), caption: z.string() }).optional(),
     /** galerias extras, cada uma com título próprio (ex.: uma por etapa da obra) */
     galleries: z.array(z.object({
       eyebrow: z.string(),

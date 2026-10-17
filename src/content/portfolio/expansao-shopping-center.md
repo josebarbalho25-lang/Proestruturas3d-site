@@ -18,6 +18,10 @@ highlights:
     value: 41 entre lojas e deck parking
 order: 1
 cover: /images/projetos/expansao-shopping/capa.jpg
+video:
+  src: /images/projetos/expansao-shopping/obra.mp4
+  poster: /images/projetos/expansao-shopping/obra-poster.jpg
+  caption: Marquise em treliças metálicas, corredor com claraboias e lojas com a cobertura metálica aparente.
 gallery:
   - src: /images/projetos/expansao-shopping/01-cobertura-trelicas.jpg
     alt: Cobertura em treliças metálicas sobre a área de expansão

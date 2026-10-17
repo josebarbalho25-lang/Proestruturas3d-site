@@ -36,6 +36,21 @@ const p = project.data;
       </div></aside>
     </div>
   </section>
+  {p.video && (
+    <section class="section video-sec">
+      <div class="container">
+        <span class="eyebrow">Na obra</span>
+        <h2>A estrutura de pé</h2>
+        <figure class="video">
+          <video poster={p.video.poster} autoplay muted loop playsinline preload="metadata" aria-label={p.video.caption}>
+            <source src={p.video.src} type="video/mp4" />
+            <source src={p.video.src.replace(/\.mp4$/, '.webm')} type="video/webm" />
+          </video>
+          <figcaption>{p.video.caption}</figcaption>
+        </figure>
+      </div>
+    </section>
+  )}
   {[
     ...(p.gallery.length ? [{
       eyebrow: p.galleryKind === 'pranchas' ? 'Do projeto' : 'Na obra',
@@ -75,6 +90,9 @@ const p = project.data;
   .page-hero--foto .container { position: relative; }
   .page-hero--foto h1, .page-hero--foto .lead, .page-hero--foto .back, .page-hero--foto .eyebrow { color: #fff; }
   .page-hero--foto .eyebrow { color: var(--creme); }
+  .video { margin: 1.5rem 0 0; }
+  .video video { display: block; width: 100%; max-width: 960px; aspect-ratio: 848 / 478; background: var(--indigo); }
+  .video figcaption { font-size: .88rem; color: var(--grafite); margin-top: .6rem; }
   .galeria-intro { max-width: 70ch; color: var(--grafite); margin: .5rem 0 0; }
   .galeria { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
   .galeria figure { margin: 0; background: #fff; box-shadow: 0 1px 3px rgb(19 10 64 / 12%); }
