@@ -59,6 +59,8 @@ export interface Software {
   monogram: string;
   /** Logo original do software (arquivo em public/images/softwares/). */
   logo?: string;
+  /** Telas do programa, mostradas em galeria na página do software (public/images/softwares/<id>/). */
+  screens?: { src: string; alt: string }[];
   /** Planos à venda. Se existir, a página do software mostra a tabela de preços. */
   plans?: Plan[];
   /** Texto curto exibido abaixo dos botões na página do software. */
@@ -144,6 +146,16 @@ export const SOFTWARES: Software[] = [
     accent: '#22c55e',
     monogram: 'AR',
     logo: '/images/softwares/al-rimo.svg',
+    screens: [
+      { src: '/images/softwares/al-rimo/01-modelo-3d.jpg', alt: 'Modelo 3D do muro em corte, com a armadura da sapata, o dreno e a brita no tardoz' },
+      { src: '/images/softwares/al-rimo/02-entrada-muro.jpg', alt: 'Entrada por figuras: tipo de muro, bloco, graute e medidas, com o desenho cotado ao vivo' },
+      { src: '/images/softwares/al-rimo/03-isometrico.jpg', alt: 'Isométrico em corte com blocos, canaletas, graute, barra vertical e sapata armada' },
+      { src: '/images/softwares/al-rimo/04-memoria-empuxo.jpg', alt: 'Memória de cálculo do empuxo, com as fórmulas, os números substituídos e as figuras' },
+      { src: '/images/softwares/al-rimo/05-memoria-flecha.jpg', alt: 'Memória do estado limite de serviço: inércia fissurada e deslocamento no topo pela NBR 16868-1' },
+      { src: '/images/softwares/al-rimo/06-entrada-materiais.jpg', alt: 'Materiais: tabela de resistências do bloco, graute e prisma, e peso próprio calculado' },
+      { src: '/images/softwares/al-rimo/07-entrada-drenagem.jpg', alt: 'Drenagem: barbacãs, dreno no tardoz, dreno de fundo e impermeabilização' },
+      { src: '/images/softwares/al-rimo/08-quantitativo.jpg', alt: 'Quantitativo: blocos, canaletas, graute e argamassa do muro' },
+    ],
     deliveryNote: 'Em desenvolvimento. Deixe seu contato para ser avisado no lançamento.',
     buy: {
       mode: 'whatsapp',
