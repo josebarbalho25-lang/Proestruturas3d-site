@@ -57,7 +57,7 @@ async function refreshHeaderButton() {
   const label = document.querySelector<HTMLElement>('[data-auth-label]');
   if (!label) return;
   const customer = await getCurrentCustomer();
-  label.textContent = customer ? 'Minha Conta' : 'Login';
+  label.textContent = customer ? 'Minha Conta' : 'Clientes';
 }
 
 refreshHeaderButton();

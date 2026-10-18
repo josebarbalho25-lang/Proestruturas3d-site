@@ -1,26 +1,23 @@
 ---
 /**
  * ============================================================================
- *  ÁREA DO CLIENTE (interface pronta, aguardando o backend)
+ *  ÁREA DO CLIENTE — hoje sem login: baixar, ativar, assinatura e ajuda.
  * ============================================================================
- *  Fluxo de segurança planejado:
- *    1. O cliente digita e-mail e senha aqui.
- *    2. O formulário envia (HTTPS) para POST {API}/v1/auth/login.
- *    3. O BACKEND compara a senha com o hash Bcrypt salvo no banco.
- *    4. Se correto, o BACKEND gera um Token JWT e devolve em cookie
- *       HttpOnly + Secure + SameSite=Strict (o front-end nunca vê o token).
- *    5. Downloads e licenças passam a ser liberados pelo backend, que valida o JWT.
- *
- *  Enquanto PUBLIC_API_BASE_URL não estiver configurada, o formulário mostra
- *  uma mensagem de "em breve" e não envia nada.
+ *  A licença fica ligada ao e-mail (servidor de licenças), então o cliente
+ *  não precisa de senha aqui. Quando houver contas com login, o plano é:
+ *    1. O formulário envia (HTTPS) para POST {API}/v1/auth/login.
+ *    2. O BACKEND compara a senha com o hash Bcrypt salvo no banco.
+ *    3. Se correto, devolve um Token JWT em cookie HttpOnly + Secure +
+ *       SameSite=Strict (o front-end nunca vê o token).
+ *  (ver src/scripts/auth.ts e src/config/api.ts)
  * ============================================================================
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
-import { isApiEnabled } from '../config/api';
-const apiReady = isApiEnabled();
+import { LOJA } from '../config/api';
+import { ENGINEER, whatsappLink } from '../config/site';
 ---
-<BaseLayout title="Área do Cliente" description="Acesse sua conta para gerenciar licenças e downloads.">
+<BaseLayout title="Área do Cliente" description="Baixe o programa, ative com o seu e-mail e gerencie a sua assinatura.">
   <meta name="robots" content="noindex" slot="head" />
   <section class="section section--soft account">
     <div class="container account__inner">
@@ -28,61 +25,47 @@ const apiReady = isApiEnabled();
         <div class="card__body">
           <span class="account__icon"><Icon name="lock" size={26} /></span>
           <h1>Área do Cliente</h1>
-          <p class="muted">Acesse suas licenças, downloads e atualizações dos softwares.</p>
+          <p class="muted">Não precisa de senha: a sua licença fica ligada ao e-mail que você usou na assinatura ou no teste grátis.</p>
 
-          {!apiReady && (
-            <p class="notice">A Área do Cliente estará disponível em breve, junto com o lançamento dos softwares.</p>
-          )}
+          <h2>Baixar o Pró-Viga 3D</h2>
+          <p>Sempre a versão mais recente.</p>
+          <p><a class="btn btn--primary" href={LOJA.baixar('pro-viga-3d')}><Icon name="download" size={18} /> Baixar o instalador</a></p>
 
-          <form id="login-form" data-api-ready={apiReady ? 'true' : 'false'}>
-            <label>E-mail<input name="email" type="email" required autocomplete="username" disabled={!apiReady} /></label>
-            <label>Senha<input name="password" type="password" required autocomplete="current-password" minlength="8" disabled={!apiReady} /></label>
-            <button class="btn btn--dark" type="submit" disabled={!apiReady}>Entrar</button>
-            <p id="login-status" class="status" role="status" aria-live="polite"></p>
-          </form>
+          <h2>Ativar</h2>
+          <ol>
+            <li>Instale e abra o programa.</li>
+            <li>Na tela de ativação, digite o mesmo e-mail da assinatura ou do teste.</li>
+          </ol>
+          <p class="small">A licença vale em um computador por vez. Trocou de computador? Fale com a gente que liberamos.</p>
 
-          <p class="small">Ainda não é cliente? <a href="/softwares/">Conheça os softwares</a>.</p>
+          <h2>Assinatura</h2>
+          <p>
+            O pagamento fica no Mercado Pago. Para ver as cobranças ou cancelar, entre no Mercado Pago em <strong>Assinaturas</strong>. Se preferir, peça pelo WhatsApp ou e-mail que cancelamos para você.
+          </p>
+
+          <h2>Ajuda</h2>
+          <p class="ajuda">
+            <a class="btn btn--outline btn--sm" href={whatsappLink('Olá! Sou cliente do Pró-Viga 3D e preciso de ajuda.')} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a class="btn btn--outline btn--sm" href={`mailto:${ENGINEER.email}`}>{ENGINEER.email}</a>
+          </p>
+
+          <p class="small">Ainda não é cliente? <a href="/softwares/pro-viga-3d/?teste=1#planos">Teste grátis por 7 dias</a>.</p>
         </div>
       </div>
     </div>
   </section>
 </BaseLayout>
 
-<script>
-  import { login } from '../scripts/auth';
-
-  const form = document.querySelector<HTMLFormElement>('#login-form');
-  const status = document.querySelector<HTMLElement>('#login-status');
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (form.dataset.apiReady !== 'true') return;
-    const data = new FormData(form);
-    if (status) status.textContent = 'Entrando...';
-    try {
-      // A senha vai para o backend, que verifica com Bcrypt e devolve o JWT em cookie HttpOnly.
-      await login(String(data.get('email')), String(data.get('password')));
-      const voltar = new URLSearchParams(location.search).get('voltar');
-      // Só aceita voltar para páginas do próprio site (evita "open redirect").
-      location.assign(voltar && voltar.startsWith('/') && !voltar.startsWith('//') ? voltar : '/minha-conta/');
-    } catch {
-      if (status) status.textContent = 'E-mail ou senha inválidos.';
-    }
-  });
-</script>
-
 <style>
   .account { min-height: 70vh; display: grid; align-items: center; }
   .account__inner { display: grid; place-items: center; }
-  .account__card { width: min(440px, 100%); }
+  .account__card { width: min(560px, 100%); }
   .account__icon { width: 52px; height: 52px; border-radius: 12px; display: grid; place-items: center; background: var(--navy-900); color: var(--amber); }
   .account h1 { font-size: 1.8rem; margin: .5rem 0 0; }
+  .account h2 { font-size: 1.15rem; margin: 1.4rem 0 .3rem; color: var(--indigo); }
+  .account ol { margin: .3rem 0; padding-left: 1.2rem; }
+  .account p { margin: .3rem 0; }
   .muted { color: var(--text-muted); margin: 0; }
-  .notice { background: rgb(245 165 36 / 12%); border: 1px solid rgb(245 165 36 / 35%); color: #854d0e; padding: .8rem 1rem; border-radius: var(--radius-sm); font-size: .93rem; margin: 0; }
-  form { display: grid; gap: 1rem; margin-top: .5rem; }
-  label { display: grid; gap: .4rem; font-weight: 600; font-size: .92rem; color: var(--navy-900); }
-  input { font: inherit; padding: .75rem .9rem; border: 1px solid var(--steel-300); border-radius: var(--radius-sm); }
-  input:disabled { background: var(--steel-100); }
-  .status { margin: 0; font-size: .92rem; color: var(--steel-600); }
+  .ajuda { display: flex; flex-wrap: wrap; gap: .6rem; }
   .small { font-size: .9rem; color: var(--text-muted); margin: .5rem 0 0; }
 </style>
