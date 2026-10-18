@@ -17,7 +17,7 @@ Cálculo e detalhamento de **vigas de concreto armado** pela NBR 6118:2023, com
 automaticamente, memorial de cálculo e prancha em DXF. Roda no Windows e
 funciona offline.
 
-[Conheça o Pró-Viga 3D e peça seu teste de 30 dias](/softwares/pro-viga-3d/).
+[Conheça o Pró-Viga 3D e assine a partir de R$ 20/mês](/softwares/pro-viga-3d/).
 
 ## Al-rimo: em desenvolvimento
 

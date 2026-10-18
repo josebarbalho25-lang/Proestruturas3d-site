@@ -37,7 +37,7 @@ const others = SOFTWARES.filter((o) => o.id !== s.id);
           {s.features.map((f) => <li><Icon name="check" size={18} /> {f}</li>)}
         </ul>
       </div>
-      <aside class="card buy-box">
+      <aside class="card buy-box" id="planos">
         <div class="card__body">
           {s.plans?.some((p) => p.online) && (
             <div class="obrigado" data-obrigado hidden role="status">
@@ -102,7 +102,7 @@ const others = SOFTWARES.filter((o) => o.id !== s.id);
   .features { list-style: none; padding: 0; display: grid; gap: .8rem; }
   .features li { display: flex; gap: .6rem; align-items: flex-start; }
   .features :global(svg) { color: var(--amber-dark); margin-top: .3rem; flex: none; }
-  .buy-box { position: sticky; top: 96px; }
+  .buy-box { position: sticky; top: 96px; scroll-margin-top: 96px; }
   .buy-box__note { display: flex; gap: .45rem; align-items: flex-start; font-size: .85rem; color: var(--steel-500); margin: .5rem 0 0; }
   .buy-box__note :global(svg) { flex: none; margin-top: .2rem; }
   .specs { margin: 0; display: grid; gap: .5rem; padding-bottom: .75rem; border-bottom: 1px solid var(--border); }

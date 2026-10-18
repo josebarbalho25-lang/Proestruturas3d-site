@@ -21,7 +21,7 @@ export type ActionMode = 'api' | 'url' | 'whatsapp' | 'soon';
 
 export interface ProductAction {
   mode: ActionMode;
-  /** Usado somente quando mode = 'url' (precisa começar com https://). */
+  /** Usado somente quando mode = 'url': https://… ou um caminho do próprio site ("/softwares/…"). */
   url?: string;
   /** Usado somente quando mode = 'whatsapp'. */
   message?: string;
@@ -127,15 +127,12 @@ export const SOFTWARES: Software[] = [
     deliveryNote:
       'Pagamento pelo Mercado Pago, no cartão de crédito, com ou sem conta no Mercado Pago. O programa é ativado com o e-mail que você informar na assinatura.',
     buy: {
-      mode: 'whatsapp',
-      message: 'Olá! Quero assinar o Pró-Viga 3D.',
+      mode: 'url',
+      url: '/softwares/pro-viga-3d/#planos',
       label: 'Assinar',
     },
-    download: {
-      mode: 'whatsapp',
-      message: 'Olá! Sou engenheiro e gostaria de testar o Pró-Viga 3D por 30 dias.',
-      label: 'Pedir teste grátis de 30 dias',
-    },
+    // Sem teste grátis (Jose, 18/10): R$ 20/mês já é a porta de entrada.
+    download: { mode: 'soon', label: 'Saiba mais' },
   },
   {
     id: 'al-rimo',

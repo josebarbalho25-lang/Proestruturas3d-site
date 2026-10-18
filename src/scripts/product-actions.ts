@@ -23,6 +23,8 @@ import { apiFetch, ApiError, safeHttpsUrl } from './http';
 type ActionKind = 'buy' | 'download';
 
 async function resolveDestination(productId: string, kind: ActionKind, action: ProductAction): Promise<string | null> {
+  // Caminho do próprio site ("/softwares/…#planos"): fica no site, sem passar pela checagem de https.
+  if (action.mode === 'url' && /^\/(?!\/)/.test(action.url ?? '')) return action.url!;
   if (action.mode === 'url') return safeHttpsUrl(action.url);
   if (action.mode === 'whatsapp') return whatsappLink(action.message);
 
@@ -104,7 +106,7 @@ async function handleClick(button: HTMLButtonElement) {
   try {
     const url = await resolveDestination(productId, kind, action);
     if (!url) throw new Error('Link inválido');
-    if (new URL(url).origin === window.location.origin) window.location.assign(url);
+    if (new URL(url, window.location.href).origin === window.location.origin) window.location.assign(url);
     else window.open(url, '_blank', 'noopener,noreferrer');
   } catch (err) {
     if (err instanceof ApiError && err.status === 401) {
