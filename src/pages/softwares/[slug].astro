@@ -6,7 +6,7 @@ import PricingPlans from '../../components/PricingPlans.astro';
 import HireCta from '../../components/HireCta.astro';
 import Icon from '../../components/Icon.astro';
 import { SOFTWARES, type Software } from '../../config/softwares';
-import { whatsappLink } from '../../config/site';
+import { LOJA } from '../../config/api';
 
 export function getStaticPaths() {
   return SOFTWARES.map((software) => ({ params: { slug: software.id }, props: { software } }));
@@ -43,7 +43,7 @@ const others = SOFTWARES.filter((o) => o.id !== s.id);
             <div class="obrigado" data-obrigado hidden role="status">
               <strong>Assinatura recebida, obrigado!</strong>
               <p>Assim que o Mercado Pago confirmar o pagamento, o {s.name} ativa com o e-mail que você informou.
-                Para baixar o instalador, <a href={whatsappLink(`Olá! Acabei de assinar o ${s.name} e quero baixar o instalador.`)} target="_blank" rel="noopener">fale comigo no WhatsApp</a>.</p>
+                <a href={LOJA.baixar(s.id)} rel="nofollow"><strong>Baixe o instalador aqui</strong></a> e, na tela de ativação, digite esse mesmo e-mail.</p>
             </div>
           )}
           <h3>Obtenha o {s.name}</h3>
@@ -54,7 +54,7 @@ const others = SOFTWARES.filter((o) => o.id !== s.id);
           {s.plans ? (
             s.download.mode !== 'soon' && (
               <button type="button" class="btn btn--outline" data-product-id={s.id} data-product-action="download">
-                <Icon name="whatsapp" /> {s.download.label}
+                <Icon name={s.download.mode === 'whatsapp' ? 'whatsapp' : 'download'} /> {s.download.label}
               </button>
             )
           ) : (

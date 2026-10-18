@@ -67,6 +67,8 @@ export interface Software {
   plans?: Plan[];
   /** Texto curto exibido abaixo dos botões na página do software. */
   deliveryNote?: string;
+  /** Teste grátis automático (dias). O servidor libera o e-mail; sem cartão. */
+  trialDays?: number;
   buy: ProductAction;
   download: ProductAction;
 }
@@ -131,8 +133,10 @@ export const SOFTWARES: Software[] = [
       url: '/softwares/pro-viga-3d/#planos',
       label: 'Assinar',
     },
-    // Sem teste grátis (Jose, 18/10): R$ 20/mês já é a porta de entrada.
-    download: { mode: 'soon', label: 'Saiba mais' },
+    // Teste de 7 dias sem cartão (Jose, 18/10). Nos cartões das listas o botão leva à página
+    // do programa, que abre a caixinha do teste.
+    trialDays: 7,
+    download: { mode: 'url', url: '/softwares/pro-viga-3d/?teste=1#planos', label: 'Testar grátis por 7 dias' },
   },
   {
     id: 'al-rimo',

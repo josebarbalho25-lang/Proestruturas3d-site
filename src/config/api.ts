@@ -44,6 +44,10 @@ export const API = {
 export const LOJA = {
   baseUrl: 'https://proviga-licenca.jbarbalho-eng.workers.dev',
   checkout: (productId: string) => `/v1/products/${productId}/checkout`,
+  /** Teste grátis: o servidor libera o e-mail por alguns dias, sem cartão. */
+  teste: (productId: string) => `/v1/products/${productId}/teste`,
+  /** O servidor manda para o instalador da vez (o link do arquivo mora lá, não aqui). */
+  baixar: (productId: string) => `https://proviga-licenca.jbarbalho-eng.workers.dev/baixar/${productId}`,
 };
 
 export const isApiEnabled = (): boolean => API.baseUrl.length > 0;

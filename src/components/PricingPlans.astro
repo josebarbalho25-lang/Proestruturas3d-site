@@ -2,6 +2,7 @@
 /** Tabela de planos. Cada botão só carrega o ID do produto e do plano; o link vem de softwares.ts. */
 import type { Software } from '../config/softwares';
 import Icon from './Icon.astro';
+import { LOJA } from '../config/api';
 interface Props { software: Software }
 const { software } = Astro.props;
 const plans = software.plans ?? [];
@@ -43,10 +44,39 @@ const plans = software.plans ?? [];
     </form>
   </dialog>
 )}
+{software.trialDays && (
+  <dialog class="assinar" id="teste-dialogo">
+    <form method="dialog" class="assinar__form" novalidate data-teste-pedido>
+      <h3>Testar o {software.name} grátis por {software.trialDays} dias</h3>
+      <label for="teste-email">Seu e-mail</label>
+      <input id="teste-email" name="email" type="email" required autocomplete="email" inputmode="email" maxlength="254" />
+      <p class="assinar__dica">Sem cartão e sem compromisso. É com este e-mail que você ativa o programa. Um teste por e-mail e por computador.</p>
+      <p class="assinar__erro" role="alert" hidden></p>
+      <div class="assinar__botoes">
+        <button type="button" class="btn btn--sm btn--outline" data-teste-fechar>Cancelar</button>
+        <button type="submit" class="btn btn--sm btn--primary">Liberar meu teste</button>
+      </div>
+    </form>
+    <div class="assinar__form" data-teste-pronto hidden>
+      <h3>Teste liberado!</h3>
+      <p>Seu {software.name} está liberado até <strong data-teste-ate></strong> para <strong data-teste-email></strong>.</p>
+      <ol class="teste__passos">
+        <li>Baixe e instale o programa.</li>
+        <li>Na tela de ativação, digite este mesmo e-mail.</li>
+      </ol>
+      <div class="assinar__botoes">
+        <button type="button" class="btn btn--sm btn--outline" data-teste-fechar>Fechar</button>
+        <a class="btn btn--sm btn--primary" href={LOJA.baixar(software.id)} rel="nofollow"><Icon name="download" /> Baixar o instalador</a>
+      </div>
+    </div>
+  </dialog>
+)}
 <script>
   import '../scripts/product-actions';
 </script>
 <style>
+  .assinar [hidden] { display: none !important; }
+  .teste__passos { margin: .25rem 0 .5rem; padding-left: 1.2rem; font-size: .92rem; }
   .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .75rem; }
   .plan {
     position: relative; display: grid; gap: .35rem; justify-items: start; align-content: start;

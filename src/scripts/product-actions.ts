@@ -84,12 +84,63 @@ function abrirAssinatura(productId: string, planId: string, planName: string) {
   };
 }
 
+// ── Teste grátis ─────────────────────────────────────────────────────────────
+// O servidor libera o e-mail por alguns dias (sem cartão) e o cliente baixa o instalador.
+function abrirTeste(productId: string): boolean {
+  const dialogo = document.getElementById('teste-dialogo') as HTMLDialogElement | null;
+  if (!dialogo) return false;
+  const form = dialogo.querySelector<HTMLFormElement>('[data-teste-pedido]')!;
+  const pronto = dialogo.querySelector<HTMLElement>('[data-teste-pronto]')!;
+  const campo = form.querySelector<HTMLInputElement>('input[name="email"]')!;
+  const erro = form.querySelector<HTMLElement>('.assinar__erro')!;
+  const ir = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+  form.hidden = false;
+  pronto.hidden = true;
+  erro.hidden = true;
+  dialogo.querySelectorAll<HTMLButtonElement>('[data-teste-fechar]').forEach((b) => { b.onclick = () => dialogo.close(); });
+  dialogo.showModal();
+  campo.focus();
+
+  const mostraErro = (msg: string) => { erro.textContent = msg; erro.hidden = false; };
+  form.onsubmit = async (ev) => {
+    ev.preventDefault();
+    const email = campo.value.trim();
+    if (!campo.checkValidity() || !email) { mostraErro('Confira o e-mail.'); return; }
+    ir.disabled = true;
+    ir.setAttribute('aria-busy', 'true');
+    erro.hidden = true;
+    try {
+      const res = await fetch(`${LOJA.baseUrl}${LOJA.teste(productId)}`, {
+        method: 'POST',
+        credentials: 'omit',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; ate?: string; erro?: string };
+      if (!res.ok || !data.ok) { mostraErro(data.erro || 'Não foi possível liberar o teste agora. Tente de novo em instantes.'); return; }
+      const ate = data.ate ? new Date(data.ate).toLocaleDateString('pt-BR') : '';
+      pronto.querySelector<HTMLElement>('[data-teste-ate]')!.textContent = ate;
+      pronto.querySelector<HTMLElement>('[data-teste-email]')!.textContent = email.toLowerCase();
+      form.hidden = true;
+      pronto.hidden = false;
+    } catch {
+      mostraErro('Sem conexão com o servidor. Tente de novo em instantes.');
+    } finally {
+      ir.disabled = false;
+      ir.removeAttribute('aria-busy');
+    }
+  };
+  return true;
+}
+
 async function handleClick(button: HTMLButtonElement) {
   const productId = button.dataset.productId ?? '';
   const kind = button.dataset.productAction as ActionKind;
   const product = SOFTWARES.find((s) => s.id === productId);
   if (!product || (kind !== 'buy' && kind !== 'download')) return;
 
+  // Na página do programa, o teste abre a caixinha; nas listas, o botão leva até ela.
+  if (kind === 'download' && product.trialDays && abrirTeste(productId)) return;
   const plan = button.dataset.planId ? product.plans?.find((p) => p.id === button.dataset.planId) : undefined;
   if (plan?.online) { abrirAssinatura(productId, plan.id, plan.name); return; }
   const action: ProductAction = plan
@@ -125,3 +176,8 @@ async function handleClick(button: HTMLButtonElement) {
 document.querySelectorAll<HTMLButtonElement>('button[data-product-action]').forEach((btn) => {
   btn.addEventListener('click', () => handleClick(btn));
 });
+
+// Chegou de um cartão "Testar grátis" (…/?teste=1): abre a caixinha do teste direto.
+if (new URLSearchParams(location.search).get('teste') === '1') {
+  document.querySelector<HTMLButtonElement>('button[data-product-action="download"]')?.click();
+}
