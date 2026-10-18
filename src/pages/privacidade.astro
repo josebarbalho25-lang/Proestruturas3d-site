@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, ENGINEER } from '../config/site';
+
+// Data da última revisão do texto. Mudou o que guardamos? Mude o texto E esta data.
+const revisado = '18 de outubro de 2026';
+---
+<BaseLayout title="Política de Privacidade" description={`Quais dados o ${SITE.name} guarda, para quê, e como pedir para apagar.`}>
+  <section class="page-hero blueprint">
+    <div class="container">
+      <span class="eyebrow">LGPD · Lei 13.709/2018</span>
+      <h1>Política de Privacidade</h1>
+      <p class="lead">Guardamos o mínimo: o seu e-mail e a situação da sua licença. Dados de cartão ficam com o Mercado Pago.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <p><em>Revisada em {revisado}.</em></p>
+
+      <h2>Quem cuida dos seus dados</h2>
+      <p>
+        JBARBALHO PROJETOS DE ENGENHARIA LTDA, CNPJ 63.862.222/0001-33, Uberaba-MG, responsável pelo site
+        {SITE.domain} e pelos softwares vendidos nele.
+        Para qualquer assunto de privacidade, escreva para <a href={`mailto:${ENGINEER.email}`}>{ENGINEER.email}</a>.
+      </p>
+
+      <h2>O que guardamos</h2>
+      <ul>
+        <li><strong>Seu e-mail</strong>, o que você digita ao assinar ou ao pedir o teste grátis. É com ele que o programa ativa.</li>
+        <li><strong>A situação da licença</strong>: qual programa, se está ativa ou cortada, até quando está paga ou até quando vai o teste, e o número da assinatura no Mercado Pago.</li>
+        <li><strong>Um código do computador</strong> onde o programa foi ativado. É um resumo embaralhado (não dá para voltar ao nome da máquina nem ao seu usuário) e serve só para a licença valer em um computador por vez.</li>
+        <li><strong>O endereço de internet (IP) de quem erra muitas vezes seguidas</strong> a ativação ou o pedido de teste, por no máximo 24 horas, para travar robôs. Depois disso ele some sozinho.</li>
+      </ul>
+
+      <h2>O que NÃO guardamos</h2>
+      <ul>
+        <li><strong>Dados de cartão.</strong> O pagamento acontece inteiro no site do Mercado Pago, que tem a própria <a href="https://www.mercadopago.com.br/privacidade" target="_blank" rel="noopener noreferrer">política de privacidade</a>. Do Mercado Pago recebemos só o aviso de que a assinatura foi paga, pausada ou cancelada, e o e-mail dela.</li>
+        <li><strong>Seus projetos.</strong> Os programas calculam no seu computador. Nenhuma viga, muro ou arquivo seu vem para nós.</li>
+        <li><strong>Cookies de propaganda ou de rastreamento.</strong> Este site não usa nenhum.</li>
+      </ul>
+
+      <h2>Nota fiscal</h2>
+      <p>
+        Para emitir a nota fiscal da assinatura, podemos precisar do seu nome ou razão social e do CPF ou CNPJ.
+        Esses dados são usados só para isso e guardados pelo prazo que a lei fiscal exige.
+      </p>
+
+      <h2>Para que usamos</h2>
+      <p>
+        Só para entregar o que você comprou ou pediu: ativar o programa, conferir de tempos em tempos se a licença segue
+        válida, cortar quando a assinatura acaba e impedir que o teste grátis se repita no mesmo e-mail ou no mesmo
+        computador. A base legal é a execução do contrato com você (LGPD, art. 7º, V). Não vendemos, não alugamos e não
+        repassamos seus dados a ninguém para propaganda.
+      </p>
+
+      <h2>Quem mais participa</h2>
+      <ul>
+        <li><strong>Mercado Pago</strong>: recebe e processa o pagamento.</li>
+        <li><strong>Cloudflare</strong>: hospeda o servidor de licenças, onde ficam o e-mail e a situação da licença.</li>
+        <li><strong>GitHub</strong>: hospeda este site e o arquivo do instalador.</li>
+        <li><strong>Google Fonts</strong>: entrega as letras do site; o seu navegador busca as letras lá.</li>
+        <li><strong>WhatsApp</strong>: só se você clicar para falar conosco.</li>
+      </ul>
+      <p>Essas empresas podem guardar dados fora do Brasil, conforme as políticas delas.</p>
+
+      <h2>Por quanto tempo</h2>
+      <p>
+        Enquanto a sua licença existir. Depois que ela acabar, você pode pedir para apagar; guardamos só o que a lei
+        obrigar. O registro do teste grátis fica para que o mesmo e-mail não ganhe outro teste.
+      </p>
+
+      <h2>Seus direitos</h2>
+      <p>
+        Pela LGPD (art. 18) você pode, a qualquer momento: saber quais dados seus temos, corrigir, pedir para apagar
+        e revogar o consentimento. Basta escrever para <a href={`mailto:${ENGINEER.email}`}>{ENGINEER.email}</a> com o
+        e-mail usado na assinatura. Respondemos em até 15 dias. Se apagar o e-mail, a licença ligada a ele deixa de ativar.
+      </p>
+
+      <h2>Mudanças nesta política</h2>
+      <p>Se mudarmos o que guardamos, este texto muda antes, com a data nova no alto da página.</p>
+    </div>
+  </section>
+</BaseLayout>
