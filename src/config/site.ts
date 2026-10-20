@@ -18,6 +18,15 @@ export const SITE = {
   locale: 'pt-BR',
 };
 
+/**
+ * Contador de visitas (Cloudflare Web Analytics): sem cookies, não guarda IP.
+ * Cole aqui o "token" que a Cloudflare mostra ao cadastrar o site.
+ * Vazio = contador desligado (e a política de privacidade não cita ele).
+ */
+export const ANALYTICS = {
+  cloudflareToken: '73efbe77ee134419ab4066ffd5f542c0',
+};
+
 /** Dados do engenheiro (aparecem na página "Sobre" e no rodapé). */
 export const ENGINEER = {
   // TODO: confira seu nome como deseja que apareça no site

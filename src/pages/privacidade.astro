@@ -1,9 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE, ENGINEER } from '../config/site';
+import { SITE, ENGINEER, ANALYTICS } from '../config/site';
 
 // Data da última revisão do texto. Mudou o que guardamos? Mude o texto E esta data.
-const revisado = '18 de outubro de 2026';
+const revisado = ANALYTICS.cloudflareToken ? '19 de outubro de 2026' : '18 de outubro de 2026';
 ---
 <BaseLayout title="Política de Privacidade" description={`Quais dados o ${SITE.name} guarda, para quê, e como pedir para apagar.`}>
   <section class="page-hero blueprint">
@@ -59,6 +59,9 @@ const revisado = '18 de outubro de 2026';
         <li><strong>Mercado Pago</strong>: recebe e processa o pagamento.</li>
         <li><strong>Cloudflare</strong>: hospeda o servidor de licenças, onde ficam o e-mail e a situação da licença.</li>
         <li><strong>GitHub</strong>: hospeda este site e o arquivo do instalador.</li>
+        {ANALYTICS.cloudflareToken && (
+          <li><strong>Cloudflare Web Analytics</strong>: conta as visitas do site (quais páginas, de onde veio o clique, celular ou computador). Não usa cookies e não guarda o seu IP nem nada que identifique você.</li>
+        )}
         <li><strong>Google Fonts</strong>: entrega as letras do site; o seu navegador busca as letras lá.</li>
         <li><strong>WhatsApp</strong>: só se você clicar para falar conosco.</li>
       </ul>
