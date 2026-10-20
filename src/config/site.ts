@@ -24,7 +24,7 @@ export const SITE = {
  * Vazio = contador desligado (e a política de privacidade não cita ele).
  */
 export const ANALYTICS = {
-  cloudflareToken: '',
+  cloudflareToken: '73efbe77ee134419ab4066ffd5f542c0',
 };
 
 /** Dados do engenheiro (aparecem na página "Sobre" e no rodapé). */
