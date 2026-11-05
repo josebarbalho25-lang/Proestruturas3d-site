@@ -54,11 +54,13 @@ export interface Software {
   features: string[];
   /** Informações rápidas (plataforma, norma, licença...). */
   specs: { label: string; value: string }[];
-  status: 'Disponível' | 'Em desenvolvimento' | 'Beta';
+  status: 'Disponível' | 'Gratuito' | 'Em desenvolvimento' | 'Beta';
   /** Cor de destaque do card. */
   accent: string;
   /** Sigla de reserva, usada se o software ainda não tiver logo. */
   monogram: string;
+  /** true = nome feminino ("a PFF Calc", de calculadora): a página usa "da/a" em vez de "do/o". */
+  feminino?: boolean;
   /** Logo original do software (arquivo em public/images/softwares/). */
   logo?: string;
   /** Telas do programa, mostradas em galeria na página do software (public/images/softwares/<id>/). */
@@ -137,6 +139,97 @@ export const SOFTWARES: Software[] = [
     // do programa, que abre a caixinha do teste.
     trialDays: 7,
     download: { mode: 'url', url: '/softwares/pro-viga-3d/?teste=1#planos', label: 'Testar grátis por 7 dias' },
+  },
+  // Calculadoras gratuitas (licença MIT), com código e instalador no GitHub do Jose (05/11/2026).
+  // O botão leva à página de versões do GitHub, que mostra o instalador mais novo: nenhum .exe escrito aqui.
+  {
+    id: 'pff-calc',
+    name: 'PFF Calc',
+    feminino: true,
+    tagline: 'Verificação de perfis de aço formados a frio',
+    description:
+      'Verifica barras de perfil formado a frio pela NBR 14762:2010. Calcula os esforços críticos elásticos por um método das faixas finitas próprio, trata a flambagem local pelos três métodos da norma (largura efetiva, seção efetiva e resistência direta) e entrega a memória de cálculo completa, com cada fórmula, os números no lugar das letras e o item da norma.',
+    features: [
+      'Tração, compressão (global, local e distorcional), flexão nos dois eixos e cortante',
+      'Flambagem local pelos três métodos: largura efetiva, seção efetiva e resistência direta',
+      'U, U enrijecido, Z, Z enrijecido, cartola, cantoneiras, seção desenhada e dupla de U enrijecidos',
+      'Modo de flambagem na barra em 3D e diagrama de interação N–Mx–My',
+      'Terça com telha na mesa tracionada pelo Anexo F',
+      'Memória de cálculo em PDF, com fórmula, números e item da norma em cada linha',
+    ],
+    specs: [
+      { label: 'Norma', value: 'NBR 14762:2010' },
+      { label: 'Plataforma', value: 'Windows' },
+      { label: 'Licença', value: 'Gratuita (MIT)' },
+    ],
+    status: 'Gratuito',
+    accent: '#4f46e5',
+    monogram: 'PFF',
+    logo: '/images/softwares/pff-calc.svg',
+    screens: [
+      { src: '/images/softwares/pff-calc/01-tela-papel.jpg', alt: 'Tela principal: perfil U enrijecido, propriedades da seção e o aproveitamento de cada verificação com o item da norma' },
+      { src: '/images/softwares/pff-calc/02-modo-3d.jpg', alt: 'O modo de flambagem na barra, em 3D' },
+      { src: '/images/softwares/pff-calc/03-editor-do-desenho.jpg', alt: 'O editor da seção desenhada pelo engenheiro' },
+      { src: '/images/softwares/pff-calc/04-dois-ue.jpg', alt: 'Dois U enrijecidos soldados boca com boca' },
+      { src: '/images/softwares/pff-calc/05-interacao.jpg', alt: 'Diagrama de interação N–Mx–My do item 9.9' },
+      { src: '/images/softwares/pff-calc/06-tela-escura.jpg', alt: 'A mesma tela no tema escuro' },
+    ],
+    deliveryNote:
+      'Grátis, sem cadastro. O instalador não tem assinatura digital: se o Windows avisar, clique em "Mais informações" e "Executar assim mesmo". A responsabilidade pela verificação é do engenheiro que assina o projeto.',
+    buy: {
+      mode: 'url',
+      url: 'https://github.com/josebarbalho25-lang/PFF-Calc/releases/latest',
+      label: 'Baixar grátis',
+    },
+    download: {
+      mode: 'url',
+      url: 'https://github.com/josebarbalho25-lang/PFF-Calc/blob/main/docs/MANUAL.pdf',
+      label: 'Manual (PDF)',
+    },
+  },
+  {
+    id: 'pls-calc',
+    name: 'PLS Calc',
+    feminino: true,
+    tagline: 'Verificação de perfis de aço laminados e soldados',
+    description:
+      'Verifica uma barra de perfil de aço laminado ou soldado aos estados-limites últimos da NBR 8800:2024 e gera a memória de cálculo completa, com cada fórmula escrita com as letras, com os números e com o resultado, e o item da norma ao lado.',
+    features: [
+      'Laminados de catálogo: I de abas paralelas (W e HP), I e U padrão americano e cantoneiras',
+      'Soldados das séries CS, CVS e VS da NBR 5884, ou de chapas quaisquer, com mesas iguais ou diferentes',
+      'Tração, compressão com a área efetiva da edição de 2024, flexão em X e em Y e cortante',
+      'Flambagem lateral com torção, inclusive seção monossimétrica, e viga de alma esbelta (Anexo E)',
+      'Força axial com momentos (5.5.1.2)',
+      'Memória de cálculo em PDF com o carimbo do projetista; funciona sem internet',
+    ],
+    specs: [
+      { label: 'Norma', value: 'NBR 8800:2024' },
+      { label: 'Plataforma', value: 'Windows' },
+      { label: 'Licença', value: 'Gratuita (MIT)' },
+    ],
+    status: 'Gratuito',
+    accent: '#64748b',
+    monogram: 'PLS',
+    logo: '/images/softwares/pls-calc.svg',
+    screens: [
+      { src: '/images/softwares/pls-calc/01-tela.jpg', alt: 'Tela principal: perfil W, propriedades da seção e o aproveitamento de cada verificação com o item da norma' },
+      { src: '/images/softwares/pls-calc/02-soldado-mesas-diferentes.jpg', alt: 'Perfil soldado de mesas diferentes, por chapas, com curvatura reversa: as duas mesas verificadas' },
+      { src: '/images/softwares/pls-calc/03-janela-flt.jpg', alt: 'A janela animada da flambagem lateral com torção, com os números da verificação' },
+      { src: '/images/softwares/pls-calc/04-memoria.jpg', alt: 'A memória de cálculo em PDF: a capa e uma página de contas' },
+      { src: '/images/softwares/pls-calc/05-tema-escuro.jpg', alt: 'A tela no tema escuro' },
+    ],
+    deliveryNote:
+      'Grátis, sem cadastro. O instalador não tem assinatura digital: se o Windows avisar, clique em "Mais informações" e "Executar assim mesmo". A responsabilidade pela verificação é do engenheiro que assina o projeto.',
+    buy: {
+      mode: 'url',
+      url: 'https://github.com/josebarbalho25-lang/PLS-Calc/releases/latest',
+      label: 'Baixar grátis',
+    },
+    download: {
+      mode: 'url',
+      url: 'https://github.com/josebarbalho25-lang/PLS-Calc/blob/main/docs/MANUAL.pdf',
+      label: 'Manual (PDF)',
+    },
   },
   {
     id: 'al-rimo',
