@@ -14,6 +14,8 @@ export function getStaticPaths() {
 interface Props { software: Software }
 const { software: s } = Astro.props;
 const others = SOFTWARES.filter((o) => o.id !== s.id);
+const o_a = s.feminino ? 'a' : 'o';
+const do_da = s.feminino ? 'da' : 'do';
 ---
 <BaseLayout title={s.name} description={`${s.name}: ${s.tagline}.`}>
   <section class="page-hero blueprint">
@@ -30,7 +32,7 @@ const others = SOFTWARES.filter((o) => o.id !== s.id);
   <section class="section">
     <div class="container sw-detail">
       <div>
-        <h2>Sobre o {s.name}</h2>
+        <h2>Sobre {o_a} {s.name}</h2>
         <p class="lead">{s.description}</p>
         <h3>Principais recursos</h3>
         <ul class="features">
@@ -46,7 +48,7 @@ const others = SOFTWARES.filter((o) => o.id !== s.id);
                 <a href={LOJA.baixar(s.id)} rel="nofollow"><strong>Baixe o instalador aqui</strong></a> e, na tela de ativação, digite esse mesmo e-mail.</p>
             </div>
           )}
-          <h3>Obtenha o {s.name}</h3>
+          <h3>Obtenha {o_a} {s.name}</h3>
           <dl class="specs">
             {s.specs.map((sp) => <div><dt>{sp.label}</dt><dd>{sp.value}</dd></div>)}
           </dl>
@@ -69,7 +71,7 @@ const others = SOFTWARES.filter((o) => o.id !== s.id);
   {s.screens && s.screens.length > 0 && (
     <section class="section section--soft">
       <div class="container">
-        <div class="section-head"><span class="eyebrow">Telas</span><h2>Por dentro do {s.name}</h2></div>
+        <div class="section-head"><span class="eyebrow">Telas</span><h2>Por dentro {do_da} {s.name}</h2></div>
         <div class="telas">
           {s.screens.map((t) => (
             <figure>
