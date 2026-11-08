@@ -231,6 +231,51 @@ export const SOFTWARES: Software[] = [
       label: 'Manual (PDF)',
     },
   },
+  // All Sec, gratuito (08/11/2026). Código fechado: o instalador e o manual ficam no repo público All-Sec-download.
+  {
+    id: 'all-sec',
+    name: 'All Sec',
+    tagline: 'Seções de qualquer forma e pilares de concreto armado',
+    description:
+      'Desenha seções de qualquer forma, calcula as propriedades geométricas e verifica seções e pilares de concreto armado pela NBR 6118 (edições 2023 e 2014): flexão composta oblíqua, efeitos locais de 2ª ordem até λ = 200 e a memória de cálculo passo a passo em PDF.',
+    features: [
+      'Seção de qualquer forma: retângulo, T, I, círculo, vazadas e poligonal com arcos, desenhada com o mouse ou pelo teclado',
+      'Propriedades completas: área, centro de gravidade, inércias, eixos principais e módulos elástico e plástico',
+      'Flexão composta oblíqua, com o diagrama Mx–My e a superfície N–Mx–My em 3D',
+      'Pilar inteiro: efeitos locais de 2ª ordem até λ = 200, com fluência',
+      'Armadura por barra, em linha, por face ou no contorno; tensões no concreto e nas barras',
+      'Validação das regras de detalhamento e memória de cálculo em PDF; funciona sem internet',
+    ],
+    specs: [
+      { label: 'Norma', value: 'NBR 6118:2023 e 2014' },
+      { label: 'Plataforma', value: 'Windows' },
+      { label: 'Licença', value: 'Gratuita' },
+    ],
+    status: 'Gratuito',
+    accent: '#0d9488',
+    monogram: 'AS',
+    logo: '/images/softwares/all-sec.png',
+    screens: [
+      { src: '/images/softwares/all-sec/01-pilar.jpg', alt: 'Pilar: combinações com momentos no topo e na base, tensões no concreto e nas barras e o diagrama Mx–My' },
+      { src: '/images/softwares/all-sec/02-superficie-3d.jpg', alt: 'Superfície de interação N–Mx–My em 3D, com os pontos de topo e base da combinação' },
+      { src: '/images/softwares/all-sec/03-armadura.jpg', alt: 'Seção em L com a armadura lançada no contorno de cada parte' },
+      { src: '/images/softwares/all-sec/04-pilar-L.jpg', alt: 'Pilar em L na flexão oblíqua: tensões nas barras e o diagrama Mx–My' },
+      { src: '/images/softwares/all-sec/05-tema-escuro.jpg', alt: 'Desenho da seção no tema escuro, com os eixos principais' },
+    ],
+    deliveryNote:
+      'Grátis, sem cadastro. O instalador não tem assinatura digital: se o Windows avisar, clique em "Mais informações" e "Executar assim mesmo". A responsabilidade pela verificação é do engenheiro que assina o projeto.',
+    buy: {
+      mode: 'url',
+      url: 'https://github.com/josebarbalho25-lang/All-Sec-download/releases/latest',
+      label: 'Baixar grátis',
+    },
+    // O nome do PDF leva a versão: ao lançar versão nova, trocar aqui.
+    download: {
+      mode: 'url',
+      url: 'https://github.com/josebarbalho25-lang/All-Sec-download/releases/download/v0.1.0/All-Sec-Manual-0.1.0.pdf',
+      label: 'Manual (PDF)',
+    },
+  },
   {
     id: 'al-rimo',
     name: 'Al-rimo',
