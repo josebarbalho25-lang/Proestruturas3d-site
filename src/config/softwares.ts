@@ -269,9 +269,12 @@ export const SOFTWARES: Software[] = [
       url: 'https://github.com/josebarbalho25-lang/All-Sec-download/releases/latest',
       label: 'Baixar grátis',
     },
-    // Manual fora por enquanto (Jose, 08/11): ele manda a versão nova, que aponta o download para o site.
-    // 'soon' esconde o 2º botão.
-    download: { mode: 'soon', label: 'Manual (PDF)' },
+    // O nome do PDF leva a versão: ao lançar versão nova, trocar aqui.
+    download: {
+      mode: 'url',
+      url: 'https://github.com/josebarbalho25-lang/All-Sec-download/releases/download/v0.1.0/All-Sec-Manual-0.1.0.pdf',
+      label: 'Manual (PDF)',
+    },
   },
   {
     id: 'al-rimo',
