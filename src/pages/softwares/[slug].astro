@@ -5,6 +5,7 @@ import ProductButtons from '../../components/ProductButtons.astro';
 import PricingPlans from '../../components/PricingPlans.astro';
 import HireCta from '../../components/HireCta.astro';
 import Icon from '../../components/Icon.astro';
+import InstagramEmbed from '../../components/InstagramEmbed.astro';
 import { SOFTWARES, type Software } from '../../config/softwares';
 import { LOJA } from '../../config/api';
 
@@ -68,6 +69,17 @@ const do_da = s.feminino ? 'da' : 'do';
     </div>
   </section>
 
+  {s.videos && s.videos.length > 0 && (
+    <section class="section concreto--claro">
+      <div class="container">
+        <div class="section-head"><span class="eyebrow">Vídeo</span><h2>Veja {o_a} {s.name} funcionando</h2></div>
+        <div class="videos">
+          {s.videos.map((v) => <InstagramEmbed url={v.instagram} title={v.title} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
   {s.screens && s.screens.length > 0 && (
     <section class="section section--soft">
       <div class="container">
@@ -111,6 +123,8 @@ const do_da = s.feminino ? 'da' : 'do';
   .specs div { display: flex; justify-content: space-between; gap: 1rem; font-size: .92rem; }
   .specs dt { color: var(--steel-500); }
   .specs dd { margin: 0; font-weight: 650; color: var(--navy-900); text-align: right; }
+  .videos { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; }
+  .videos > :global(*) { flex: 1 1 300px; }
   .telas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
   .telas figure { margin: 0; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
   .telas img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: contain; background: #fff; border-bottom: 1px solid var(--border); }

@@ -1,0 +1,87 @@
+---
+/**
+ * Vídeo/post do Instagram dentro do site, com "clique para carregar".
+ *
+ * Nada do Instagram é baixado enquanto o visitante não clicar em "Assistir aqui":
+ * sem o clique, o Instagram não recebe visita nem grava cookie. Depois do clique,
+ * o post abre num quadro (iframe) oficial do Instagram.
+ *
+ * Uso:  <InstagramEmbed url="https://www.instagram.com/reel/XXXX/" title="..." />
+ * Aceita links de /reel/, /p/ e /tv/ (os parâmetros ?utm_... são ignorados).
+ */
+import Icon from './Icon.astro';
+import { SOCIAL } from '../config/site';
+
+interface Props { url: string; title?: string; caption?: boolean }
+const { url, title = 'Vídeo no Instagram', caption = true } = Astro.props;
+
+const m = url.match(/instagram\.com\/(reel|p|tv)\/([A-Za-z0-9_-]+)/);
+if (!m) throw new Error(`InstagramEmbed: link do Instagram inválido: ${url}`);
+const [, tipo, codigo] = m;
+const link = `https://www.instagram.com/${tipo}/${codigo}/`;
+const embed = `${link}embed/${caption ? 'captioned/' : ''}`;
+const perfil = SOCIAL.find((s) => s.id === 'instagram');
+const arroba = perfil ? '@' + perfil.url.replace(/\/+$/, '').split('/').pop() : '';
+---
+<figure class="ig" data-ig data-src={embed}>
+  <div class="ig__capa" data-ig-capa>
+    <span class="ig__icone"><Icon name="instagram" size={34} /></span>
+    <strong class="ig__titulo">{title}</strong>
+    {arroba && <span class="ig__perfil">{arroba}</span>}
+    <button type="button" class="btn btn--primary ig__play" data-ig-play>
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5Z" fill="currentColor" /></svg>
+      Assistir aqui
+    </button>
+    <a class="ig__abrir" href={link} target="_blank" rel="noopener">Abrir no Instagram</a>
+    <small class="ig__aviso">Ao assistir aqui, o vídeo vem do Instagram, que pode usar cookies próprios. <a href="/privacidade/">Privacidade</a></small>
+  </div>
+</figure>
+
+<style>
+  .ig { margin: 0 auto; width: 100%; max-width: 400px; }
+  .ig__capa {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6rem;
+    aspect-ratio: 9 / 14; padding: 1.5rem; text-align: center;
+    background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    background-image: linear-gradient(180deg, var(--creme-claro) 0%, var(--white) 55%);
+  }
+  .ig__icone { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: var(--creme); color: var(--indigo); }
+  .ig__titulo { color: var(--indigo); font-family: var(--font-titulo); font-size: 1.35rem; font-weight: 500; line-height: 1.25; }
+  .ig__perfil { color: var(--text-muted); font-size: .95rem; }
+  .ig__play { margin-top: .6rem; display: inline-flex; align-items: center; gap: .45rem; }
+  .ig__abrir { font-size: .92rem; color: var(--indigo-2); font-weight: 600; }
+  .ig__aviso { margin-top: .6rem; font-size: .78rem; color: var(--text-muted); max-width: 30ch; }
+  .ig :global(iframe) {
+    display: block; width: 100%; height: 720px; border: 1px solid var(--border);
+    border-radius: var(--radius); background: var(--white); box-shadow: var(--shadow);
+  }
+  @media (max-width: 420px) { .ig :global(iframe) { height: 640px; } }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-ig]').forEach((box) => {
+    box.querySelector('[data-ig-play]')?.addEventListener('click', () => {
+      const frame = document.createElement('iframe');
+      frame.src = box.dataset.src ?? '';
+      frame.title = 'Vídeo do Instagram';
+      frame.allow = 'autoplay; encrypted-media; picture-in-picture; clipboard-write';
+      frame.setAttribute('allowfullscreen', '');
+      frame.setAttribute('scrolling', 'no');
+      box.querySelector('[data-ig-capa]')?.replaceWith(frame);
+    });
+  });
+
+  // O quadro do Instagram avisa a altura do conteúdo ({type:"MEASURE", details:{height}}).
+  // Ajusta a altura para não sobrar espaço nem cortar a legenda.
+  window.addEventListener('message', (e) => {
+    if (!/^https:\/\/(www\.)?instagram\.com$/.test(e.origin)) return;
+    let msg: any;
+    try { msg = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch { return; }
+    const h = Number(msg?.details?.height);
+    if (msg?.type !== 'MEASURE' || !(h > 200 && h < 4000)) return;
+    document.querySelectorAll<HTMLIFrameElement>('[data-ig] iframe').forEach((f) => {
+      if (f.contentWindow === e.source) f.style.height = `${Math.ceil(h)}px`;
+    });
+  });
+</script>

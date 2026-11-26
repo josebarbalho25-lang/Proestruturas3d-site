@@ -65,6 +65,8 @@ export interface Software {
   logo?: string;
   /** Telas do programa, mostradas em galeria na página do software (public/images/softwares/<id>/). */
   screens?: { src: string; alt: string }[];
+  /** Vídeos do Instagram (reel ou post) mostrados na página do software. Só o link; o site cuida do resto. */
+  videos?: { instagram: string; title: string }[];
   /** Planos à venda. Se existir, a página do software mostra a tabela de preços. */
   plans?: Plan[];
   /** Texto curto exibido abaixo dos botões na página do software. */
@@ -309,6 +311,9 @@ export const SOFTWARES: Software[] = [
       { src: '/images/softwares/al-rimo/06-entrada-materiais.jpg', alt: 'Materiais: tabela de resistências do bloco, graute e prisma, e peso próprio calculado' },
       { src: '/images/softwares/al-rimo/07-entrada-drenagem.jpg', alt: 'Drenagem: barbacãs, dreno no tardoz, dreno de fundo e impermeabilização' },
       { src: '/images/softwares/al-rimo/08-quantitativo.jpg', alt: 'Quantitativo: blocos, canaletas, graute e argamassa do muro' },
+    ],
+    videos: [
+      { instagram: 'https://www.instagram.com/reel/DfsadySzvNu/', title: 'O Al-rimo em ação' },
     ],
     deliveryNote:
       'Grátis, sem cadastro. O instalador não tem assinatura digital: se o Windows avisar, clique em "Mais informações" e "Executar assim mesmo". O projeto e a responsabilidade técnica são do engenheiro.',

@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE, ENGINEER, ANALYTICS } from '../config/site';
 
 // Data da última revisão do texto. Mudou o que guardamos? Mude o texto E esta data.
-const revisado = ANALYTICS.cloudflareToken ? '19 de outubro de 2026' : '18 de outubro de 2026';
+const revisado = '26 de novembro de 2026';
 ---
 <BaseLayout title="Política de Privacidade" description={`Quais dados o ${SITE.name} guarda, para quê, e como pedir para apagar.`}>
   <section class="page-hero blueprint">
@@ -37,7 +37,7 @@ const revisado = ANALYTICS.cloudflareToken ? '19 de outubro de 2026' : '18 de ou
       <ul>
         <li><strong>Dados de cartão.</strong> O pagamento acontece inteiro no site do Mercado Pago, que tem a própria <a href="https://www.mercadopago.com.br/privacidade" target="_blank" rel="noopener noreferrer">política de privacidade</a>. Do Mercado Pago recebemos só o aviso de que a assinatura foi paga, pausada ou cancelada, e o e-mail dela.</li>
         <li><strong>Seus projetos.</strong> Os programas calculam no seu computador. Nenhuma viga, muro ou arquivo seu vem para nós.</li>
-        <li><strong>Cookies de propaganda ou de rastreamento.</strong> Este site não usa nenhum.</li>
+        <li><strong>Cookies de propaganda ou de rastreamento.</strong> Este site não usa nenhum. (Se você escolher assistir a um vídeo do Instagram aqui, veja "Quem mais participa".)</li>
       </ul>
 
       <h2>Nota fiscal</h2>
@@ -63,6 +63,7 @@ const revisado = ANALYTICS.cloudflareToken ? '19 de outubro de 2026' : '18 de ou
           <li><strong>Cloudflare Web Analytics</strong>: conta as visitas do site (quais páginas, de onde veio o clique, celular ou computador). Não usa cookies e não guarda o seu IP nem nada que identifique você.</li>
         )}
         <li><strong>Google Fonts</strong>: entrega as letras do site; o seu navegador busca as letras lá.</li>
+        <li><strong>Instagram</strong>: algumas páginas mostram vídeos nossos do Instagram. Nada do Instagram carrega até você clicar em "Assistir aqui". Depois do clique, o vídeo vem do Instagram, que pode usar cookies próprios, conforme a <a href="https://privacycenter.instagram.com/policy" target="_blank" rel="noopener noreferrer">política de privacidade dele</a>.</li>
         <li><strong>WhatsApp</strong>: só se você clicar para falar conosco.</li>
       </ul>
       <p>Essas empresas podem guardar dados fora do Brasil, conforme as políticas delas.</p>
