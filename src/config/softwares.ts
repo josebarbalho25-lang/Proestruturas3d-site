@@ -283,7 +283,7 @@ export const SOFTWARES: Software[] = [
     description:
       'Projeto de muros de arrimo em blocos de concreto, em balanço ou com contrafortes, com a fundação em sapata corrida. A conta segue a NBR 16868-1:2020 e o manual da ABCP, com cada linha da memória citando o item da norma e a fórmula usada.',
     features: [
-      'Muro em balanço (até 3,0 m de solo) e com contrafortes (até 4,0 m)',
+      'Muro em balanço (até 3,0 m de solo) e com contrafortes, simples ou dobrados (até 4,0 m)',
       'Empuxo de terra, verificações de estabilidade e tensões no solo',
       'Sapata corrida dimensionada junto com o muro',
       'Modulação real dos blocos, com cinta, contrafortes e juntas de controle',
@@ -293,9 +293,10 @@ export const SOFTWARES: Software[] = [
     specs: [
       { label: 'Norma', value: 'NBR 16868-1:2020' },
       { label: 'Sistema', value: 'Bloco de concreto' },
-      { label: 'Licença', value: 'Perpétua (prevista)' },
+      { label: 'Plataforma', value: 'Windows' },
+      { label: 'Licença', value: 'Gratuita' },
     ],
-    status: 'Em desenvolvimento',
+    status: 'Gratuito',
     accent: '#22c55e',
     monogram: 'AR',
     logo: '/images/softwares/al-rimo.svg',
@@ -309,13 +310,19 @@ export const SOFTWARES: Software[] = [
       { src: '/images/softwares/al-rimo/07-entrada-drenagem.jpg', alt: 'Drenagem: barbacãs, dreno no tardoz, dreno de fundo e impermeabilização' },
       { src: '/images/softwares/al-rimo/08-quantitativo.jpg', alt: 'Quantitativo: blocos, canaletas, graute e argamassa do muro' },
     ],
-    deliveryNote: 'Em desenvolvimento. Deixe seu contato para ser avisado no lançamento.',
+    deliveryNote:
+      'Grátis, sem cadastro. O instalador não tem assinatura digital: se o Windows avisar, clique em "Mais informações" e "Executar assim mesmo". O projeto e a responsabilidade técnica são do engenheiro.',
+    // O instalador fica na página de versões do repositório público Al-rimo; "latest" segue a versão nova sozinho.
     buy: {
-      mode: 'whatsapp',
-      message: 'Olá! Quero ser avisado quando o Al-rimo for lançado.',
-      label: 'Quero ser avisado',
+      mode: 'url',
+      url: 'https://github.com/josebarbalho25-lang/Al-rimo/releases/latest',
+      label: 'Baixar grátis',
     },
-    download: { mode: 'soon', label: 'Saiba mais' },
+    download: {
+      mode: 'url',
+      url: 'https://github.com/josebarbalho25-lang/Al-rimo/blob/main/TERMO_DE_USO.md',
+      label: 'Termo de uso',
+    },
   },
   {
     id: 'a-port',
